@@ -1,0 +1,6 @@
+name: login
+version: 1.0
+main: br.com.plutomc.lobby.login.LoginMain
+softdepend: [ProtocolLib]
+website: www.plutomc.com.br
+description: Login Bukkit Plugin based on core, core-bukkit and lobby-core

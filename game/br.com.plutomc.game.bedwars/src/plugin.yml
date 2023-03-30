@@ -1,0 +1,6 @@
+name: Arcade
+version: 1.0
+main: br.com.plutomc.game.bedwars.GameMain
+softdepend: [ProtocolLib]
+website: www.plutomc.com.br
+description: Arcade Bukkit Plugin based on core, core-bukkit and game-engine

@@ -1,0 +1,65 @@
+package br.com.plutomc.lobby.login.listener;
+
+import br.com.plutomc.core.common.CommonPlugin;
+import br.com.plutomc.core.bukkit.BukkitCommon;
+import br.com.plutomc.core.bukkit.event.member.PlayerLanguageChangeEvent;
+import br.com.plutomc.core.bukkit.event.server.PlayerChangeEvent;
+import br.com.plutomc.core.bukkit.utils.scoreboard.ScoreHelper;
+import br.com.plutomc.core.bukkit.utils.scoreboard.Scoreboard;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+
+public class ScoreboardListener implements Listener {
+   @EventHandler(
+      priority = EventPriority.HIGHEST
+   )
+   public void onPlayerJoin(PlayerJoinEvent event) {
+      this.handleScoreboard(event.getPlayer());
+      this.updateScoreboard(event.getPlayer());
+      this.updatePlayers();
+   }
+
+   @EventHandler(
+      priority = EventPriority.HIGHEST
+   )
+   public void onPlayerQuit(PlayerQuitEvent event) {
+      this.updatePlayers();
+   }
+
+   @EventHandler(
+      priority = EventPriority.HIGHEST
+   )
+   public void onPlayerChange(PlayerChangeEvent event) {
+      this.updatePlayers();
+   }
+
+   @EventHandler
+   public void onPlayerLanguageChange(PlayerLanguageChangeEvent event) {
+      ScoreHelper.getInstance().removeScoreboard(event.getPlayer());
+      this.handleScoreboard(event.getPlayer());
+      this.updateScoreboard(event.getPlayer());
+   }
+
+   private void handleScoreboard(Player player) {
+      Scoreboard scoreboard = new Scoreboard(player, "§b§lLOGIN");
+      scoreboard.add(7, "§e");
+      scoreboard.add(6, "§7Aguardando você");
+      scoreboard.add(5, "§7se autenticar.");
+      scoreboard.add(4, "§e");
+      scoreboard.add(3, "§f§%scoreboard-players%§: §a" + BukkitCommon.getInstance().getServerManager().getTotalMembers());
+      scoreboard.add(2, "§e");
+      scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
+      ScoreHelper.getInstance().setScoreboard(player, scoreboard);
+   }
+
+   private void updateScoreboard(Player player) {
+   }
+
+   private void updatePlayers() {
+      ScoreHelper.getInstance().updateScoreboard(3, "§f§%scoreboard-players%§: §a" + BukkitCommon.getInstance().getServerManager().getTotalMembers());
+   }
+}
