@@ -393,7 +393,7 @@ public class GameMain extends GameAPI implements Listener {
    }
 
    public String createMessage(Player player, String message, Island island, boolean global, boolean globaPrefix, int level) {
-      String levelFormatted = "§7[" + this.getColorByLevel(level) + "§7]";
+      String levelFormatted = this.getColorByLevelPlusBrackets(level);
       Member member = CommonPlugin.getInstance().getMemberManager().getMember(player.getUniqueId());
       Medal medal = member.getMedal();
       return ((globaPrefix ? (global ? "§6[G] " : "") : "")

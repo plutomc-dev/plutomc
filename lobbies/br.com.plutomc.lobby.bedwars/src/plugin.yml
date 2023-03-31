@@ -1,0 +1,6 @@
+name: Lobby
+version: 1.0
+main: br.com.plutomc.lobby.bedwars.LobbyMain
+softdepend: [ProtocolLib]
+website: www.plutomc.com.br
+description: Lobby Bukkit Plugin based on core, core-bukkit and lobby-core

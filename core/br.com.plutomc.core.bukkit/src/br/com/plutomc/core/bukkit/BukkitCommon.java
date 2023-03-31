@@ -136,10 +136,6 @@ public abstract class BukkitCommon extends JavaPlugin {
                      BukkitCommandFramework.INSTANCE
                         .unregisterCommands(
                            "icanhasbukkit",
-                           "pluginsttttt",
-                           "plttttttttttt",
-                           "verrrrrrrrrr",
-                           "versionrrrrrrrrrrrrrrrrrr",
                            "?",
                            "about",
                            "help",
@@ -431,6 +427,30 @@ public abstract class BukkitCommon extends JavaPlugin {
          return "§1" + level + "✵";
       } else {
          return level >= 90 && level < 100 ? "§c" + level + "✱" : "§4" + level + "♥";
+      }
+   }
+
+   public String getColorByLevelPlusBrackets(int level) {
+      if (level >= 0 && level < 10) {
+         return "§7[" + level + "✫]";
+      } else if (level >= 10 && level < 20) {
+         return "§a[" + level + "✶]";
+      } else if (level >= 20 && level < 30) {
+         return "§b[" + level + "✻]";
+      } else if (level >= 30 && level < 40) {
+         return "§d[" + level + "❃]";
+      } else if (level >= 40 && level < 50) {
+         return "§e[" + level + "✷]";
+      } else if (level >= 50 && level < 60) {
+         return "§6[" + level + "✫]";
+      } else if (level >= 60 && level < 70) {
+         return "§5[" + level + "✹]";
+      } else if (level >= 70 && level < 80) {
+         return "§2[" + level + "✦]";
+      } else if (level >= 80 && level < 90) {
+         return "§1[" + level + "✵]";
+      } else {
+         return level >= 90 && level < 100 ? "§c[" + level + "✱]" : "§4[" + level + "♥]";
       }
    }
 
