@@ -1,7 +1,7 @@
-package br.com.plutomc.game.engine.listener;
+package br.com.plutomc.duels.engine.listener;
 
 import br.com.plutomc.core.bukkit.event.UpdateEvent;
-import br.com.plutomc.game.engine.GameAPI;
+import br.com.plutomc.duels.engine.GameAPI;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 

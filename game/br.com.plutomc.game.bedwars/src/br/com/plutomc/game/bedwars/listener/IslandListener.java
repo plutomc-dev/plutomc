@@ -93,7 +93,7 @@ public class IslandListener implements Listener {
                if (gamer.getPickaxeLevel().ordinal() == 1) {
                   player.getInventory().addItem(new ItemStack[]{gamer.getPickaxeLevel().getItemStack()});
                } else {
-                  int slot = -1;
+                   slot = -1;
 
                   for(int i = 0; i < player.getInventory().getContents().length; ++i) {
                      ItemStack itemStack = player.getInventory().getContents()[i];
@@ -120,7 +120,7 @@ public class IslandListener implements Listener {
                Gamer.SwordLevel swordLevel = Gamer.SwordLevel.valueOf(swordType);
                if (gamer.getSwordLevel() != swordLevel && gamer.getSwordLevel().ordinal() <= swordLevel.ordinal()) {
                   if (gamer.getSwordLevel() == Gamer.SwordLevel.WOOD) {
-                     int slot = -1;
+                      slot = -1;
 
                      for(int i = 0; i < player.getInventory().getContents().length; ++i) {
                         ItemStack itemStack = player.getInventory().getContents()[i];

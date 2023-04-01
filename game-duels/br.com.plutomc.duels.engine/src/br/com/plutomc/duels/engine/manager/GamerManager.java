@@ -1,6 +1,6 @@
-package br.com.plutomc.game.engine.manager;
+package br.com.plutomc.duels.engine.manager;
 
-import br.com.plutomc.game.engine.gamer.Gamer;
+import br.com.plutomc.duels.engine.gamer.Gamer;
 
 import java.util.*;
 import java.util.function.Predicate;

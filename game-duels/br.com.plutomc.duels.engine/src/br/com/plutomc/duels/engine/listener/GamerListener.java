@@ -1,8 +1,8 @@
-package br.com.plutomc.game.engine.listener;
+package br.com.plutomc.duels.engine.listener;
 
-import br.com.plutomc.game.engine.GameAPI;
-import br.com.plutomc.game.engine.event.GamerLoadEvent;
-import br.com.plutomc.game.engine.gamer.Gamer;
+import br.com.plutomc.duels.engine.GameAPI;
+import br.com.plutomc.duels.engine.gamer.Gamer;
+import br.com.plutomc.duels.engine.event.GamerLoadEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

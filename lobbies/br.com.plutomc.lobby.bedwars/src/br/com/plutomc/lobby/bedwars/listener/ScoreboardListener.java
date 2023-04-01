@@ -62,8 +62,9 @@ public class ScoreboardListener implements Listener {
         Status status = CommonPlugin.getInstance().getStatusManager().loadStatus(player.getUniqueId(), StatusType.BEDWARS);
 
         Scoreboard scoreboard = new Scoreboard(player, "§b§lBEDWARS");
-        scoreboard.add(13, "");
-        scoreboard.add(12, "§fSeu nível: " + LobbyMain.getInstance().getColorByLevelPlusBrackets(status.getInteger(BedwarsCategory.BEDWARS_LEVEL)));
+        scoreboard.add(14, "");
+        scoreboard.add(13, "§fSeu nível: " + LobbyMain.getInstance().getColorByLevelPlusBrackets(status.getInteger(BedwarsCategory.BEDWARS_LEVEL)));
+        scoreboard.add(12, "[" + LobbyMain.getInstance().createProgressBar('█', 'a', '7', 12, status.getInteger(BedwarsCategory.BEDWARS_POINTS), LobbyMain.getInstance().getMaxPoints(status.getInteger(BedwarsCategory.BEDWARS_LEVEL))) + "§f]");
         scoreboard.add(11, "");
         scoreboard.add(10, "§eSolo:");
         scoreboard.add(9, " §fVitórias: §a" + status.getInteger(BedwarsCategory.BEDWARS_WINS.getSpecialServer(ServerType.BW_SOLO)));

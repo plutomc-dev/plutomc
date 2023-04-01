@@ -4,5 +4,6 @@ public enum StatusType {
    HG,
    PVP,
    SKYWARS,
-   BEDWARS;
+   BEDWARS,
+   SUMO;
 }

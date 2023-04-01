@@ -1,17 +1,17 @@
-package br.com.plutomc.game.engine;
+package br.com.plutomc.duels.engine;
 
 import br.com.plutomc.core.bukkit.BukkitCommon;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
-import br.com.plutomc.game.engine.backend.GamerData;
-import br.com.plutomc.game.engine.backend.impl.GamerDataImpl;
-import br.com.plutomc.game.engine.event.GameStateChangeEvent;
-import br.com.plutomc.game.engine.gamer.Gamer;
-import br.com.plutomc.game.engine.listener.GamerListener;
-import br.com.plutomc.game.engine.listener.SchedulerListener;
-import br.com.plutomc.game.engine.manager.GamerManager;
-import br.com.plutomc.game.engine.manager.SchedulerManager;
-import br.com.plutomc.game.engine.scheduler.Scheduler;
+import br.com.plutomc.duels.engine.scheduler.Scheduler;
+import br.com.plutomc.duels.engine.backend.GamerData;
+import br.com.plutomc.duels.engine.backend.impl.GamerDataImpl;
+import br.com.plutomc.duels.engine.event.GameStateChangeEvent;
+import br.com.plutomc.duels.engine.gamer.Gamer;
+import br.com.plutomc.duels.engine.listener.GamerListener;
+import br.com.plutomc.duels.engine.listener.SchedulerListener;
+import br.com.plutomc.duels.engine.manager.GamerManager;
+import br.com.plutomc.duels.engine.manager.SchedulerManager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;

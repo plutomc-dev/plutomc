@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/core/br.com.plutomc.core.bungee/core-bungee.iml" filepath="$PROJECT_DIR$/core/br.com.plutomc.core.bungee/core-bungee.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/br.com.plutomc.core.common/core-common.iml" filepath="$PROJECT_DIR$/core/br.com.plutomc.core.common/core-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/game-duels/br.com.plutomc.duels.engine/duels-engine.iml" filepath="$PROJECT_DIR$/game-duels/br.com.plutomc.duels.engine/duels-engine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/game-duels/br.com.plutomc.duels.sumo/duels-sumo.iml" filepath="$PROJECT_DIR$/game-duels/br.com.plutomc.duels.sumo/duels-sumo.iml" />
       <module fileurl="file://$PROJECT_DIR$/game/br.com.plutomc.game.bedwars/game-bedwars.iml" filepath="$PROJECT_DIR$/game/br.com.plutomc.game.bedwars/game-bedwars.iml" />
       <module fileurl="file://$PROJECT_DIR$/game/br.com.plutomc.game.engine/game-engine.iml" filepath="$PROJECT_DIR$/game/br.com.plutomc.game.engine/game-engine.iml" />
       <module fileurl="file://$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.bedwars/lobby-bw.iml" filepath="$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.bedwars/lobby-bw.iml" />

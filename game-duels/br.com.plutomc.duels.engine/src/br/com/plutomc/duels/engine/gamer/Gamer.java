@@ -1,6 +1,6 @@
-package br.com.plutomc.game.engine.gamer;
+package br.com.plutomc.duels.engine.gamer;
 
-import br.com.plutomc.game.engine.GameAPI;
+import br.com.plutomc.duels.engine.GameAPI;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;

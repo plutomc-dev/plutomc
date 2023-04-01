@@ -1,4 +1,4 @@
-package br.com.plutomc.game.engine.scheduler;
+package br.com.plutomc.duels.engine.scheduler;
 
 public interface Scheduler {
    void pulse();

@@ -1,7 +1,7 @@
-package br.com.plutomc.game.engine.event;
+package br.com.plutomc.duels.engine.event;
 
 import br.com.plutomc.core.bukkit.event.PlayerCancellableEvent;
-import br.com.plutomc.game.engine.gamer.Gamer;
+import br.com.plutomc.duels.engine.gamer.Gamer;
 import org.bukkit.entity.Player;
 
 public class GamerLoadEvent extends PlayerCancellableEvent {

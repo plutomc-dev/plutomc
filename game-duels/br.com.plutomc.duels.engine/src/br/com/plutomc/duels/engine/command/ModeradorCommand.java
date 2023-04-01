@@ -1,4 +1,4 @@
-package br.com.plutomc.game.engine.command;
+package br.com.plutomc.duels.engine.command;
 
 import br.com.plutomc.core.common.command.CommandArgs;
 import br.com.plutomc.core.common.command.CommandClass;
@@ -6,7 +6,7 @@ import br.com.plutomc.core.common.command.CommandFramework;
 import br.com.plutomc.core.common.command.CommandSender;
 import br.com.plutomc.core.common.utils.DateUtils;
 import br.com.plutomc.core.common.utils.string.StringFormat;
-import br.com.plutomc.game.engine.GameAPI;
+import br.com.plutomc.duels.engine.GameAPI;
 
 public class ModeradorCommand implements CommandClass {
    @CommandFramework.Command(

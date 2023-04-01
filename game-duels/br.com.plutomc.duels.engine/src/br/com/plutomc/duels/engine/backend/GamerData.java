@@ -1,6 +1,6 @@
-package br.com.plutomc.game.engine.backend;
+package br.com.plutomc.duels.engine.backend;
 
-import br.com.plutomc.game.engine.gamer.Gamer;
+import br.com.plutomc.duels.engine.gamer.Gamer;
 
 import java.util.Optional;
 import java.util.UUID;

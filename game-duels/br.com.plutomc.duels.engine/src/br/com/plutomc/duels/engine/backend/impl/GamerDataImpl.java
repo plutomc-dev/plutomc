@@ -1,13 +1,13 @@
-package br.com.plutomc.game.engine.backend.impl;
+package br.com.plutomc.duels.engine.backend.impl;
 
 import br.com.plutomc.core.common.CommonConst;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.backend.mongodb.MongoQuery;
 import br.com.plutomc.core.common.utils.json.JsonBuilder;
 import br.com.plutomc.core.common.utils.json.JsonUtils;
-import br.com.plutomc.game.engine.GameAPI;
-import br.com.plutomc.game.engine.backend.GamerData;
-import br.com.plutomc.game.engine.gamer.Gamer;
+import br.com.plutomc.duels.engine.GameAPI;
+import br.com.plutomc.duels.engine.backend.GamerData;
+import br.com.plutomc.duels.engine.gamer.Gamer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 

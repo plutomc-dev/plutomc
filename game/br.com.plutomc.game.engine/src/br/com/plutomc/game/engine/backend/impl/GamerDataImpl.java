@@ -19,7 +19,7 @@ public class GamerDataImpl implements GamerData {
    @Override
    public <T extends Gamer> Optional<T> loadGamer(UUID uniqueId) {
       JsonElement jsonElement = this.query.findOne("uniqueId", uniqueId.toString());
-      return jsonElement == null ? Optional.empty() : Optional.of(CommonConst.GSON.fromJson(jsonElement, GameAPI.getInstance().getGamerClass()));
+      return jsonElement == null ? Optional.empty() : (Optional<T>) Optional.of(CommonConst.GSON.fromJson(jsonElement, GameAPI.getInstance().getGamerClass()));
    }
 
    @Override

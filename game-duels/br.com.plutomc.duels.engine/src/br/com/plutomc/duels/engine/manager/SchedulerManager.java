@@ -1,8 +1,8 @@
-package br.com.plutomc.game.engine.manager;
+package br.com.plutomc.duels.engine.manager;
 
-import br.com.plutomc.game.engine.GameAPI;
-import br.com.plutomc.game.engine.event.SchedulePulseEvent;
-import br.com.plutomc.game.engine.scheduler.Scheduler;
+import br.com.plutomc.duels.engine.GameAPI;
+import br.com.plutomc.duels.engine.event.SchedulePulseEvent;
+import br.com.plutomc.duels.engine.scheduler.Scheduler;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import org.bukkit.Bukkit;

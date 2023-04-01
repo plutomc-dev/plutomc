@@ -1,4 +1,4 @@
-package br.com.plutomc.game.engine.gamer;
+package br.com.plutomc.duels.engine.gamer;
 
 import java.util.HashSet;
 import java.util.Set;
