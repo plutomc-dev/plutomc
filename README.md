@@ -1,5 +1,11 @@
-# plutomc
+#Pluto MC
 
-não é skid do highmc confia, foi tudo codado do 0 pelo giuseppe (unidade)
+Developed by Hover Solutions, this minecraft server aims to be one of the best.
+We are willing to recreate all of mush's systems, and make an incredible 
+server.
 
-# é nozes galera
+#Developers:
+
+Lugami
+Staack
+SkipKH
