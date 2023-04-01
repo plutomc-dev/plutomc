@@ -154,7 +154,7 @@ public class PlayerAPI {
          try {
             Object entityPlayer = MinecraftReflection.getCraftPlayerClass().getMethod("getHandle").invoke(player);
             Object getDisplayName = MinecraftReflection.getEntityPlayerClass().getMethod("getPlayerListName").invoke(entityPlayer);
-            int ping = MinecraftReflection.getEntityPlayerClass().getField("ping").get(entityPlayer);
+            int ping = (int) MinecraftReflection.getEntityPlayerClass().getField("ping").get(entityPlayer);
             data.add(
                new PlayerInfoData(
                   WrappedGameProfile.fromPlayer(player),

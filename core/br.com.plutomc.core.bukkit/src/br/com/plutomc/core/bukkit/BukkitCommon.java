@@ -135,9 +135,7 @@ public abstract class BukkitCommon extends JavaPlugin {
                   if (BukkitCommon.this.isBlockCommands()) {
                      BukkitCommandFramework.INSTANCE
                         .unregisterCommands(
-                           "icanhasbukkit",
                            "?",
-                           "about",
                            "help",
                            "ban",
                            "ban-ip",

@@ -94,7 +94,7 @@ public class StoreInventory {
                   }
                   break;
                default:
-                  int w = 19;
+                   w = 19;
 
                   for(int i = 0; i < list.size(); ++i) {
                      ShopCategory.ShopItem item = list.get(i);

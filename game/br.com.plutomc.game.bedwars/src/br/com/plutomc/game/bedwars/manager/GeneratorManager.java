@@ -44,7 +44,7 @@ public class GeneratorManager {
    }
 
    public boolean setLocation(GeneratorType generatorType, int index, Location fromLocation, boolean save) {
-      Generator generator = this.generatorMap.computeIfAbsent(generatorType, v -> new ArrayList()).get(index);
+      Generator generator = this.generatorMap.computeIfAbsent(generatorType, v -> new ArrayList<>()).get(index);
       if (generator == null) {
          return false;
       } else {

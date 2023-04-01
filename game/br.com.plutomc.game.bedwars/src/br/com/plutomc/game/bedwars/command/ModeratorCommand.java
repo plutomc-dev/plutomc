@@ -102,7 +102,8 @@ public class ModeratorCommand implements CommandClass {
                return;
             }
 
-            Island island = islandList.stream().filter(i -> i.getIslandColor() == iColor).findFirst().orElse(null);
+            IslandColor finalIColor = iColor;
+            Island island = islandList.stream().filter(i -> i.getIslandColor() == finalIColor).findFirst().orElse(null);
             if (island == null) {
                sender.sendMessage(
                   sender.getLanguage()
@@ -137,7 +138,8 @@ public class ModeratorCommand implements CommandClass {
                return;
             }
 
-            Island island = islandList.stream().filter(i -> i.getIslandColor() == iColor).findFirst().orElse(null);
+            IslandColor finalIColor = iColor;
+            Island island = islandList.stream().filter(i -> i.getIslandColor() == finalIColor).findFirst().orElse(null);
             if (!args[1].equalsIgnoreCase("create") && island == null) {
                sender.sendMessage("§%command-island-island-not-exist%§");
                return;
@@ -146,7 +148,8 @@ public class ModeratorCommand implements CommandClass {
             String var9 = args[1].toLowerCase();
             switch(var9) {
                case "create":
-                  if (islandList.stream().filter(i -> i.getIslandColor() == iColor).findFirst().orElse(null) == null) {
+                  IslandColor finalIColor1 = iColor;
+                  if (islandList.stream().filter(i -> i.getIslandColor() == finalIColor1).findFirst().orElse(null) == null) {
                      Island islandToCreate = new Island(
                         iColor,
                         new Location(),

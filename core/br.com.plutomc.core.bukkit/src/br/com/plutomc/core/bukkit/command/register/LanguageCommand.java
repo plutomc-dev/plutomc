@@ -153,7 +153,7 @@ public class LanguageCommand implements CommandClass {
             for(Entry<String, String> entry : CommonPlugin.getInstance()
                .getPluginInfo()
                .getLanguageMap()
-               .computeIfAbsent(language, v -> new HashMap())
+               .computeIfAbsent(language, v -> new HashMap<>())
                .entrySet()
                .stream()
                .sorted((o1, o2) -> o1.getKey().compareTo(o2.getKey()))

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.IntFunction;
+
 import br.com.plutomc.core.common.command.CommandSender;
 import br.com.plutomc.core.common.utils.string.Line;
 
@@ -51,7 +53,7 @@ public class ChatManager {
    }
 
    public Info loadChat(CommandSender sender, Callback callback, Line... questions) {
-      return this.loadChat(sender, callback, null, Arrays.asList(questions).stream().map(Line::toString).toArray(x$0 -> new String[x$0]));
+      return this.loadChat(sender, callback, (Validator) null, Arrays.asList(questions).stream().map(Line::toString).toArray(String[]::new));
    }
 
    public Info loadChat(CommandSender sender, Callback callback, Validator validator, String... questions) {
@@ -62,7 +64,7 @@ public class ChatManager {
    }
 
    public Info loadChat(CommandSender sender, Callback callback, Validator validator, Line... questions) {
-      return this.loadChat(sender, callback, validator, Arrays.asList(questions).stream().map(Line::toString).toArray(x$0 -> new String[x$0]));
+      return this.loadChat(sender, callback, validator, Arrays.asList(questions).stream().map(Line::toString).toArray(String[]::new));
    }
 
    public String getAnswers(UUID uniqueId, int index) {

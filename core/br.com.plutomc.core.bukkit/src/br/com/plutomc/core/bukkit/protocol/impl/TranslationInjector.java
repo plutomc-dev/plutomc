@@ -203,7 +203,7 @@ public class TranslationInjector implements PacketInjector {
                               } else if (event.getPacketType() == Server.ENTITY_METADATA) {
                                  PacketContainer packet = event.getPacket().deepClone();
       
-                                 for(WrappedWatchableObject obj : (List)packet.getWatchableCollectionModifier().read(0)) {
+                                 for(WrappedWatchableObject obj : packet.getWatchableCollectionModifier().read(0)) {
                                     if (obj.getIndex() == 2) {
                                        String str = (String)obj.getRawValue();
                                        str = PlayerHelper.translate(lang, str);

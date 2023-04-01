@@ -29,7 +29,7 @@ public class LimiterInjector implements PacketInjector {
                public void onPacketReceiving(PacketEvent event) {
                   if (event.getPlayer() != null) {
                      if (event.getPacketType() == Client.WINDOW_CLICK) {
-                        if (event.getPacket().getModifier().getValues().get(1) >= 100) {
+                        if ((int)event.getPacket().getModifier().getValues().get(1) >= 100) {
                            event.setCancelled(true);
                            LimiterInjector.this.disconnect(event.getPlayer(), "§cYou are sending too many packets.");
                            CommonPlugin.getInstance().debug("The player " + event.getPlayer().getName() + " is trying to crash the server (WindowClick)");

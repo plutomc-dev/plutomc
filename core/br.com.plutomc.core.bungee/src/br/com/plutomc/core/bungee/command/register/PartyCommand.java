@@ -91,7 +91,7 @@ public class PartyCommand implements CommandClass {
                   return;
                }
 
-               Party party = sender.getParty() == null ? this.createParty(sender) : sender.getParty();
+               party = sender.getParty() == null ? this.createParty(sender) : sender.getParty();
                if (!party.openParty(maxPlayers)) {
                   sender.sendMessage("§cO valor inserido é menor que o número de membros da sua party.");
                }
@@ -147,7 +147,7 @@ public class PartyCommand implements CommandClass {
                }
                break;
             case "expulsar":
-               Party party = sender.getParty();
+               party = sender.getParty();
                if (party == null) {
                   sender.sendMessage("§cVocê não tem uma party.");
                   return;
@@ -163,7 +163,7 @@ public class PartyCommand implements CommandClass {
                   return;
                }
 
-               Member member = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[1]);
+               member = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[1]);
                if (member == null) {
                   sender.sendMessage(sender.getLanguage().t("player-is-not-online", "%player%", args[1]));
                   return;
@@ -183,7 +183,7 @@ public class PartyCommand implements CommandClass {
                break;
             case "acabar":
             case "disband":
-               Party party = sender.getParty();
+               party = sender.getParty();
                if (party == null) {
                   sender.sendMessage("§cVocê não está em uma party.");
                   return;
@@ -197,7 +197,7 @@ public class PartyCommand implements CommandClass {
                party.disband();
                break;
             case "sair":
-               Party party = sender.getParty();
+               party = sender.getParty();
                if (party == null) {
                   sender.sendMessage("§cVocê não está em uma party.");
                   return;
@@ -241,7 +241,7 @@ public class PartyCommand implements CommandClass {
                      .findFirst()
                      .orElse(null);
                } else {
-                  Member member = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[1]);
+                  member = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[1]);
                   if (member == null) {
                      sender.sendMessage(sender.getLanguage().t("player-is-not-online", "%player%", args[1]));
                      return;
@@ -256,7 +256,7 @@ public class PartyCommand implements CommandClass {
 
                CommonPlugin.getInstance().getPartyManager().getPartyInvitesMap().remove(sender.getUniqueId());
                if (inviteInfo.getCreatedAt() + 180000L > System.currentTimeMillis()) {
-                  Party party = CommonPlugin.getInstance().getPartyManager().getPartyById(inviteInfo.getPartyId());
+                  party = CommonPlugin.getInstance().getPartyManager().getPartyById(inviteInfo.getPartyId());
                   if (party == null) {
                      sender.sendMessage("§cA party que convidou você não existe mais.");
                      return;
@@ -282,7 +282,7 @@ public class PartyCommand implements CommandClass {
                   return;
                }
 
-               Member member = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[inviteArg ? 1 : 0]);
+               member = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[inviteArg ? 1 : 0]);
                if (member == null) {
                   sender.sendMessage(sender.getLanguage().t("player-is-not-online", "%player%", args[inviteArg ? 1 : 0]));
                   return;
@@ -303,7 +303,7 @@ public class PartyCommand implements CommandClass {
                   return;
                }
 
-               Party party = sender.getParty() == null ? this.createParty(sender) : sender.getParty();
+               party = sender.getParty() == null ? this.createParty(sender) : sender.getParty();
                if (!party.hasRole(sender.getUniqueId(), PartyRole.ADMIN)) {
                   sender.sendMessage("§cVocê não tem permissão para convidar alguém para sua party.");
                   return;
@@ -314,7 +314,7 @@ public class PartyCommand implements CommandClass {
                   .getPartyInvitesMap()
                   .computeIfAbsent(member.getUniqueId(), v -> new HashMap());
                if (partyInvites.containsKey(sender.getUniqueId())) {
-                  PartyManager.InviteInfo inviteInfo = partyInvites.get(sender.getUniqueId());
+                  inviteInfo = partyInvites.get(sender.getUniqueId());
                   if (inviteInfo.getCreatedAt() + 180000L > System.currentTimeMillis()) {
                      sender.sendMessage("§cVocê precisa esperar para enviar um novo invite para esse jogador.");
                      return;

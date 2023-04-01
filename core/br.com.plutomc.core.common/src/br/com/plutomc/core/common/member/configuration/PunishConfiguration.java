@@ -24,7 +24,7 @@ public class PunishConfiguration {
 
    public Punish getActualPunish(PunishType punishType) {
       return this.punishMap
-         .computeIfAbsent(punishType, v -> new ArrayList())
+         .computeIfAbsent(punishType, v -> new ArrayList<Punish>())
          .stream()
          .filter(punish -> !punish.isUnpunished() && !punish.hasExpired())
          .findFirst()
@@ -32,16 +32,16 @@ public class PunishConfiguration {
    }
 
    public Punish getPunishById(String id, PunishType punishType) {
-      return this.punishMap.computeIfAbsent(punishType, v -> new ArrayList()).stream().filter(punish -> punish.getId().equals(id)).findFirst().orElse(null);
+      return this.punishMap.computeIfAbsent(punishType, v -> new ArrayList<>()).stream().filter(punish -> punish.getId().equals(id)).findFirst().orElse(null);
    }
 
    public Collection<Punish> getPunish(PunishType punishType) {
-      return (Collection<Punish>)(this.punishMap.containsKey(punishType) ? this.punishMap.get(punishType) : new ArrayList<>());
+      return this.punishMap.containsKey(punishType) ? this.punishMap.get(punishType) : new ArrayList<>();
    }
 
    public Collection<Punish> getPunishById(UUID punisherId, PunishType punishType) {
       return this.punishMap
-         .computeIfAbsent(punishType, v -> new ArrayList())
+         .computeIfAbsent(punishType, v -> new ArrayList<>())
          .stream()
          .filter(punish -> punish.getPunisherId() == punisherId)
          .collect(Collectors.toList());
@@ -49,7 +49,7 @@ public class PunishConfiguration {
 
    public Collection<Punish> getPunishByName(String punisherName, PunishType punishType) {
       return this.punishMap
-         .computeIfAbsent(punishType, v -> new ArrayList())
+         .computeIfAbsent(punishType, v -> new ArrayList<>())
          .stream()
          .filter(punish -> punish.getPunisherName().equals(punisherName))
          .collect(Collectors.toList());

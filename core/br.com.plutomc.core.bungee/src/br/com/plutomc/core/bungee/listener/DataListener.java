@@ -71,10 +71,10 @@ public class DataListener implements Listener {
 
                return;
             case "SearchServer":
-               String server = in.readUTF();
-               boolean silent = in.readBoolean();
+               String serverStr = in.readUTF();
+               silent = in.readBoolean();
 
-               for(String s : server.contains("-") ? server.split("-") : new String[]{server}) {
+               for(String s : serverStr.contains("-") ? serverStr.split("-") : new String[]{serverStr}) {
                   try {
                      ServerType serverType = ServerType.valueOf(s);
                      if (this.searchServer(player, proxiedPlayer, serverType, silent)) {
@@ -159,7 +159,7 @@ public class DataListener implements Listener {
             break;
          case SKIN_CHANGE:
             SkinChange skinChange = (SkinChange)event.getPacket();
-            ProxiedPlayer player = ProxyServer.getInstance().getPlayer(skinChange.getPlayerId());
+            player = ProxyServer.getInstance().getPlayer(skinChange.getPlayerId());
             if (player == null) {
                return;
             }
