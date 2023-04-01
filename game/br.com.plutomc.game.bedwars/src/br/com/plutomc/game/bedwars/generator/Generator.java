@@ -25,7 +25,7 @@ public abstract class Generator {
    private GeneratorType generatorType;
    private int level = 1;
    private long lastGenerate;
-   private long generateTime = 4000L;
+   private long generateTime = 2000L;
    private Hologram hologram;
    private CustomItem customItem;
    private ItemStack itemStack;

@@ -48,7 +48,7 @@ public class LobbyMain extends CoreMain {
                 Arrays.asList(
                         ServerType.BW_LOBBY, ServerType.BW_SOLO, ServerType.BW_DUOS, ServerType.BW_TRIO, ServerType.BW_SQUAD, ServerType.BW_1X1, ServerType.BW_2X2
                 ),
-                new String[]{"§bSolo"}
+                new String[]{"§bDuplas"}
         );
     }
 

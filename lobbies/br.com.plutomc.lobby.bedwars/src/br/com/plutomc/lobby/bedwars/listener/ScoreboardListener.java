@@ -81,7 +81,6 @@ public class ScoreboardListener implements Listener {
     private void updateScoreboard(Player player) {
         Member member = CommonPlugin.getInstance().getMemberManager().getMember(player.getUniqueId());
         Tag tag = CommonPlugin.getInstance().getPluginInfo().getTagByGroup(member.getServerGroup());
-        ScoreHelper.getInstance().updateScoreboard(player, 7, "§f§%scoreboard-group%§: " + tag.getStrippedColor());
     }
 
     private void updatePlayers() {

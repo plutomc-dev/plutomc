@@ -10,7 +10,8 @@ public enum ServerType {
    SW_LOBBY,
    HG_LOBBY,
    PVP_LOBBY,
-   DUELS,
+   DUELS_LOBBY,
+   DUELS_GAPPLE,
    FPS,
    LAVA,
    ARENA,
@@ -46,7 +47,9 @@ public enum ServerType {
    public ServerType getServerLobby() {
       if (this.name().contains("LOBBY")) {
          return LOBBY;
-      } else if (this.name().contains("BW")) {
+      } else if(this.name().contains("DUELS")) {
+         return DUELS_LOBBY;
+      }else if (this.name().contains("BW")) {
          return BW_LOBBY;
       } else if (this.name().contains("SW")) {
          return SW_LOBBY;

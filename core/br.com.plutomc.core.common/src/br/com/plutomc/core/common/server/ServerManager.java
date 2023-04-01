@@ -9,12 +9,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import br.com.plutomc.core.common.server.loadbalancer.BaseBalancer;
-import br.com.plutomc.core.common.server.loadbalancer.server.BedwarsServer;
-import br.com.plutomc.core.common.server.loadbalancer.server.HungerGamesServer;
-import br.com.plutomc.core.common.server.loadbalancer.server.MinigameServer;
-import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
-import br.com.plutomc.core.common.server.loadbalancer.server.ProxiedServer;
-import br.com.plutomc.core.common.server.loadbalancer.server.SkywarsServer;
+import br.com.plutomc.core.common.server.loadbalancer.server.*;
 import br.com.plutomc.core.common.server.loadbalancer.type.LeastConnection;
 import br.com.plutomc.core.common.server.loadbalancer.type.MostConnection;
 
@@ -29,7 +24,7 @@ public class ServerManager {
       for(ServerType serverType : ServerType.values()) {
          if (serverType != ServerType.BUNGEECORD) {
             this.balancers
-               .put(serverType, (BaseBalancer<ProxiedServer>)(serverType.name().contains("LOBBY") ? new LeastConnection<>() : new MostConnection<>()));
+               .put(serverType, serverType.name().contains("LOBBY") ? new LeastConnection<>() : new MostConnection<>());
          }
       }
    }
@@ -63,7 +58,9 @@ public class ServerManager {
             server = new SkywarsServer(serverId, type, onlinePlayers, maxPlayers, true);
          } else if (type.name().startsWith("BW")) {
             server = new BedwarsServer(serverId, type, onlinePlayers, maxPlayers, true);
-         } else {
+         } else if(type.name().startsWith("DUELS")) {
+            server = new DuelsServer(serverId, type, onlinePlayers, maxPlayers, true);
+         }else {
             server = new ProxiedServer(serverId, type, onlinePlayers, maxPlayers, true);
          }
 
