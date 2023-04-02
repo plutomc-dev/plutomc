@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lobby-login:jar">
+    <output-path>$USER_HOME$/highmc/lobby-login/plugins</output-path>
+    <root id="archive" name="lobby-login.jar">
+      <element id="module-output" name="lobby-login" />
+      <element id="module-output" name="lobby-core" />
+      <element id="module-output" name="core-bukkit" />
+      <element id="module-output" name="core-common" />
+    </root>
+  </artifact>
+</component>

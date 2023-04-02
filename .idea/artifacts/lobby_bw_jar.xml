@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lobby-bw:jar">
+    <output-path>$USER_HOME$/highmc/lobby-bw/plugins</output-path>
+    <root id="archive" name="lobby-bw.jar">
+      <element id="module-output" name="lobby-bw" />
+      <element id="module-output" name="core-bukkit" />
+      <element id="module-output" name="core-common" />
+      <element id="module-output" name="lobby-core" />
+    </root>
+  </artifact>
+</component>

@@ -74,6 +74,62 @@ public class PreferencesInventory {
             }
          }
       );
+
+      if(member.isStaff()) {
+         this.create(player, "Mensagens do Staff Chat", "Habilitar mensagens da staff",
+                 Material.PAPER,
+                 member.getMemberConfiguration().isSeeingStaffChat(),
+                 15,
+                 menuInventory,
+                 (p, inv, type, stack, s) -> {
+                    if (wait > System.currentTimeMillis()) {
+                       if (!this.message) {
+                          this.message = true;
+                          member.sendMessage("§cVocê precisa esperar para mudar uma configuração.");
+                       }
+                    } else {
+                       member.getMemberConfiguration().setSeeingStaffChat(!member.getMemberConfiguration().isSeeingStaffChat());
+                       new PreferencesInventory(player, page, System.currentTimeMillis() + 500L);
+                    }
+                 }
+         );
+
+         this.create(player, "Reports", "Habilitar reports",
+                 Material.PAPER,
+                 member.getMemberConfiguration().isReportsEnabled(),
+                 16,
+                 menuInventory,
+                 (p, inv, type, stack, s) -> {
+                    if (wait > System.currentTimeMillis()) {
+                       if (!this.message) {
+                          this.message = true;
+                          member.sendMessage("§cVocê precisa esperar para mudar uma configuração.");
+                       }
+                    } else {
+                       member.getMemberConfiguration().setReportsEnabled(!member.getMemberConfiguration().isReportsEnabled());
+                       new PreferencesInventory(player, page, System.currentTimeMillis() + 500L);
+                    }
+                 }
+         );
+
+         this.create(player, "Logs", "Habilitar logs",
+                 Material.PAPER,
+                 member.getMemberConfiguration().isSeeingLogs(),
+                 17,
+                 menuInventory,
+                 (p, inv, type, stack, s) -> {
+                    if (wait > System.currentTimeMillis()) {
+                       if (!this.message) {
+                          this.message = true;
+                          member.sendMessage("§cVocê precisa esperar para mudar uma configuração.");
+                       }
+                    } else {
+                       member.getMemberConfiguration().setSeeingLogs(!member.getMemberConfiguration().isSeeingLogs());
+                       new PreferencesInventory(player, page, System.currentTimeMillis() + 500L);
+                    }
+                 }
+         );
+      }
       menuInventory.open(player);
       player.updateInventory();
    }

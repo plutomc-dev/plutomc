@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="game-bedwars:jar">
+    <output-path>$USER_HOME$/highmc/bedwars/bw-a2-solo/plugins</output-path>
+    <root id="archive" name="game-bedwars.jar">
+      <element id="module-output" name="game-bedwars" />
+      <element id="module-output" name="game-engine" />
+      <element id="module-output" name="core-bukkit" />
+      <element id="module-output" name="core-common" />
+    </root>
+  </artifact>
+</component>
