@@ -65,7 +65,7 @@ public class PlayerListener implements Listener {
          PlayerHelper.title(player, "§b§lPLUTO", "§eSeja bem-vindo!");
       }
 
-      PlayerHelper.setHeaderAndFooter(player, "§b§lPLUTO\n", LobbyConst.TAB_FOOTER);
+      PlayerHelper.setHeaderAndFooter(player, "\n§b§lPLUTO\n", LobbyConst.TAB_FOOTER);
    }
 
    @EventHandler

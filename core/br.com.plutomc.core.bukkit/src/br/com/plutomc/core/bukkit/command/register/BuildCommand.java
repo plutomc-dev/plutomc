@@ -74,7 +74,7 @@ public class BuildCommand implements CommandClass {
          Player player = ((BukkitMember)cmdArgs.getSender()).getPlayer();
          String[] args = cmdArgs.getArgs();
          if (args.length == 0) {
-            player.sendMessage(" §e» §fUse §a/set <material:id>§f para setar um grupo.");
+            player.sendMessage(" §aUse §a/set <material:id>§a para setar um bloco.");
          } else {
             Material blockMaterial = null;
             byte blockId = 0;
@@ -84,7 +84,7 @@ public class BuildCommand implements CommandClass {
                   try {
                      blockMaterial = Material.getMaterial(Integer.valueOf(args[0].split(":")[0]));
                   } catch (NumberFormatException var14) {
-                     player.sendMessage(" §c» §fNão foi possível encontrar esse bloco!");
+                     player.sendMessage("§cNão foi possível encontrar esse bloco!");
                      return;
                   }
                }
@@ -92,7 +92,7 @@ public class BuildCommand implements CommandClass {
                try {
                   blockId = Byte.valueOf(args[0].split(":")[1]);
                } catch (Exception var13) {
-                  player.sendMessage(" §c» §fO bloco " + args[0] + " não existe!");
+                  player.sendMessage("§cO bloco " + args[0] + " não existe!");
                   return;
                }
             } else {
@@ -101,14 +101,14 @@ public class BuildCommand implements CommandClass {
                   try {
                      blockMaterial = Material.getMaterial(Integer.valueOf(args[0]));
                   } catch (NumberFormatException var12) {
-                     player.sendMessage(" §c» §fNão foi possível encontrar esse bloco!");
+                     player.sendMessage("§cNão foi possível encontrar esse bloco!");
                      return;
                   }
                }
             }
 
             if (blockMaterial == null) {
-               player.sendMessage(" §c» §fNão foi possível encontrar o bloco " + args[0] + "!");
+               player.sendMessage(" §cNão foi possível encontrar o bloco " + args[0] + "!");
             } else if (!BukkitCommon.getInstance().getBlockManager().hasFirstPosition(player)) {
                player.sendMessage("§cA primeira posição não foi setada!");
             } else if (!BukkitCommon.getInstance().getBlockManager().hasSecondPosition(player)) {

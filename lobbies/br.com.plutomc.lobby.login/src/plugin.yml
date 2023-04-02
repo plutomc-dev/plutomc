@@ -1,5 +1,5 @@
 name: login
-version: 1.0
+version: 1.0.0-wip
 main: br.com.plutomc.lobby.login.LoginMain
 softdepend: [ProtocolLib]
 website: www.plutomc.com.br

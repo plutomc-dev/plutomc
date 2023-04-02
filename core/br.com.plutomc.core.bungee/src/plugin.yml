@@ -1,4 +1,4 @@
 name: BungeeCommon
-version: 1.0
+version: 1.0.0-wip
 author: lugami
 main: br.com.plutomc.core.bungee.BungeeMain

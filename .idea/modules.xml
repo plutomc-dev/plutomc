@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/game/br.com.plutomc.game.engine/game-engine.iml" filepath="$PROJECT_DIR$/game/br.com.plutomc.game.engine/game-engine.iml" />
       <module fileurl="file://$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.bedwars/lobby-bw.iml" filepath="$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.bedwars/lobby-bw.iml" />
       <module fileurl="file://$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.core/lobby-core.iml" filepath="$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.core/lobby-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.duels/lobby-duels.iml" filepath="$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.duels/lobby-duels.iml" />
       <module fileurl="file://$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.login/lobby-login.iml" filepath="$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.login/lobby-login.iml" />
       <module fileurl="file://$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.main/lobby-main.iml" filepath="$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.main/lobby-main.iml" />
       <module fileurl="file://$PROJECT_DIR$/plutomc-parent.iml" filepath="$PROJECT_DIR$/plutomc-parent.iml" />

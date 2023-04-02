@@ -1,5 +1,5 @@
 name: Arcade
-version: 1.0
+version: 1.0.0-wip
 main: br.com.plutomc.game.bedwars.GameMain
 softdepend: [ProtocolLib]
 website: www.plutomc.com.br
