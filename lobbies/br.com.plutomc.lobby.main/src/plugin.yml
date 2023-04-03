@@ -1,5 +1,5 @@
 name: Lobby
-version: 1.0.0-b2990e5
+version: 1.0.0-f8f29a0
 main: br.com.plutomc.lobby.main.LobbyMain
 softdepend: [ProtocolLib]
 website: www.plutomc.com.br

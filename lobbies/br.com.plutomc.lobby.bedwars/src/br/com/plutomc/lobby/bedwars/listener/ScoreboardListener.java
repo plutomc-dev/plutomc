@@ -64,7 +64,7 @@ public class ScoreboardListener implements Listener {
         Scoreboard scoreboard = new Scoreboard(player, "§b§lBEDWARS");
         scoreboard.add(14, "");
         scoreboard.add(13, "§fSeu nível: " + LobbyMain.getInstance().getColorByLevelPlusBrackets(status.getInteger(BedwarsCategory.BEDWARS_LEVEL)));
-        scoreboard.add(12, "[" + LobbyMain.getInstance().createProgressBar('❘', 'a', '7', 12, status.getInteger(BedwarsCategory.BEDWARS_POINTS), LobbyMain.getInstance().getMaxPoints(status.getInteger(BedwarsCategory.BEDWARS_LEVEL))) + "§f] §7(" + status.getInteger(BedwarsCategory.BEDWARS_POINTS) + "/" + LobbyMain.getInstance().getMaxPoints(status.getInteger(BedwarsCategory.BEDWARS_LEVEL)) + ")");
+        scoreboard.add(12, "§8[" + LobbyMain.getInstance().createProgressBar('❚', 'a', '7', 6, status.getInteger(BedwarsCategory.BEDWARS_POINTS), LobbyMain.getInstance().getMaxPoints(status.getInteger(BedwarsCategory.BEDWARS_LEVEL))) + "§§8] §7(" + status.getInteger(BedwarsCategory.BEDWARS_POINTS) + "/" + LobbyMain.getInstance().getMaxPoints(status.getInteger(BedwarsCategory.BEDWARS_LEVEL)) + ")");
         scoreboard.add(11, "");
         scoreboard.add(10, "§eSolo:");
         scoreboard.add(9, " §fVitórias: §a" + status.getInteger(BedwarsCategory.BEDWARS_WINS.getSpecialServer(ServerType.BW_SOLO)));

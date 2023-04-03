@@ -205,11 +205,11 @@ public class Island implements Cloneable {
    }
 
    public void loadNpc() {
-      GameMain.getInstance().createCharacter(this.getShopLocation().getAsLocation(), "ZAKl1k", (player, right) -> {
+      GameMain.getInstance().createCharacter(this.getShopLocation().getAsLocation(), "unidade", (player, right) -> {
          new StoreInventory(player);
          return false;
       }).setDisplayName("§b§lLOJA").line("§eClique para ver mais.");
-      GameMain.getInstance().createCharacter(this.getUpgradeLocation().getAsLocation(), "Kotcka", (player, right) -> {
+      GameMain.getInstance().createCharacter(this.getUpgradeLocation().getAsLocation(), "staack", (player, right) -> {
          new UpgradeInventory(player);
          return false;
       }).setDisplayName("§b§lMELHORIAS").line("§eClique para ver mais.");

@@ -37,14 +37,14 @@ public class GeneratorManager {
       Generator generator = (Generator)(generatorType == GeneratorType.DIAMOND
          ? new DiamondGenerator(location.getAsLocation())
          : new EmeraldGenerator(location.getAsLocation()));
-      this.generatorMap.computeIfAbsent(generatorType, v -> new ArrayList()).add(generator);
+      this.generatorMap.computeIfAbsent(generatorType, v -> new ArrayList<>()).add(generator);
       if (save) {
          GameMain.getInstance().getConfiguration().addElementToList(generatorType.getConfigFieldName(), location);
       }
    }
 
    public boolean setLocation(GeneratorType generatorType, int index, Location fromLocation, boolean save) {
-      Generator generator = this.generatorMap.computeIfAbsent(generatorType, v -> new ArrayList()).get(index);
+      Generator generator = this.generatorMap.computeIfAbsent(generatorType, v -> new ArrayList<>()).get(index);
       if (generator == null) {
          return false;
       } else {
