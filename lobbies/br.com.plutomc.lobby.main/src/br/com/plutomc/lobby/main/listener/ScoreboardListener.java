@@ -57,7 +57,7 @@ public class ScoreboardListener implements Listener {
       Member member = CommonPlugin.getInstance().getMemberManager().getMember(player.getUniqueId());
       Scoreboard scoreboard = new Scoreboard(player, "§b§lPLUTO");
       scoreboard.add(8, "§a");
-      scoreboard.add(7, "§f§%scoreboard-group%§: " + CommonPlugin.getInstance().getPluginInfo().getTagByGroup(member.getServerGroup()).getStrippedColor());
+      scoreboard.add(7, "§f§%scoreboard-group%§: " + CommonPlugin.getInstance().getPluginInfo().getTagByGroup(member.getServerGroup()).getStrippedColor().replace("§l", ""));
       scoreboard.add(5, "");
       scoreboard.add(4, "§fLobby: §a#" + LobbyMain.getInstance().getLobbyId());
       scoreboard.add(3, "§f§%scoreboard-players%§: §b" + BukkitCommon.getInstance().getServerManager().getTotalMembers());
