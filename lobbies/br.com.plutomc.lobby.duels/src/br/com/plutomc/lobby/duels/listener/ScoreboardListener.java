@@ -11,6 +11,8 @@ import br.com.plutomc.core.common.member.Member;
 import br.com.plutomc.core.common.member.status.Status;
 import br.com.plutomc.core.common.member.status.StatusType;
 import br.com.plutomc.core.common.member.status.types.BedwarsCategory;
+import br.com.plutomc.core.common.member.status.types.GappleCategory;
+import br.com.plutomc.core.common.member.status.types.SumoCategory;
 import br.com.plutomc.core.common.permission.Tag;
 import br.com.plutomc.core.common.server.ServerType;
 import br.com.plutomc.lobby.duels.LobbyMain;
@@ -59,15 +61,16 @@ public class ScoreboardListener implements Listener {
 
     private void handleScoreboard(Player player) {
         Member member = CommonPlugin.getInstance().getMemberManager().getMember(player.getUniqueId());
-
+        Status statusSumo = CommonPlugin.getInstance().getStatusManager().loadStatus(player.getUniqueId(), StatusType.SUMO);
+        Status statusGapple = CommonPlugin.getInstance().getStatusManager().loadStatus(player.getUniqueId(), StatusType.GAPPLE);
         Scoreboard scoreboard = new Scoreboard(player, "§b§lDUELS");
         scoreboard.add(11, "");
         scoreboard.add(10, "§eGapple:");
-        scoreboard.add(9, " Wins: §a0");
-        scoreboard.add(8, " Winstreak: §a0");
+        scoreboard.add(9, " Wins: §a" + statusGapple.getInteger(GappleCategory.GAPPLE_WINS));
+        scoreboard.add(8, " Winstreak: §a"+ statusGapple.getInteger(GappleCategory.GAPPLE_WINSTREAK));
         scoreboard.add(7, "§eSumo:");
-        scoreboard.add(6, " Wins: §a0");
-        scoreboard.add(5, " Winstreak: §a0");
+        scoreboard.add(6, " Wins: §a" + statusSumo.getInteger(SumoCategory.SUMO_WINS));
+        scoreboard.add(5, " Winstreak: §a" + statusSumo.getInteger(SumoCategory.SUMO_WINSTREAK));
         scoreboard.add(4, "");
         scoreboard.add(3, "§f§%scoreboard-players%§: §b" + BukkitCommon.getInstance().getServerManager().getTotalMembers());
         scoreboard.add(2, "§a");

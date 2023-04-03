@@ -1,9 +1,9 @@
 package br.com.plutomc.game.bedwars.menu;
 
-import br.com.plutomc.core.common.CommonPlugin;
-import br.com.plutomc.game.engine.GameAPI;
 import br.com.plutomc.game.bedwars.GameMain;
 import br.com.plutomc.game.bedwars.gamer.Gamer;
+import br.com.plutomc.core.common.CommonPlugin;
+import br.com.plutomc.game.engine.GameAPI;
 import br.com.plutomc.game.bedwars.island.Island;
 import br.com.plutomc.game.bedwars.island.IslandUpgrade;
 import br.com.plutomc.core.bukkit.utils.item.ItemBuilder;

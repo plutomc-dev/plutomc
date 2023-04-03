@@ -1,13 +1,5 @@
 package br.com.plutomc.game.bedwars;
 
-import br.com.plutomc.game.bedwars.event.IslandWinEvent;
-import br.com.plutomc.game.bedwars.generator.Generator;
-import br.com.plutomc.game.bedwars.generator.GeneratorType;
-import br.com.plutomc.game.bedwars.island.Island;
-import br.com.plutomc.game.bedwars.listener.PlayerListener;
-import br.com.plutomc.game.bedwars.listener.ScoreboardListener;
-import br.com.plutomc.game.bedwars.manager.GeneratorManager;
-import br.com.plutomc.game.bedwars.manager.IslandManager;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.PacketType.Play.Client;
 import com.comphenix.protocol.PacketType.Play.Server;
@@ -25,7 +17,15 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.game.engine.GameAPI;
+import br.com.plutomc.game.bedwars.event.IslandWinEvent;
 import br.com.plutomc.game.bedwars.gamer.Gamer;
+import br.com.plutomc.game.bedwars.generator.Generator;
+import br.com.plutomc.game.bedwars.generator.GeneratorType;
+import br.com.plutomc.game.bedwars.island.Island;
+import br.com.plutomc.game.bedwars.listener.PlayerListener;
+import br.com.plutomc.game.bedwars.listener.ScoreboardListener;
+import br.com.plutomc.game.bedwars.manager.GeneratorManager;
+import br.com.plutomc.game.bedwars.manager.IslandManager;
 import br.com.plutomc.game.bedwars.scheduler.GameScheduler;
 import br.com.plutomc.game.bedwars.scheduler.WaitingScheduler;
 import br.com.plutomc.game.engine.scheduler.Scheduler;
@@ -316,12 +316,9 @@ public class GameMain extends GameAPI implements Listener {
                            player -> GameAPI.getInstance()
                                  .sendPlayerToServer(
                                     player,
-                                    new ServerType[]{
-                                       CommonPlugin.getInstance().getServerType(),
-                                       CommonPlugin.getInstance().getServerType().getServerLobby(),
-                                       ServerType.LOBBY
-                                    }
-                                 )
+                                         CommonPlugin.getInstance().getServerType(),
+                                         CommonPlugin.getInstance().getServerType().getServerLobby(),
+                                         ServerType.LOBBY)
                         );
                   } else if (this.time == 12) {
                      Bukkit.shutdown();

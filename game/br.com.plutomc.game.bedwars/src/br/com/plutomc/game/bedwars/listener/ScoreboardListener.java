@@ -3,20 +3,16 @@ package br.com.plutomc.game.bedwars.listener;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.plutomc.core.common.member.Member;
-import br.com.plutomc.core.common.member.status.Status;
-import br.com.plutomc.core.common.member.status.StatusType;
-import br.com.plutomc.core.common.member.status.types.BedwarsCategory;
+import br.com.plutomc.game.bedwars.GameMain;
 import br.com.plutomc.game.bedwars.event.PlayerSpectateEvent;
 import br.com.plutomc.game.bedwars.event.island.IslandBedBreakEvent;
 import br.com.plutomc.game.bedwars.event.island.IslandLoseEvent;
+import br.com.plutomc.game.bedwars.gamer.Gamer;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.bukkit.event.UpdateEvent;
 import br.com.plutomc.core.bukkit.event.member.PlayerLanguageChangeEvent;
 import br.com.plutomc.core.bukkit.event.player.PlayerAdminEvent;
 import br.com.plutomc.game.engine.GameAPI;
-import br.com.plutomc.game.bedwars.GameMain;
-import br.com.plutomc.game.bedwars.gamer.Gamer;
 import br.com.plutomc.game.bedwars.island.Island;
 import br.com.plutomc.game.engine.event.GameStateChangeEvent;
 import br.com.plutomc.core.bukkit.utils.scoreboard.ScoreHelper;
@@ -137,18 +133,14 @@ public class ScoreboardListener implements Listener {
    }
 
    private void handleScoreboard(Player player) {
-      Member member = CommonPlugin.getInstance().getMemberManager().getMember(player.getUniqueId());
-      Status status = CommonPlugin.getInstance().getStatusManager().loadStatus(player.getUniqueId(), StatusType.BEDWARS);
       Scoreboard scoreboard = new Scoreboard(player, "§b§lBED WARS");
       if (GameAPI.getInstance().getState().isPregame()) {
-         scoreboard.add(10, "§a");
-         scoreboard.add(9, "§%scoreboard-map%§: §a" + GameAPI.getInstance().getMapName());
-         scoreboard.add(8, "§%scoreboard-players%§: §a" + GameMain.getInstance().getAlivePlayers().size() + "/" + Bukkit.getMaxPlayers());
-         scoreboard.add(7, "");
-         scoreboard.add(6, "§%scoreboard-starting%§: §a" + StringFormat.formatTime(GameAPI.getInstance().getTime(), StringFormat.TimeFormat.DOUBLE_DOT));
+         scoreboard.add(8, "§a");
+         scoreboard.add(7, "§%scoreboard-map%§: §a" + GameAPI.getInstance().getMapName());
+         scoreboard.add(6, "§%scoreboard-players%§: §a" + GameMain.getInstance().getAlivePlayers().size() + "/" + Bukkit.getMaxPlayers());
          scoreboard.add(5, "");
-         scoreboard.add(4, "§%scoreboard-mode%§: §7" + StringFormat.formatString(CommonPlugin.getInstance().getServerType().name().split("_")[1]));
-         scoreboard.add(3, "Winstreak: §a" + status.getInteger(BedwarsCategory.BEDWARS_WINSTREAK));
+         scoreboard.add(4, "§%scoreboard-starting%§: §a" + StringFormat.formatTime(GameAPI.getInstance().getTime(), StringFormat.TimeFormat.DOUBLE_DOT));
+         scoreboard.add(3, "§%scoreboard-mode%§: §a" + StringFormat.formatString(CommonPlugin.getInstance().getServerType().name().split("_")[1]));
          scoreboard.add(2, "");
          scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
       } else {
@@ -230,7 +222,7 @@ public class ScoreboardListener implements Listener {
    private void updateTimer() {
       if (GameAPI.getInstance().getState().isPregame()) {
          ScoreHelper.getInstance()
-            .updateScoreboard(4, "§%scoreboard-starting%§: §7" + StringFormat.formatTime(GameAPI.getInstance().getTime(), StringFormat.TimeFormat.SHORT));
+            .updateScoreboard(4, "§%scoreboard-starting%§: §a" + StringFormat.formatTime(GameAPI.getInstance().getTime(), StringFormat.TimeFormat.SHORT));
       } else if (GameMain.getInstance().getGeneratorUpgrade() != null
          && GameMain.getInstance().getGeneratorUpgrade().getTimer() - GameAPI.getInstance().getTime() > 0) {
          ScoreHelper.getInstance()
@@ -238,7 +230,7 @@ public class ScoreboardListener implements Listener {
                13,
                "§%scoreboard-"
                   + GameMain.getInstance().getGeneratorUpgrade().getName().toLowerCase()
-                  + "-upgrade%§: §7"
+                  + "-upgrade%§: §a"
                   + StringFormat.formatTime(
                      GameMain.getInstance().getGeneratorUpgrade().getTimer() - GameAPI.getInstance().getTime(), StringFormat.TimeFormat.DOUBLE_DOT
                   )
@@ -251,7 +243,7 @@ public class ScoreboardListener implements Listener {
 
    private void updatePlayers(int players) {
       if (GameAPI.getInstance().getState().isPregame()) {
-         ScoreHelper.getInstance().updateScoreboard(6, "§%scoreboard-players%§: §a" + players + "/" + Bukkit.getMaxPlayers());
+         ScoreHelper.getInstance().updateScoreboard(6, "§%scoreboard-players%§: §b" + players + "/" + Bukkit.getMaxPlayers());
       }
    }
 

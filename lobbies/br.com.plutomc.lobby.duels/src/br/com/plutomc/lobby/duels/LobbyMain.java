@@ -22,7 +22,7 @@ public class LobbyMain extends CoreMain {
 
         this.createCharacter(
                 "npc-gapple",
-                "CptSkinny",
+                "stopeey",
                 new ActionHandler() {
                     @Override
                     public boolean onInteract(Player player, boolean right) {
@@ -33,7 +33,7 @@ public class LobbyMain extends CoreMain {
                 Arrays.asList(
                         ServerType.DUELS_GAPPLE
                 ),
-                "§b§lNOVIDADE", "§eGapple");
+                "§eGapple");
 
     }
 

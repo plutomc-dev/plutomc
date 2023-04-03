@@ -2,7 +2,6 @@ package br.com.plutomc.game.bedwars;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import br.com.plutomc.game.bedwars.menu.FinderInventory;
 import br.com.plutomc.core.bukkit.utils.item.ActionItemStack;
 import br.com.plutomc.core.bukkit.utils.item.ItemBuilder;
@@ -45,6 +44,6 @@ public class GameConst {
          return false;
       }
    });
-   public static final String SHOP_NPC = "ZAKl1k";
-   public static final String UPGRADE_NPC = "Kotcka";
+   public static final String SHOP_NPC = "unidade";
+   public static final String UPGRADE_NPC = "staack";
 }

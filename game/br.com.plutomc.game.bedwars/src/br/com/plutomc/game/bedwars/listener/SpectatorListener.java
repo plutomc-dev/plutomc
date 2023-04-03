@@ -1,7 +1,7 @@
 package br.com.plutomc.game.bedwars.listener;
 
-import br.com.plutomc.game.engine.GameAPI;
 import br.com.plutomc.game.bedwars.gamer.Gamer;
+import br.com.plutomc.game.engine.GameAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

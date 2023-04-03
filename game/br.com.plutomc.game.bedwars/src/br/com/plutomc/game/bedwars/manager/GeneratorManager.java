@@ -1,5 +1,6 @@
 package br.com.plutomc.game.bedwars.manager;
 
+import br.com.plutomc.game.bedwars.GameMain;
 import br.com.plutomc.game.bedwars.generator.Generator;
 import br.com.plutomc.game.bedwars.generator.GeneratorType;
 import br.com.plutomc.game.bedwars.generator.impl.DiamondGenerator;
@@ -12,7 +13,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import br.com.plutomc.core.bukkit.event.UpdateEvent;
 import br.com.plutomc.game.engine.GameAPI;
-import br.com.plutomc.game.bedwars.GameMain;
 import br.com.plutomc.core.bukkit.utils.Location;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -44,7 +44,7 @@ public class GeneratorManager {
    }
 
    public boolean setLocation(GeneratorType generatorType, int index, Location fromLocation, boolean save) {
-      Generator generator = this.generatorMap.computeIfAbsent(generatorType, v -> new ArrayList<>()).get(index);
+      Generator generator = this.generatorMap.computeIfAbsent(generatorType, v -> new ArrayList()).get(index);
       if (generator == null) {
          return false;
       } else {

@@ -1,8 +1,8 @@
 package br.com.plutomc.game.bedwars.event;
 
+import br.com.plutomc.game.bedwars.gamer.Gamer;
 import lombok.NonNull;
 import br.com.plutomc.core.bukkit.event.PlayerEvent;
-import br.com.plutomc.game.bedwars.gamer.Gamer;
 import org.bukkit.entity.Player;
 
 public class PlayerLevelUpEvent extends PlayerEvent {

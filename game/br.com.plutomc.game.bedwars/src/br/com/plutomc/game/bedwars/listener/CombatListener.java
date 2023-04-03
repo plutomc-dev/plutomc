@@ -3,9 +3,10 @@ package br.com.plutomc.game.bedwars.listener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+
+import br.com.plutomc.game.bedwars.utils.GamerHelper;
 import br.com.plutomc.core.bukkit.event.player.PlayerDamagePlayerEvent;
 import br.com.plutomc.game.engine.GameAPI;
-import br.com.plutomc.game.bedwars.utils.GamerHelper;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

@@ -1,9 +1,9 @@
 package br.com.plutomc.game.bedwars.listener;
 
 import br.com.plutomc.game.bedwars.event.PlayerLevelUpEvent;
+import br.com.plutomc.game.bedwars.gamer.Gamer;
 import br.com.plutomc.core.bukkit.event.player.PlayerAdminEvent;
 import br.com.plutomc.game.engine.GameAPI;
-import br.com.plutomc.game.bedwars.gamer.Gamer;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

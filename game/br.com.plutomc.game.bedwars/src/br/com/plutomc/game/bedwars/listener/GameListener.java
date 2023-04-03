@@ -1,8 +1,11 @@
 package br.com.plutomc.game.bedwars.listener;
 
+import br.com.plutomc.game.bedwars.GameMain;
 import br.com.plutomc.game.bedwars.event.PlayerKillPlayerEvent;
 import br.com.plutomc.game.bedwars.event.island.IslandLoseEvent;
+import br.com.plutomc.game.bedwars.gamer.Gamer;
 import br.com.plutomc.game.bedwars.generator.Generator;
+import br.com.plutomc.game.bedwars.utils.GamerHelper;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.PacketType.Play.Server;
 import com.google.common.collect.ImmutableList;
@@ -24,12 +27,9 @@ import br.com.plutomc.core.bukkit.event.UpdateEvent;
 import br.com.plutomc.core.bukkit.event.player.PlayerAdminEvent;
 import br.com.plutomc.core.bukkit.event.player.PlayerMoveUpdateEvent;
 import br.com.plutomc.game.engine.GameAPI;
-import br.com.plutomc.game.bedwars.GameMain;
-import br.com.plutomc.game.bedwars.gamer.Gamer;
 import br.com.plutomc.game.bedwars.island.Island;
 import br.com.plutomc.game.bedwars.island.IslandColor;
 import br.com.plutomc.game.bedwars.island.IslandUpgrade;
-import br.com.plutomc.game.bedwars.utils.GamerHelper;
 import br.com.plutomc.game.engine.event.GamerLoadEvent;
 import br.com.plutomc.core.bukkit.utils.PacketBuilder;
 import br.com.plutomc.core.bukkit.utils.item.ItemBuilder;
@@ -179,7 +179,7 @@ public class GameListener implements Listener {
                boolean solo = CommonPlugin.getInstance().getServerType().name().contains("SOLO");
                Status status = GameAPI.getInstance().getPlugin().getStatusManager().loadStatus(player.getUniqueId(), StatusType.BEDWARS);
                int level = status.getInteger(BedwarsCategory.BEDWARS_LEVEL);
-               message = GameMain.getInstance().createMessage(player, event.getMessage(), island, solo, !solo, level);
+               message = GameMain.getInstance().createMessage(player, event.getMessage(), island, solo, solo ? !solo : true, level);
                if (!solo) {
                   event.getRecipients().removeIf(p -> !island.getTeam().getPlayerSet().contains(p.getUniqueId()));
                }
@@ -219,19 +219,22 @@ public class GameListener implements Listener {
             int woodSwordCount = this.getItemCount(player, Material.WOOD_SWORD);
             if (this.getSwordCount(playerInventory) == 0) {
                playerInventory.addItem(
-                       new ItemBuilder()
-                          .type(Material.WOOD_SWORD)
-                          .enchantment(
-                             Enchantment.DAMAGE_ALL,
-                             GameMain.getInstance().getIslandManager().getIsland(player.getUniqueId()).getUpgradeLevel(IslandUpgrade.SHARPNESS)
-                          )
-                          .build());
+                  new ItemStack[]{
+                     new ItemBuilder()
+                        .type(Material.WOOD_SWORD)
+                        .enchantment(
+                           Enchantment.DAMAGE_ALL,
+                           GameMain.getInstance().getIslandManager().getIsland(player.getUniqueId()).getUpgradeLevel(IslandUpgrade.SHARPNESS)
+                        )
+                        .build()
+                  }
+               );
             }
 
             if (swordCount != woodSwordCount) {
                for(ItemStack itemStack : playerInventory.getContents()) {
                   if (itemStack != null && itemStack.getType() == Material.WOOD_SWORD) {
-                     playerInventory.removeItem(itemStack);
+                     playerInventory.removeItem(new ItemStack[]{itemStack});
                   }
                }
             }

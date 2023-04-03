@@ -2,8 +2,9 @@ package br.com.plutomc.game.bedwars.generator;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import br.com.plutomc.core.bukkit.BukkitCommon;
+
 import br.com.plutomc.game.bedwars.GameMain;
+import br.com.plutomc.core.bukkit.BukkitCommon;
 import br.com.plutomc.core.bukkit.utils.floatingitem.CustomItem;
 import br.com.plutomc.core.bukkit.utils.floatingitem.impl.HeadCustomItem;
 import br.com.plutomc.core.bukkit.utils.hologram.Hologram;
@@ -25,7 +26,7 @@ public abstract class Generator {
    private GeneratorType generatorType;
    private int level = 1;
    private long lastGenerate;
-   private long generateTime = 2000L;
+   private long generateTime = 4000L;
    private Hologram hologram;
    private CustomItem customItem;
    private ItemStack itemStack;

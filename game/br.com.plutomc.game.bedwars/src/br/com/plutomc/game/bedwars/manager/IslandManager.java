@@ -9,10 +9,10 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import br.com.plutomc.game.bedwars.generator.Generator;
-import br.com.plutomc.game.engine.GameAPI;
 import br.com.plutomc.game.bedwars.GameMain;
 import br.com.plutomc.game.bedwars.gamer.Gamer;
+import br.com.plutomc.game.bedwars.generator.Generator;
+import br.com.plutomc.game.engine.GameAPI;
 import br.com.plutomc.game.bedwars.island.Island;
 import br.com.plutomc.game.bedwars.island.IslandColor;
 import br.com.plutomc.game.engine.gamer.Team;

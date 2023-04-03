@@ -34,10 +34,10 @@ public class LobbyMain extends CoreMain {
       this.createCharacter("npc-duels", "stopeey", new ActionHandler() {
          @Override
          public boolean onInteract(Player player, boolean right) {
-            LobbyMain.this.sendPlayerToServer(player, new ServerType[]{ServerType.DUELS_LOBBY});
+            LobbyMain.this.sendPlayerToServer(player, new ServerType[]{ServerType.DUELS_LOBBY, ServerType.DUELS_GAPPLE});
             return false;
          }
-      }, Arrays.asList(ServerType.DUELS_LOBBY), new String[]{"§bTreino"});
+      }, Arrays.asList(ServerType.DUELS_LOBBY), new String[]{"§bDuels"});
       this.createCharacter(
          "npc-bedwars",
          "Abodicom4You",

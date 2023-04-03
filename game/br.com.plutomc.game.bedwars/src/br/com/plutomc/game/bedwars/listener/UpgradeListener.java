@@ -1,6 +1,8 @@
 package br.com.plutomc.game.bedwars.listener;
 
+import br.com.plutomc.game.bedwars.GameMain;
 import br.com.plutomc.game.bedwars.event.island.IslandUpgradeEvent;
+import br.com.plutomc.game.bedwars.gamer.Gamer;
 import br.com.plutomc.game.bedwars.generator.Generator;
 import br.com.plutomc.game.bedwars.generator.impl.NormalGenerator;
 import com.google.common.collect.ImmutableList;
@@ -14,8 +16,6 @@ import java.util.stream.Stream;
 import br.com.plutomc.core.common.CommonConst;
 import br.com.plutomc.core.bukkit.event.UpdateEvent;
 import br.com.plutomc.game.engine.GameAPI;
-import br.com.plutomc.game.bedwars.GameMain;
-import br.com.plutomc.game.bedwars.gamer.Gamer;
 import br.com.plutomc.game.bedwars.island.Island;
 import br.com.plutomc.game.bedwars.island.IslandUpgrade;
 import br.com.plutomc.core.bukkit.utils.player.PlayerHelper;

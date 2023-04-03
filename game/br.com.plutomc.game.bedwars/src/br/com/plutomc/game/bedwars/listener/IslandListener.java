@@ -1,10 +1,10 @@
 package br.com.plutomc.game.bedwars.listener;
 
-import br.com.plutomc.game.bedwars.event.PlayerBoughtItemEvent;
-import br.com.plutomc.game.engine.GameAPI;
 import br.com.plutomc.game.bedwars.GameConst;
 import br.com.plutomc.game.bedwars.GameMain;
+import br.com.plutomc.game.bedwars.event.PlayerBoughtItemEvent;
 import br.com.plutomc.game.bedwars.gamer.Gamer;
+import br.com.plutomc.game.engine.GameAPI;
 import br.com.plutomc.game.bedwars.island.Island;
 import br.com.plutomc.game.bedwars.island.IslandUpgrade;
 import br.com.plutomc.core.bukkit.utils.item.ItemBuilder;
@@ -93,21 +93,21 @@ public class IslandListener implements Listener {
                if (gamer.getPickaxeLevel().ordinal() == 1) {
                   player.getInventory().addItem(new ItemStack[]{gamer.getPickaxeLevel().getItemStack()});
                } else {
-                   slot = -1;
+                  int i1 = -1;
 
                   for(int i = 0; i < player.getInventory().getContents().length; ++i) {
                      ItemStack itemStack = player.getInventory().getContents()[i];
                      if (itemStack != null && itemStack.getType() == gamer.getPickaxeLevel().getPrevious().getItemStack().getType()) {
                         player.getInventory().removeItem(new ItemStack[]{itemStack});
-                        slot = i;
+                        i1 = i;
                         break;
                      }
                   }
 
-                  if (slot == -1) {
+                  if (i1 == -1) {
                      player.getInventory().addItem(new ItemStack[]{gamer.getPickaxeLevel().getItemStack()});
                   } else {
-                     player.getInventory().setItem(slot, gamer.getPickaxeLevel().getItemStack());
+                     player.getInventory().setItem(i1, gamer.getPickaxeLevel().getItemStack());
                   }
                }
 
@@ -120,21 +120,21 @@ public class IslandListener implements Listener {
                Gamer.SwordLevel swordLevel = Gamer.SwordLevel.valueOf(swordType);
                if (gamer.getSwordLevel() != swordLevel && gamer.getSwordLevel().ordinal() <= swordLevel.ordinal()) {
                   if (gamer.getSwordLevel() == Gamer.SwordLevel.WOOD) {
-                      slot = -1;
+                     int slot1 = -1;
 
                      for(int i = 0; i < player.getInventory().getContents().length; ++i) {
                         ItemStack itemStack = player.getInventory().getContents()[i];
                         if (itemStack != null && itemStack.getType() == Material.valueOf(gamer.getSwordLevel().name() + "_SWORD")) {
                            player.getInventory().removeItem(new ItemStack[]{itemStack});
-                           slot = i;
+                           slot1 = i;
                            break;
                         }
                      }
 
-                     if (slot != -1) {
+                     if (slot1 != -1) {
                         player.getInventory()
                            .setItem(
-                              slot,
+                              slot1,
                               ItemBuilder.fromStack(event.getItemStack())
                                  .enchantment(Enchantment.DAMAGE_ALL, island.getUpgradeLevel(IslandUpgrade.SHARPNESS))
                                  .build()

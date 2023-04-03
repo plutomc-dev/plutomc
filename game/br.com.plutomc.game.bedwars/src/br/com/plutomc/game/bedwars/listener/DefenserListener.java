@@ -1,16 +1,16 @@
 package br.com.plutomc.game.bedwars.listener;
 
+import br.com.plutomc.game.bedwars.GameMain;
+import br.com.plutomc.game.bedwars.gamer.Gamer;
+import br.com.plutomc.game.bedwars.utils.ProgressBar;
 import com.google.common.collect.ImmutableList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import br.com.plutomc.core.bukkit.event.UpdateEvent;
-import br.com.plutomc.game.bedwars.GameMain;
-import br.com.plutomc.game.bedwars.gamer.Gamer;
 import br.com.plutomc.game.bedwars.island.Island;
 import br.com.plutomc.game.bedwars.island.IslandColor;
-import br.com.plutomc.game.bedwars.utils.ProgressBar;
 import br.com.plutomc.core.bukkit.utils.item.ItemBuilder;
 import br.com.plutomc.core.common.utils.string.StringFormat;
 import net.minecraft.server.v1_8_R3.AttributeInstance;

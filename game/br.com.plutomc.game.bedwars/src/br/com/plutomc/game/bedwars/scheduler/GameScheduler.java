@@ -1,9 +1,6 @@
 package br.com.plutomc.game.bedwars.scheduler;
 
 import br.com.plutomc.game.bedwars.GameMain;
-import br.com.plutomc.game.bedwars.event.GameStartEvent;
-import br.com.plutomc.game.bedwars.event.PlayerSpectateEvent;
-import br.com.plutomc.game.bedwars.island.Island;
 import br.com.plutomc.game.bedwars.utils.GamerHelper;
 import com.google.common.collect.ImmutableList;
 import java.util.HashMap;
@@ -13,6 +10,9 @@ import java.util.Map.Entry;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.bukkit.event.UpdateEvent;
 import br.com.plutomc.game.engine.GameAPI;
+import br.com.plutomc.game.bedwars.event.GameStartEvent;
+import br.com.plutomc.game.bedwars.event.PlayerSpectateEvent;
+import br.com.plutomc.game.bedwars.island.Island;
 import br.com.plutomc.game.bedwars.listener.CombatListener;
 import br.com.plutomc.game.bedwars.listener.DefenserListener;
 import br.com.plutomc.game.bedwars.listener.FireballListener;

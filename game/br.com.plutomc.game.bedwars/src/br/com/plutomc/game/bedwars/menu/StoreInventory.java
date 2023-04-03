@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
-import br.com.plutomc.game.engine.GameAPI;
+
 import br.com.plutomc.game.bedwars.GameMain;
 import br.com.plutomc.game.bedwars.gamer.Gamer;
-import br.com.plutomc.game.bedwars.island.Island;
 import br.com.plutomc.game.bedwars.store.ShopCategory;
 import br.com.plutomc.game.bedwars.utils.GamerHelper;
+import br.com.plutomc.game.engine.GameAPI;
+import br.com.plutomc.game.bedwars.island.Island;
 import br.com.plutomc.core.bukkit.utils.item.ItemBuilder;
 import br.com.plutomc.core.bukkit.utils.menu.MenuInventory;
 import br.com.plutomc.core.bukkit.utils.menu.click.ClickType;
@@ -94,7 +95,7 @@ public class StoreInventory {
                   }
                   break;
                default:
-                   w = 19;
+                  int i1 = 19;
 
                   for(int i = 0; i < list.size(); ++i) {
                      ShopCategory.ShopItem item = list.get(i);
@@ -104,11 +105,11 @@ public class StoreInventory {
                         item = gamer.getPickaxeLevel().getNext().getAsShopItem();
                      }
 
-                     this.handleItem(menuInventory, gamer, storeCategory, list.indexOf(item), item, w);
-                     if (w % 9 == 7) {
-                        w += 3;
+                     this.handleItem(menuInventory, gamer, storeCategory, list.indexOf(item), item, i1);
+                     if (i1 % 9 == 7) {
+                        i1 += 3;
                      } else {
-                        ++w;
+                        ++i1;
                      }
                   }
             }

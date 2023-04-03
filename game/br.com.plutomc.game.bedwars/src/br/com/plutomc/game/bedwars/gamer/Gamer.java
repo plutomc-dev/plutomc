@@ -9,9 +9,9 @@ import java.util.UUID;
 import java.util.Map.Entry;
 
 import br.com.plutomc.game.bedwars.GameMain;
-import br.com.plutomc.game.bedwars.event.PlayerLevelUpEvent;
 import br.com.plutomc.game.bedwars.store.ShopCategory;
 import br.com.plutomc.core.common.CommonPlugin;
+import br.com.plutomc.game.bedwars.event.PlayerLevelUpEvent;
 import br.com.plutomc.core.bukkit.utils.item.ItemBuilder;
 import br.com.plutomc.core.common.member.status.Status;
 import br.com.plutomc.core.common.member.status.StatusType;

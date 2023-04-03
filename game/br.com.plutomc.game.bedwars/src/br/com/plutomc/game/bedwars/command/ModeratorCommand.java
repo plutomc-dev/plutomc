@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
 
+import br.com.plutomc.game.bedwars.GameMain;
 import br.com.plutomc.game.bedwars.generator.Generator;
 import br.com.plutomc.game.bedwars.generator.GeneratorType;
 import br.com.plutomc.game.bedwars.menu.creator.IslandCreatorInventory;
 import br.com.plutomc.core.bukkit.command.BukkitCommandArgs;
-import br.com.plutomc.game.bedwars.GameMain;
 import br.com.plutomc.game.bedwars.island.Island;
 import br.com.plutomc.game.bedwars.island.IslandColor;
 import br.com.plutomc.core.bukkit.member.BukkitMember;
@@ -93,7 +93,7 @@ public class ModeratorCommand implements CommandClass {
                return;
             }
 
-            IslandColor iColor = null;
+            final IslandColor iColor;
 
             try {
                iColor = IslandColor.valueOf(args[0].toUpperCase());
@@ -102,8 +102,7 @@ public class ModeratorCommand implements CommandClass {
                return;
             }
 
-            IslandColor finalIColor = iColor;
-            Island island = islandList.stream().filter(i -> i.getIslandColor() == finalIColor).findFirst().orElse(null);
+            Island island = islandList.stream().filter(i -> i.getIslandColor() == iColor).findFirst().orElse(null);
             if (island == null) {
                sender.sendMessage(
                   sender.getLanguage()

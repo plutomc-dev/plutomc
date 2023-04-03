@@ -5,5 +5,6 @@ public enum StatusType {
    PVP,
    SKYWARS,
    BEDWARS,
-   SUMO;
+   SUMO,
+   GAPPLE;
 }
