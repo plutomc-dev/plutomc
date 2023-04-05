@@ -60,13 +60,6 @@ public class LobbyMain extends CoreMain {
             return false;
          }
       }, Arrays.asList(ServerType.SW_LOBBY, ServerType.SW_SOLO, ServerType.SW_DUOS, ServerType.SW_SQUAD), new String[]{"§bSkywars"});
-      this.createCharacter("npc-rankup", "LouixZ", new ActionHandler() {
-         @Override
-         public boolean onInteract(Player player, boolean right) {
-            new RankupInventory(player);
-            return false;
-         }
-      }, Arrays.asList(ServerType.RANKUP), new String[]{"§bRankup"});
    }
 
    public static LobbyMain getInstance() {

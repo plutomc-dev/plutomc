@@ -32,7 +32,7 @@ public class ServerInventory {
       SERVER_MAP.put("skywars", Arrays.asList(ServerType.values()).stream().filter(type -> type.name().contains("SW")).collect(Collectors.toList()));
       SERVER_MAP.put("pvp", Arrays.asList(ServerType.ARENA, ServerType.LAVA, ServerType.FPS, ServerType.PVP_LOBBY));
       SERVER_MAP.put("hardcoregames", Arrays.asList(ServerType.HG, ServerType.HG_LOBBY));
-      SERVER_MAP.put("rankup", Arrays.asList(ServerType.RANKUP));
+      SERVER_MAP.put("duels", Arrays.asList(ServerType.values()).stream().filter(type -> type.name().contains("DUELS")).collect(Collectors.toList()));
       Bukkit.getPluginManager()
          .registerEvents(
             new Listener() {
@@ -50,8 +50,8 @@ public class ServerInventory {
                         name = "pvp";
                      } else if (serverType.isHG()) {
                         name = "hardcoregames";
-                     } else if (serverType == ServerType.RANKUP) {
-                        name = "rankup";
+                     } else if (serverType.name().contains("DUELS")) {
+                        name = "duels";
                      }
       
                      if (name != null) {
@@ -131,11 +131,14 @@ public class ServerInventory {
       MENU_INVENTORY.setItem(
          15,
          new ItemBuilder()
-            .name("§aRankUp")
-            .type(Material.DIAMOND_PICKAXE)
-            .lore("§7" + BukkitCommon.getInstance().getServerManager().getTotalNumber(SERVER_MAP.get("rankup")) + " jogando.")
+            .name("§aDuels")
+            .type(Material.DIAMOND_SWORD)
+            .lore("§7" + BukkitCommon.getInstance().getServerManager().getTotalNumber(SERVER_MAP.get("duels")) + " jogando.")
             .build(),
-         (p, inv, type, stack, slot) -> new RankupInventory(p)
+         (p, inv, type, stack, slot) -> {
+            BukkitCommon.getInstance().sendPlayerToServer(p, ServerType.DUELS_LOBBY);
+            p.closeInventory();
+         }
       );
    }
 }
