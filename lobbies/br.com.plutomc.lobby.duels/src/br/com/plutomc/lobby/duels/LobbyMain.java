@@ -35,6 +35,21 @@ public class LobbyMain extends CoreMain {
                 ),
                 "§eGapple");
 
+        this.createCharacter(
+                "npc-sumo",
+                "unidade",
+                new ActionHandler() {
+                    @Override
+                    public boolean onInteract(Player player, boolean right) {
+                        LobbyMain.this.sendPlayerToServer(player, new ServerType[]{ServerType.DUELS_SUMO});
+                        return false;
+                    }
+                },
+                Arrays.asList(
+                        ServerType.DUELS_SUMO
+                ),
+                "§eSumo");
+
     }
 
     public static LobbyMain getInstance() {

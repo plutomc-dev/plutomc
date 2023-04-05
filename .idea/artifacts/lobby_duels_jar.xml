@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lobby-duels:jar">
+    <output-path>$USER_HOME$/highmc/lobby-duels/plugins</output-path>
+    <root id="archive" name="lobby-duels.jar">
+      <element id="module-output" name="lobby-duels" />
+      <element id="module-output" name="core-bukkit" />
+      <element id="module-output" name="core-common" />
+      <element id="module-output" name="lobby-core" />
+    </root>
+  </artifact>
+</component>

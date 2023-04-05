@@ -9,6 +9,8 @@ import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.member.status.Status;
 import br.com.plutomc.core.common.member.status.StatusType;
 import br.com.plutomc.core.common.member.status.types.BedwarsCategory;
+import br.com.plutomc.core.common.member.status.types.GappleCategory;
+import br.com.plutomc.core.common.member.status.types.SumoCategory;
 import br.com.plutomc.core.common.server.ServerType;
 import br.com.plutomc.core.common.utils.string.StringFormat;
 import org.bukkit.Material;
@@ -27,6 +29,11 @@ public class StatisticsInventory {
             11,
             new ItemBuilder().type(Material.IRON_CHESTPLATE).name("§aPvP").lore("§7Suas estatísticas no PvP.").build(),
             (p, inv, t, stack, s) -> new StatisticsInventory(player, StatusType.PVP)
+         );
+         menuInventory.setItem(
+                 12,
+                 new ItemBuilder().type(Material.DIAMOND_SWORD).name("§aDuels").lore("§7Suas estatísticas do Duels.").build(),
+                 (p, inv, t, stack, s) -> new StatisticsInventory(player, StatusType.DUEL)
          );
          menuInventory.setItem(
             22,
@@ -132,6 +139,39 @@ public class StatisticsInventory {
                      .build()
                );
                menuInventory.setItem(13, new ItemBuilder().type(Material.LAVA_BUCKET).name("§aLava").lore("").build());
+               break;
+
+            case DUEL:
+               menuInventory.setItem(
+                       10,
+                       new ItemBuilder()
+                               .type(Material.PAPER)
+                               .name("§aGapple")
+                               .lore(
+                                       "§fKills: §7" + status.getInteger(GappleCategory.GAPPLE_KILLS),
+                                       "§fDeaths: §7" + status.getInteger(GappleCategory.GAPPLE_DEATHS),
+                                       "",
+                                       "§fVitórias: §7" + status.getInteger(GappleCategory.GAPPLE_WINS),
+                                       "§fDerrotas: §7" + status.getInteger(GappleCategory.GAPPLE_LOSSES),
+                                       "§fWinstreak: §7" + + status.getInteger(GappleCategory.GAPPLE_WINSTREAK)
+                               )
+                               .build()
+               );
+               menuInventory.setItem(
+                       12,
+                       new ItemBuilder()
+                               .type(Material.PAPER)
+                               .name("§aSumo")
+                               .lore(
+                                       "§fKills: §7" + status.getInteger(SumoCategory.SUMO_KILLS),
+                                       "§fDeaths: §7" + status.getInteger(SumoCategory.SUMO_DEATHS),
+                                       "",
+                                       "§fVitórias: §7" + status.getInteger(SumoCategory.SUMO_WINS),
+                                       "§fDerrotas: §7" + status.getInteger(SumoCategory.SUMO_LOSSES),
+                                       "§fWinstreak: §7" + + status.getInteger(SumoCategory.SUMO_WINSTREAK)
+                               )
+                               .build()
+               );
          }
 
          menuInventory.setItem(

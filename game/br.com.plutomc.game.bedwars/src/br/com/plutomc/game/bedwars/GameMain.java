@@ -219,7 +219,7 @@ public class GameMain extends GameAPI implements Listener {
    }
 
    public List<Gamer> getAlivePlayers() {
-      return GameAPI.getInstance().getGamerManager().filter(gamer -> gamer.isAlive(), Gamer.class);
+      return GameAPI.getInstance().getGamerManager().filter(Gamer::isAlive, Gamer.class);
    }
 
    public void checkWinner() {

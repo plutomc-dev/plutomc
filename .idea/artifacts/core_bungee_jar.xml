@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="core-bungee:jar">
+    <output-path>$USER_HOME$/highmc/bungeecord/plugins</output-path>
+    <root id="archive" name="core-bungee.jar">
+      <element id="module-output" name="core-bungee" />
+      <element id="module-output" name="core-common" />
+    </root>
+  </artifact>
+</component>

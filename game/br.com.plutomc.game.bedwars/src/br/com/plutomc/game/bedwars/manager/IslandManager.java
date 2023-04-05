@@ -25,63 +25,49 @@ public class IslandManager {
    private Map<UUID, IslandColor> playerMap = new HashMap<>();
 
    public Collection<Island> loadIsland() {
-      List<Island> islandList = new ArrayList<>(GameMain.getInstance().getConfiguration().getList("islands", Island.class));
-      List<Gamer> playerList = GameAPI.getInstance()
-         .getGamerManager()
-         .getGamers(Gamer.class)
-         .stream()
-         .filter(gamer -> gamer.isAlive() && gamer.getPlayer() != null)
-         .sorted((o1, o2) -> {
-            Party o1Party = GameAPI.getInstance().getPlugin().getPartyManager().getPartyById(o1.getUniqueId());
-            Party o2Party = GameAPI.getInstance().getPlugin().getPartyManager().getPartyById(o2.getUniqueId());
-            return o1Party != null && o2Party != null ? o1Party.getPartyId().compareTo(o2Party.getPartyId()) : 0;
-         })
-         .collect(Collectors.toList());
-      List<Team> teamList = new ArrayList<>();
-
-      for(int i = 0; i < GameMain.getInstance().getMaxTeams(); ++i) {
+      ArrayList<Island> islandList = new ArrayList<Island>(GameMain.getInstance().getConfiguration().getList("islands", Island.class));
+      List<Gamer> playerList = GameAPI.getInstance().getGamerManager().getGamers(Gamer.class).stream().filter(gamer -> gamer.isAlive() && gamer.getPlayer() != null).sorted((o1, o2) -> {
+         Party o1Party = GameAPI.getInstance().getPlugin().getPartyManager().getPartyById(o1.getUniqueId());
+         Party o2Party = GameAPI.getInstance().getPlugin().getPartyManager().getPartyById(o2.getUniqueId());
+         if (o1Party == null || o2Party == null) {
+            return 0;
+         }
+         return o1Party.getPartyId().compareTo(o2Party.getPartyId());
+      }).collect(Collectors.toList());
+      ArrayList<Team> teamList = new ArrayList<Team>();
+      for (int i = 0; i < GameMain.getInstance().getMaxTeams(); ++i) {
          teamList.add(new Team(i, GameMain.getInstance().getPlayersPerTeam()));
       }
-
       boolean stop = true;
-
-      for(Team team : teamList) {
-         if (!team.isFull()) {
-            for(int i = 0; i < GameMain.getInstance().getPlayersPerTeam(); ++i) {
-               Gamer player = playerList.stream().findFirst().orElse(null);
-               if (player != null) {
-                  playerList.remove(player);
-                  team.addPlayer(player.getUniqueId());
-               }
-            }
-
-            if (team.getPlayerSet().size() >= 1) {
-               stop = false;
-            }
-
-            Island island = islandList.stream().findAny().orElse(null);
-            if (island == null) {
-               team.getPlayerSet().stream().map(id -> GameAPI.getInstance().getGamerManager().getGamer(id)).forEach(gamer -> {
-                  if (gamer.getPlayer() != null) {
-                     gamer.getPlayer().kickPlayer("§%bedwars.kick.island-not-found%§");
-                  }
-
-                  GameAPI.getInstance().getGamerManager().unloadGamer(gamer.getUniqueId());
-               });
-            } else {
-               island.loadIsland(team);
-               island.getTeam().getPlayerSet().forEach(id -> {
-               });
-               this.islandMap.put(island.getIslandColor(), island);
-               islandList.remove(island);
-            }
+      for (Team team : teamList) {
+         Island island;
+         if (team.isFull()) continue;
+         for (int i = 0; i < GameMain.getInstance().getPlayersPerTeam(); ++i) {
+            Gamer player = playerList.stream().findFirst().orElse(null);
+            if (player == null) continue;
+            playerList.remove(player);
+            team.addPlayer(player.getUniqueId());
          }
+         if (team.getPlayerSet().size() >= 1) {
+            stop = false;
+         }
+         if ((island = (Island)islandList.stream().findAny().orElse(null)) == null) {
+            team.getPlayerSet().stream().map(id -> GameAPI.getInstance().getGamerManager().getGamer((UUID)id)).forEach(gamer -> {
+               if (gamer.getPlayer() != null) {
+                  gamer.getPlayer().kickPlayer("§%bedwars.kick.island-not-found%§");
+               }
+               GameAPI.getInstance().getGamerManager().unloadGamer(gamer.getUniqueId());
+            });
+            continue;
+         }
+         island.loadIsland(team);
+         island.getTeam().getPlayerSet().forEach(id -> this.playerMap.put((UUID)id, island.getIslandColor()));
+         this.islandMap.put(island.getIslandColor(), island);
+         islandList.remove(island);
       }
-
       if (stop) {
          Bukkit.shutdown();
       }
-
       return this.islandMap.values();
    }
 
@@ -99,10 +85,8 @@ public class IslandManager {
 
    public Island getClosestIsland(Location location) {
       return this.islandMap
-         .values()
-         .stream()
-         .sorted((o1, o2) -> (int)(o1.getSpawnLocation().getAsLocation().distance(location) - o2.getSpawnLocation().getAsLocation().distance(location)))
-         .findFirst()
+              .values()
+              .stream().min((o1, o2) -> (int) (o1.getSpawnLocation().getAsLocation().distance(location) - o2.getSpawnLocation().getAsLocation().distance(location)))
          .orElse(null);
    }
 

@@ -46,7 +46,7 @@ public class GameScheduler implements Listener, Scheduler {
       GameAPI.getInstance().setTagControl(false);
       GameAPI.getInstance().setTime(0);
       this.playerInvisibleMap = new HashMap<>();
-      Bukkit.getOnlinePlayers().forEach(playerx -> ScoreboardAPI.leaveCurrentTeamForOnlinePlayers(playerx));
+      Bukkit.getOnlinePlayers().forEach(ScoreboardAPI::leaveCurrentTeamForOnlinePlayers);
 
       for(Island island : GameMain.getInstance().getIslandManager().loadIsland()) {
          island.startIsland();

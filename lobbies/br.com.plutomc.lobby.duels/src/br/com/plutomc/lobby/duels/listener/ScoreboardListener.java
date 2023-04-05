@@ -61,8 +61,8 @@ public class ScoreboardListener implements Listener {
 
     private void handleScoreboard(Player player) {
         Member member = CommonPlugin.getInstance().getMemberManager().getMember(player.getUniqueId());
-        Status statusSumo = CommonPlugin.getInstance().getStatusManager().loadStatus(player.getUniqueId(), StatusType.SUMO);
-        Status statusGapple = CommonPlugin.getInstance().getStatusManager().loadStatus(player.getUniqueId(), StatusType.GAPPLE);
+        Status statusSumo = CommonPlugin.getInstance().getStatusManager().loadStatus(player.getUniqueId(), StatusType.DUEL);
+        Status statusGapple = CommonPlugin.getInstance().getStatusManager().loadStatus(player.getUniqueId(), StatusType.DUEL);
         Scoreboard scoreboard = new Scoreboard(player, "§b§lDUELS");
         scoreboard.add(11, "");
         scoreboard.add(10, "§eGapple:");

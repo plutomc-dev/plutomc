@@ -32,7 +32,7 @@ public enum ServerType {
    BW_3X3,
    BW_4X4,
    BUNGEECORD,
-   DISCORD;
+   DISCORD, DUELS_SUMO;
 
    public int getPlayersPerTeam() {
       if (this.name().contains("SOLO") || this.name().contains("1X1")) {
