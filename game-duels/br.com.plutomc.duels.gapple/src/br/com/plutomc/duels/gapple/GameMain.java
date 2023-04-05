@@ -65,7 +65,7 @@ public class GameMain extends GameAPI {
             public void onPacketSending(PacketEvent e) {
                 if (e.getPacketType() == PacketType.Play.Server.CHAT || e.getPacketType() == PacketType.Play.Client.CHAT) {
                     try {
-                        String json = ((WrappedChatComponent)e.getPacket().getChatComponents().read(0)).getJson();
+                        String json = ((WrappedChatComponent) e.getPacket().getChatComponents().read(0)).getJson();
                         if (json.equals("{\"translate\":\"tile.bed.noSleep\"}") || json.equals("{\"translate\":\"tile.bed.notValid\"}")) {
                             e.setCancelled(true);
                         }
@@ -141,10 +141,10 @@ public class GameMain extends GameAPI {
     }
 
     public void startGame() {
-        for(Scheduler scheduler : this.getSchedulerManager().getSchedulers()) {
+        for (Scheduler scheduler : this.getSchedulerManager().getSchedulers()) {
             this.getSchedulerManager().unloadScheduler(scheduler);
             if (scheduler instanceof WaitingScheduler) {
-                HandlerList.unregisterAll((WaitingScheduler)scheduler);
+                HandlerList.unregisterAll((WaitingScheduler) scheduler);
             }
         }
 
@@ -154,7 +154,12 @@ public class GameMain extends GameAPI {
 
         getAlivePlayers().get(0).getPlayer().teleport(GameAPI.getInstance().getLocationManager().getLocation("pvp-loc1"));
         getAlivePlayers().get(1).getPlayer().teleport(GameAPI.getInstance().getLocationManager().getLocation("pvp-loc2"));
-        for(Gamer g: getAlivePlayers()) {
+
+        getAlivePlayers().get(0).getPlayer().setPlayerListName("§c" + getAlivePlayers().get(0).getPlayer().getName());
+
+        getAlivePlayers().get(1).getPlayer().setPlayerListName("§9" + getAlivePlayers().get(1).getPlayer().getName());
+
+        for (Gamer g : getAlivePlayers()) {
             Player p = g.getPlayer();
 
             p.getInventory().clear();
@@ -164,20 +169,21 @@ public class GameMain extends GameAPI {
             p.getInventory().setBoots(new ItemBuilder().type(Material.DIAMOND_BOOTS).enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4).enchantment(Enchantment.DURABILITY, 3).build());
 
             p.getInventory().addItem(new ItemBuilder().type(Material.DIAMOND_SWORD).enchantment(Enchantment.DAMAGE_ALL, 5).enchantment(Enchantment.DURABILITY, 3).enchantment(Enchantment.FIRE_ASPECT, 2).build());
-            p.getInventory().addItem(ItemBuilder.fromStack(new ItemStack(259)).amount(64).build());
+            p.getInventory().addItem(new ItemBuilder().type(Material.GOLDEN_APPLE).durability(1).amount(64).build());
+            p.getInventory().addItem(new ItemBuilder().type(Material.DIAMOND_HELMET).enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4).enchantment(Enchantment.DURABILITY, 3).build());
+            p.getInventory().addItem(new ItemBuilder().type(Material.DIAMOND_CHESTPLATE).enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4).enchantment(Enchantment.DURABILITY, 3).build());
+            p.getInventory().addItem(new ItemBuilder().type(Material.DIAMOND_LEGGINGS).enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4).enchantment(Enchantment.DURABILITY, 3).build());
+            p.getInventory().addItem(new ItemBuilder().type(Material.DIAMOND_BOOTS).enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4).enchantment(Enchantment.DURABILITY, 3).build());
 
-            p.getInventory().addItem(new ItemBuilder().type(Material.POTION).potion(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 4000, 2)).build());
-            p.getInventory().addItem(new ItemBuilder().type(Material.POTION).potion(new PotionEffect(PotionEffectType.SPEED, 4000, 2)).build());
+            p.getInventory().addItem(new ItemBuilder().type(Material.POTION).name("§eForça").potion(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 4000, 1)).build());
+            p.getInventory().addItem(new ItemBuilder().type(Material.POTION).name("§eSpeed").potion(new PotionEffect(PotionEffectType.SPEED, 4000, 1)).build());
 
         }
     }
 
     public void checkWinner() {
-        if(getAlivePlayers().size() == 1) {
-            Player winner = getAlivePlayers().get(0).getPlayer();
+        if (getAlivePlayers().size() < 2) {
             getServer().getPluginManager().callEvent(new GameEndEvent());
-            getServer().getPluginManager().callEvent(new PlayerWinEvent(winner));
-
             handleServer();
         }
     }

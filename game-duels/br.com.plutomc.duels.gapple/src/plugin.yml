@@ -1,6 +1,6 @@
   name: Arcade
   main: br.com.plutomc.duels.gapple.GameMain
-  version: 0.0.1-dev
+  version: 1.0.0-proof-of-concept
   author: uni
   description: Arcade Bukkit Plugin, based on core, core-bukkit and game-engine
   website: www.plutomc.com.br

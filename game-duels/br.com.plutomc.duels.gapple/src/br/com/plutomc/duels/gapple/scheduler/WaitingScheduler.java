@@ -152,7 +152,7 @@ public class WaitingScheduler implements Scheduler, Listener {
         int time = GameAPI.getInstance().getTime();
         if (GameAPI.getInstance().isConsoleControl()) {
             int alivePlayers = GameMain.getInstance().getAlivePlayers().size();
-            if (alivePlayers < Bukkit.getMaxPlayers() / 2) {
+            if (alivePlayers == 2) {
                 GameAPI.getInstance().setTimer(false);
                 GameAPI.getInstance().setTime(60);
                 GameAPI.getInstance().setState(MinigameState.WAITING);

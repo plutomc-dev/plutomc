@@ -117,7 +117,7 @@ public class ScoreboardListener implements Listener {
         } else if(GameAPI.getInstance().getState().isGametime()) {
 
             scoreboard.add(10, "");
-            scoreboard.add(9, "§%scoreboard-mode%: §a" + StringFormat.formatString(CommonPlugin.getInstance().getServerType().name().split("_")[1]));
+            scoreboard.add(9, "Modo: §a" + StringFormat.formatString(CommonPlugin.getInstance().getServerType().name().split("_")[1]));
             scoreboard.add(8, "Tempo: §a"+ StringFormat.formatTime(GameAPI.getInstance().getTime(), StringFormat.TimeFormat.DOUBLE_DOT));
             scoreboard.add(7, "");
             Player player1 = GameMain.getInstance().getAlivePlayers().get(0).getPlayer();
@@ -136,6 +136,14 @@ public class ScoreboardListener implements Listener {
         if (GameAPI.getInstance().getState().isPregame()) {
             ScoreHelper.getInstance()
                     .updateScoreboard(5, "§%scoreboard-starting%§: §a" + StringFormat.formatTime(GameAPI.getInstance().getTime(), StringFormat.TimeFormat.SHORT));
+        } else{
+            ScoreHelper.getInstance()
+                    .updateScoreboard(8, "Tempo: §a" + StringFormat.formatTime(GameAPI.getInstance().getTime(), StringFormat.TimeFormat.DOUBLE_DOT));
+            Player player1 = GameMain.getInstance().getAlivePlayers().get(0).getPlayer();
+            Player player2 = GameMain.getInstance().getAlivePlayers().get(1).getPlayer();
+
+            ScoreHelper.getInstance().updateScoreboard(6,"§c" + player1.getName() + ": §7" + ((CraftPlayer)player1).getHandle().ping + "ms");
+            ScoreHelper.getInstance().updateScoreboard(5,"§9" + player2.getName() + ": §7" + ((CraftPlayer)player2).getHandle().ping + "ms");
         }
     }
 
