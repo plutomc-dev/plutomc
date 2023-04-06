@@ -1,4 +1,4 @@
-package br.com.plutomc.duels.gapple.scheduler;
+package br.com.plutomc.duels.nodebuff.scheduler;
 
 import br.com.plutomc.core.bukkit.event.player.PlayerAdminEvent;
 import br.com.plutomc.core.bukkit.event.player.PlayerMoveUpdateEvent;
@@ -14,8 +14,8 @@ import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
 import br.com.plutomc.core.common.utils.string.StringFormat;
 import br.com.plutomc.duels.engine.GameAPI;
 import br.com.plutomc.duels.engine.scheduler.Scheduler;
-import br.com.plutomc.duels.gapple.GameMain;
-import br.com.plutomc.duels.gapple.gamer.Gamer;
+import br.com.plutomc.duels.nodebuff.GameMain;
+import br.com.plutomc.duels.nodebuff.gamer.Gamer;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;

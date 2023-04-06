@@ -1,0 +1,6 @@
+  name: Arcade
+  main: br.com.plutomc.duels.nodebuff.GameMain
+  version: 1.0.0-dev
+  author: uni
+  description: Arcade Bukkit Plugin, based on core, core-bukkit and game-engine
+  website: www.plutomc.com.br

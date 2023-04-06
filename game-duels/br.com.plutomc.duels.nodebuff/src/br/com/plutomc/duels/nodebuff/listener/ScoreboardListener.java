@@ -1,4 +1,4 @@
-package br.com.plutomc.duels.gapple.listener;
+package br.com.plutomc.duels.nodebuff.listener;
 
 import br.com.plutomc.core.bukkit.event.UpdateEvent;
 import br.com.plutomc.core.bukkit.event.member.PlayerLanguageChangeEvent;
@@ -8,11 +8,11 @@ import br.com.plutomc.core.bukkit.utils.scoreboard.Scoreboard;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.member.status.Status;
 import br.com.plutomc.core.common.member.status.StatusType;
-import br.com.plutomc.core.common.member.status.types.GappleCategory;
+import br.com.plutomc.core.common.member.status.types.NodebuffCategory;
 import br.com.plutomc.core.common.utils.string.StringFormat;
 import br.com.plutomc.duels.engine.GameAPI;
 import br.com.plutomc.duels.engine.event.GameStateChangeEvent;
-import br.com.plutomc.duels.gapple.GameMain;
+import br.com.plutomc.duels.nodebuff.GameMain;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -111,7 +111,7 @@ public class ScoreboardListener implements Listener {
             scoreboard.add(6, "");
             scoreboard.add(5, "§%scoreboard-starting%§: §a" + StringFormat.formatTime(GameAPI.getInstance().getTime(), StringFormat.TimeFormat.DOUBLE_DOT));
             scoreboard.add(4, "");
-            scoreboard.add(3, "Winstreak: §7" + status.getInteger(GappleCategory.GAPPLE_WINSTREAK));
+            scoreboard.add(3, "Winstreak: §7" + status.getInteger(NodebuffCategory.NODEBUFF_WINSTREAK));
             scoreboard.add(2, "");
             scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
         } else if(GameAPI.getInstance().getState().isGametime()) {
@@ -126,7 +126,7 @@ public class ScoreboardListener implements Listener {
             scoreboard.add(6,"§c" + player1.getName() + ": §7" + ((CraftPlayer)player1).getHandle().ping + "ms");
             scoreboard.add(5,"§9" + player2.getName() + ": §7" + ((CraftPlayer)player2).getHandle().ping + "ms");
             scoreboard.add(4, "");
-            scoreboard.add(3, "§fWinstreak: §7" + status.getInteger(GappleCategory.GAPPLE_WINSTREAK));
+            scoreboard.add(3, "§fWinstreak: §7" + status.getInteger(NodebuffCategory.NODEBUFF_WINSTREAK));
             scoreboard.add(2, "");
             scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
         } else if(GameAPI.getInstance().getState().isEnding()) {
@@ -140,7 +140,7 @@ public class ScoreboardListener implements Listener {
             scoreboard.add(6,"§c" + player1.getName() + ": §7" + ((CraftPlayer)player1).getHandle().ping + "ms");
             scoreboard.add(5,"§9" + player2.getName() + ": §7" + ((CraftPlayer)player2).getHandle().ping + "ms");
             scoreboard.add(4, "");
-            scoreboard.add(3, "§fWinstreak: §7" + status.getInteger(GappleCategory.GAPPLE_WINSTREAK));
+            scoreboard.add(3, "§fWinstreak: §7" + status.getInteger(NodebuffCategory.NODEBUFF_WINSTREAK));
             scoreboard.add(2, "");
             scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
 

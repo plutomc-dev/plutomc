@@ -12,6 +12,7 @@ public enum ServerType {
    PVP_LOBBY,
    DUELS_LOBBY,
    DUELS_GAPPLE,
+   DUELS_NODEBUFF,
    FPS,
    LAVA,
    ARENA,
