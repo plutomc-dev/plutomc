@@ -33,7 +33,7 @@ public class LobbyMain extends CoreMain {
                 Arrays.asList(
                         ServerType.DUELS_GAPPLE
                 ),
-                "§eGapple");
+                "§bGapple");
 
         this.createCharacter(
                 "npc-sumo",
@@ -48,7 +48,22 @@ public class LobbyMain extends CoreMain {
                 Arrays.asList(
                         ServerType.DUELS_SUMO
                 ),
-                "§eSumo");
+                "§bSumo");
+
+        this.createCharacter(
+                "npc-nodebuff",
+                "TheComicON",
+                new ActionHandler() {
+                    @Override
+                    public boolean onInteract(Player player, boolean right) {
+                        LobbyMain.this.sendPlayerToServer(player, new ServerType[]{ServerType.DUELS_NODEBUFF});
+                        return false;
+                    }
+                },
+                Arrays.asList(
+                        ServerType.DUELS_NODEBUFF
+                ),
+                "§bNoDebuff");
 
     }
 

@@ -19,14 +19,11 @@ import org.bukkit.entity.Player;
 public class SkinInventory {
    private static final int ITEMS_PER_PAGE = 21;
    private static final List<SkinModel> SKIN_LIST = Arrays.asList(
-      from("yandv"),
-      from("yukiritoFLAME", "yukirito"),
-      from("Budokkan"),
-      from("ClonexD"),
-      from("NeoxGamer_"),
-      from("AnjooGaming"),
-      from("Kotcka"),
-      from("Console")
+      from("unidade"),
+      from("reboting", "DaddyReboting"),
+      from("TheComicON", "Sky Programmer"),
+      from("staack"),
+      from("lugami")
    );
 
    public SkinInventory(Player player) {

@@ -153,9 +153,7 @@ public class ModeradorCommand implements CommandClass {
    )
    public void adminCommand(CommandArgs cmdArgs) {
       Player player = cmdArgs.getSenderAsMember(BukkitMember.class).getPlayer();
-      if (cmdArgs.getArgs().length >= 1 && cmdArgs.getArgs()[0].equals("config")) {
-         new AdminInventory(player, 0L);
-      } else {
+
          if (BukkitCommon.getInstance().getVanishManager().isPlayerInAdmin(player)) {
             BukkitCommon.getInstance().getVanishManager().setPlayer(player);
             this.staffLog("O " + player.getName() + " saiu do modo admin");
@@ -163,7 +161,18 @@ public class ModeradorCommand implements CommandClass {
             BukkitCommon.getInstance().getVanishManager().setPlayerInAdmin(player);
             this.staffLog("O " + player.getName() + " entrou no modo admin");
          }
-      }
+
+   }
+
+   @CommandFramework.Command(
+           name = "staff",
+           aliases = {"stf"},
+           console = false,
+           permission = "command.admin"
+   )
+   public void adminPrefs(CommandArgs cmdArgs) {
+      Player player = cmdArgs.getSenderAsMember(BukkitMember.class).getPlayer();
+      new AdminInventory(player, 0L);
    }
 
    @CommandFramework.Command(

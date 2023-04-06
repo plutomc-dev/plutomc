@@ -10,6 +10,7 @@ import br.com.plutomc.core.common.member.status.Status;
 import br.com.plutomc.core.common.member.status.StatusType;
 import br.com.plutomc.core.common.member.status.types.BedwarsCategory;
 import br.com.plutomc.core.common.member.status.types.GappleCategory;
+import br.com.plutomc.core.common.member.status.types.NodebuffCategory;
 import br.com.plutomc.core.common.member.status.types.SumoCategory;
 import br.com.plutomc.core.common.server.ServerType;
 import br.com.plutomc.core.common.utils.string.StringFormat;
@@ -169,6 +170,22 @@ public class StatisticsInventory {
                                        "§fVitórias: §7" + status.getInteger(SumoCategory.SUMO_WINS),
                                        "§fDerrotas: §7" + status.getInteger(SumoCategory.SUMO_LOSSES),
                                        "§fWinstreak: §7" + + status.getInteger(SumoCategory.SUMO_WINSTREAK)
+                               )
+                               .build()
+               );
+
+               menuInventory.setItem(
+                       14,
+                       new ItemBuilder()
+                               .type(Material.PAPER)
+                               .name("§aNoDebuff")
+                               .lore(
+                                       "§fKills: §7" + status.getInteger(NodebuffCategory.NODEBUFF_KILLS),
+                                       "§fDeaths: §7" + status.getInteger(NodebuffCategory.NODEBUFF_DEATHS),
+                                       "",
+                                       "§fVitórias: §7" + status.getInteger(NodebuffCategory.NODEBUFF_WINS),
+                                       "§fDerrotas: §7" + status.getInteger(NodebuffCategory.NODEBUFF_LOSSES),
+                                       "§fWinstreak: §7" + + status.getInteger(NodebuffCategory.NODEBUFF_WINSTREAK)
                                )
                                .build()
                );
