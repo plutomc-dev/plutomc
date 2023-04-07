@@ -1,6 +1,5 @@
-package br.com.plutomc.duels.gapple;
+package br.com.plutomc.duels.simulator;
 
-import br.com.plutomc.core.bukkit.utils.item.ItemBuilder;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.server.ServerType;
 import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
@@ -8,13 +7,12 @@ import br.com.plutomc.core.common.utils.configuration.Configuration;
 import br.com.plutomc.core.common.utils.configuration.impl.JsonConfiguration;
 import br.com.plutomc.duels.engine.GameAPI;
 import br.com.plutomc.duels.engine.scheduler.Scheduler;
-import br.com.plutomc.duels.gapple.event.GameEndEvent;
-import br.com.plutomc.duels.gapple.event.PlayerWinEvent;
-import br.com.plutomc.duels.gapple.gamer.Gamer;
-import br.com.plutomc.duels.gapple.listener.PlayerListener;
-import br.com.plutomc.duels.gapple.listener.ScoreboardListener;
-import br.com.plutomc.duels.gapple.scheduler.GameScheduler;
-import br.com.plutomc.duels.gapple.scheduler.WaitingScheduler;
+import br.com.plutomc.duels.simulator.event.GameEndEvent;
+import br.com.plutomc.duels.simulator.gamer.Gamer;
+import br.com.plutomc.duels.simulator.listener.PlayerListener;
+import br.com.plutomc.duels.simulator.listener.ScoreboardListener;
+import br.com.plutomc.duels.simulator.scheduler.GameScheduler;
+import br.com.plutomc.duels.simulator.scheduler.WaitingScheduler;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.ListenerPriority;
@@ -23,15 +21,9 @@ import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import lombok.Getter;
 import org.bukkit.Bukkit;
-import org.bukkit.Effect;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.nio.file.Paths;
@@ -49,7 +41,7 @@ public class GameMain extends GameAPI {
         super.onLoad();
         instance = this;
         this.setGamerClass(Gamer.class);
-        this.setCollectionName("gapple-gamer");
+        this.setCollectionName("simulator-gamer");
         this.setUnloadGamer(true);
     }
 
@@ -60,8 +52,9 @@ public class GameMain extends GameAPI {
         this.setState(MinigameState.STARTING);
         this.setMaxPlayers(2);
         this.startScheduler(new WaitingScheduler());
-        Bukkit.getPluginManager().registerEvents(new ScoreboardListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ScoreboardListener(), this);
+
         ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, PacketType.Play.Server.CHAT) {
             public void onPacketSending(PacketEvent e) {
                 if (e.getPacketType() == PacketType.Play.Server.CHAT || e.getPacketType() == PacketType.Play.Client.CHAT) {
@@ -83,22 +76,22 @@ public class GameMain extends GameAPI {
     private void loadConfiguration() {
         this.configuration = CommonPlugin.getInstance()
                 .getConfigurationManager()
-                .loadConfig("gapple.json", Paths.get(this.getDataFolder().toURI()).getParent().getParent().toFile(), true, JsonConfiguration.class);
+                .loadConfig("simulator.json", Paths.get(this.getDataFolder().toURI()).getParent().getParent().toFile(), true, JsonConfiguration.class);
 
         try {
             this.configuration.loadConfig();
         } catch (Exception var2) {
             var2.printStackTrace();
-            this.getPlugin().getPluginPlatform().shutdown("Cannot load the configuration bedwars.json.");
+            this.getPlugin().getPluginPlatform().shutdown("Cannot load the configuration simulator.json.");
             return;
         }
 
         this.setMap(this.configuration.get("mapName", "Unknown"));
-        this.debug("The configuration bedwars.json has been loaded!");
+        this.debug("The configuration simulator.json has been loaded!");
     }
 
     public Configuration getConfiguration() {
-        return CommonPlugin.getInstance().getConfigurationManager().getConfigByName("gapple");
+        return CommonPlugin.getInstance().getConfigurationManager().getConfigByName("simulator");
     }
 
     @Override
@@ -158,25 +151,15 @@ public class GameMain extends GameAPI {
         getAlivePlayers().get(0).getPlayer().teleport(GameAPI.getInstance().getLocationManager().getLocation("pvp-loc1"));
         getAlivePlayers().get(1).getPlayer().teleport(GameAPI.getInstance().getLocationManager().getLocation("pvp-loc2"));
 
+        getAlivePlayers().get(0).getPlayer().setPlayerListName("§c" + getAlivePlayers().get(0).getPlayer().getName());
+
+        getAlivePlayers().get(1).getPlayer().setPlayerListName("§9" + getAlivePlayers().get(1).getPlayer().getName());
+
         for (Gamer g : getAlivePlayers()) {
             Player p = g.getPlayer();
 
             p.getInventory().clear();
-            p.getInventory().setHelmet(new ItemBuilder().type(Material.DIAMOND_HELMET).enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4).enchantment(Enchantment.DURABILITY, 3).build());
-            p.getInventory().setChestplate(new ItemBuilder().type(Material.DIAMOND_CHESTPLATE).enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4).enchantment(Enchantment.DURABILITY, 3).build());
-            p.getInventory().setLeggings(new ItemBuilder().type(Material.DIAMOND_LEGGINGS).enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4).enchantment(Enchantment.DURABILITY, 3).build());
-            p.getInventory().setBoots(new ItemBuilder().type(Material.DIAMOND_BOOTS).enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4).enchantment(Enchantment.DURABILITY, 3).build());
-
-            p.getInventory().addItem(new ItemBuilder().type(Material.DIAMOND_SWORD).enchantment(Enchantment.DAMAGE_ALL, 5).enchantment(Enchantment.DURABILITY, 3).enchantment(Enchantment.FIRE_ASPECT, 2).build());
-            p.getInventory().addItem(new ItemBuilder().type(Material.GOLDEN_APPLE).durability(1).amount(64).build());
-            p.getInventory().addItem(new ItemBuilder().type(Material.DIAMOND_HELMET).enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4).enchantment(Enchantment.DURABILITY, 3).build());
-            p.getInventory().addItem(new ItemBuilder().type(Material.DIAMOND_CHESTPLATE).enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4).enchantment(Enchantment.DURABILITY, 3).build());
-            p.getInventory().addItem(new ItemBuilder().type(Material.DIAMOND_LEGGINGS).enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4).enchantment(Enchantment.DURABILITY, 3).build());
-            p.getInventory().addItem(new ItemBuilder().type(Material.DIAMOND_BOOTS).enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4).enchantment(Enchantment.DURABILITY, 3).build());
-
-            p.getInventory().addItem(new ItemBuilder().type(Material.POTION).name("§eForça").potion(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 4000, 1)).build());
-            p.getInventory().addItem(new ItemBuilder().type(Material.POTION).name("§eSpeed").potion(new PotionEffect(PotionEffectType.SPEED, 4000, 1)).build());
-
+           //TODO: Inventory shit
         }
     }
 

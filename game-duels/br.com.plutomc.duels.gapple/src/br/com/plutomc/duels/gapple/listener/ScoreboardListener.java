@@ -166,7 +166,7 @@ public class ScoreboardListener implements Listener {
 
     private void updatePlayers(int players) {
         if (GameAPI.getInstance().getState().isPregame()) {
-            ScoreHelper.getInstance().updateScoreboard(6, "§%scoreboard-players%§: §b" + players + "/" + Bukkit.getMaxPlayers());
+            ScoreHelper.getInstance().updateScoreboard(7, "§%scoreboard-players%§: §a" + players + "/" + Bukkit.getMaxPlayers());
         }
     }
 

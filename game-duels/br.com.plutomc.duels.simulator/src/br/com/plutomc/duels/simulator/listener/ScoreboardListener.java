@@ -1,4 +1,4 @@
-package br.com.plutomc.duels.nodebuff.listener;
+package br.com.plutomc.duels.simulator.listener;
 
 import br.com.plutomc.core.bukkit.event.UpdateEvent;
 import br.com.plutomc.core.bukkit.event.member.PlayerLanguageChangeEvent;
@@ -12,7 +12,7 @@ import br.com.plutomc.core.common.member.status.types.NodebuffCategory;
 import br.com.plutomc.core.common.utils.string.StringFormat;
 import br.com.plutomc.duels.engine.GameAPI;
 import br.com.plutomc.duels.engine.event.GameStateChangeEvent;
-import br.com.plutomc.duels.nodebuff.GameMain;
+import br.com.plutomc.duels.simulator.GameMain;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;

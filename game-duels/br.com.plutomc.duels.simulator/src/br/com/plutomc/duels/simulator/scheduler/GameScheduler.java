@@ -1,10 +1,10 @@
-package br.com.plutomc.duels.nodebuff.scheduler;
+package br.com.plutomc.duels.simulator.scheduler;
 
 import br.com.plutomc.core.bukkit.utils.scoreboard.ScoreboardAPI;
 import br.com.plutomc.duels.engine.GameAPI;
 import br.com.plutomc.duels.engine.scheduler.Scheduler;
-import br.com.plutomc.duels.nodebuff.GameMain;
-import br.com.plutomc.duels.nodebuff.listener.GameListener;
+import br.com.plutomc.duels.simulator.GameMain;
+import br.com.plutomc.duels.simulator.listener.GameListener;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;

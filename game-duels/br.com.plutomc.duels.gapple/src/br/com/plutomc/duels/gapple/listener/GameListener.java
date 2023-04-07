@@ -1,6 +1,7 @@
 package br.com.plutomc.duels.gapple.listener;
 
 import br.com.plutomc.core.bukkit.event.player.PlayerAdminEvent;
+import br.com.plutomc.core.bukkit.utils.player.PlayerHelper;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.member.status.Status;
 import br.com.plutomc.core.common.member.status.StatusType;
@@ -13,10 +14,13 @@ import br.com.plutomc.duels.gapple.event.PlayerLostEvent;
 import br.com.plutomc.duels.gapple.event.PlayerWinEvent;
 import br.com.plutomc.duels.gapple.gamer.Gamer;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 public class GameListener implements Listener {
 
@@ -58,6 +62,19 @@ public class GameListener implements Listener {
         GameMain.getInstance().checkWinner();
     }
 
+
+    @EventHandler
+    public void onPlayerItemConsume(final PlayerItemConsumeEvent e) {
+        if (e.getItem().getType().equals(Material.POTION) && e.getItem().getDurability() != 0)
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(GameMain.getInstance(), new Runnable()
+                    {
+                        public void run() {
+                            if (e.getPlayer().getItemInHand().getType().equals(Material.GLASS_BOTTLE))
+                                e.getPlayer().getInventory().setItemInHand(null);
+                        }
+                    }
+                    , 0L);
+    }
     @EventHandler
     public void onPlayerWin(PlayerWinEvent e) {
         Player p = e.getPlayer();
@@ -70,6 +87,8 @@ public class GameListener implements Listener {
 
         p.teleport(GameAPI.getInstance().getLocationManager().getLocation("spawn"));
         p.sendMessage("§aVocê venceu!");
+        PlayerHelper.title(p, "§a§lVITÓRIA", "§eVocê venceu!");
+
 
     }
 
@@ -85,12 +104,19 @@ public class GameListener implements Listener {
 
         p.teleport(GameAPI.getInstance().getLocationManager().getLocation("spawn"));
         p.sendMessage("§cVocê perdeu!");
+        PlayerHelper.title(p, "§c§lDERROTA", "§eVocê perdeu!");
+
     }
 
 
 
     public void broadcastDeath(Player died, Player killer) {
         Bukkit.broadcastMessage("§e" +died.getName() + " §efoi morto por " + killer.getName());
+    }
+
+    @EventHandler
+    public void onQuit(PlayerQuitEvent e) {
+        e.setQuitMessage(null);
     }
 
 }

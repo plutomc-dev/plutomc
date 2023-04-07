@@ -1,5 +1,5 @@
 name: login
-version: 1.0.0-eb82e2d
+version: 1.0.0-c1ff2f7
 main: br.com.plutomc.lobby.login.LoginMain
 softdepend: [ProtocolLib]
 website: www.plutomc.com.br

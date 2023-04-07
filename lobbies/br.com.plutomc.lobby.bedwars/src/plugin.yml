@@ -1,5 +1,5 @@
 name: Lobby
-version: 1.0.0-34c8c3f
+version: 1.0.0-324f612
 main: br.com.plutomc.lobby.bedwars.LobbyMain
 softdepend: [ProtocolLib]
 website: www.plutomc.com.br

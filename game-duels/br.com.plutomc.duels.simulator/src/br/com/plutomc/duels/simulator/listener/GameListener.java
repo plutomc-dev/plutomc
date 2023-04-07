@@ -1,4 +1,4 @@
-package br.com.plutomc.duels.nodebuff.listener;
+package br.com.plutomc.duels.simulator.listener;
 
 import br.com.plutomc.core.bukkit.event.player.PlayerAdminEvent;
 import br.com.plutomc.core.bukkit.utils.player.PlayerHelper;
@@ -8,19 +8,17 @@ import br.com.plutomc.core.common.member.status.StatusType;
 import br.com.plutomc.core.common.member.status.types.NodebuffCategory;
 import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
 import br.com.plutomc.duels.engine.GameAPI;
-import br.com.plutomc.duels.nodebuff.GameConst;
-import br.com.plutomc.duels.nodebuff.GameMain;
-import br.com.plutomc.duels.nodebuff.event.PlayerKillPlayerEvent;
-import br.com.plutomc.duels.nodebuff.event.PlayerLostEvent;
-import br.com.plutomc.duels.nodebuff.event.PlayerWinEvent;
-import br.com.plutomc.duels.nodebuff.gamer.Gamer;
+import br.com.plutomc.duels.simulator.GameMain;
+import br.com.plutomc.duels.simulator.event.PlayerKillPlayerEvent;
+import br.com.plutomc.duels.simulator.event.PlayerLostEvent;
+import br.com.plutomc.duels.simulator.event.PlayerWinEvent;
+import br.com.plutomc.duels.simulator.gamer.Gamer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -81,25 +79,6 @@ public class GameListener implements Listener {
 
     }
 
-    @EventHandler
-    public void onPlayerThrowEnderPearl(PlayerInteractEvent e) {
-        Player p = e.getPlayer();
-        if(GameConst.cooldown.contains(p) && e.getMaterial() == Material.ENDER_PEARL) {
-            p.sendMessage("§cAguarde o cooldwn acabar para usar a ender pearl novamente!");
-            e.setCancelled(true);
-            return;
-        }
-
-        if(e.getMaterial() == Material.ENDER_PEARL) {
-            GameConst.cooldown.add(p);
-            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(GameMain.getInstance(), new Runnable() {
-                @Override
-                public void run() {
-                    GameConst.cooldown.remove(p);
-                }
-            }, 200);
-        }
-    }
 
     @EventHandler
     public void onPlayerLose(PlayerLostEvent e) {

@@ -10,6 +10,7 @@ import br.com.plutomc.duels.engine.GameAPI;
 import br.com.plutomc.duels.engine.scheduler.Scheduler;
 import br.com.plutomc.duels.nodebuff.event.GameEndEvent;
 import br.com.plutomc.duels.nodebuff.gamer.Gamer;
+import br.com.plutomc.duels.nodebuff.listener.PlayerListener;
 import br.com.plutomc.duels.nodebuff.listener.ScoreboardListener;
 import br.com.plutomc.duels.nodebuff.scheduler.GameScheduler;
 import br.com.plutomc.duels.nodebuff.scheduler.WaitingScheduler;
@@ -60,6 +61,7 @@ public class GameMain extends GameAPI {
         this.setState(MinigameState.STARTING);
         this.setMaxPlayers(2);
         this.startScheduler(new WaitingScheduler());
+        Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
         Bukkit.getPluginManager().registerEvents(new ScoreboardListener(), this);
 
         ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, PacketType.Play.Server.CHAT) {
@@ -173,7 +175,7 @@ public class GameMain extends GameAPI {
 
 
             for(int i = 0; i < p.getInventory().getSize(); i++) {
-                ItemStack item = new ItemStack(Material.POTION, 5);
+                ItemStack item = new ItemStack(Material.POTION);
 
                 Potion pot = new Potion(1);
                 pot.setType(PotionType.INSTANT_HEAL);
