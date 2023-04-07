@@ -13,6 +13,7 @@ public enum ServerType {
    DUELS_LOBBY,
    DUELS_GAPPLE,
    DUELS_NODEBUFF,
+   DUELS_SIMULATOR,
    FPS,
    LAVA,
    ARENA,
@@ -33,7 +34,8 @@ public enum ServerType {
    BW_3X3,
    BW_4X4,
    BUNGEECORD,
-   DISCORD, DUELS_SUMO;
+   DISCORD,
+   DUELS_SUMO;
 
    public int getPlayersPerTeam() {
       if (this.name().contains("SOLO") || this.name().contains("1X1")) {

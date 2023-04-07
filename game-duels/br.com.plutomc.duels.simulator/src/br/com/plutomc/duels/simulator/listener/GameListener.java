@@ -5,7 +5,7 @@ import br.com.plutomc.core.bukkit.utils.player.PlayerHelper;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.member.status.Status;
 import br.com.plutomc.core.common.member.status.StatusType;
-import br.com.plutomc.core.common.member.status.types.NodebuffCategory;
+import br.com.plutomc.core.common.member.status.types.SimulatorCategory;
 import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
 import br.com.plutomc.duels.engine.GameAPI;
 import br.com.plutomc.duels.simulator.GameMain;
@@ -15,12 +15,18 @@ import br.com.plutomc.duels.simulator.event.PlayerWinEvent;
 import br.com.plutomc.duels.simulator.gamer.Gamer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class GameListener implements Listener {
 
@@ -35,7 +41,7 @@ public class GameListener implements Listener {
         GameMain.getInstance().getAlivePlayers().remove(gamer);
 
         GameMain.getInstance().setState(MinigameState.WINNING);
-        if (whoDied.getKiller() instanceof Player) {
+        if (whoDied.getKiller() != null) {
             Player killer = whoDied.getKiller();
 
             broadcastDeath(whoDied, killer);
@@ -49,6 +55,31 @@ public class GameListener implements Listener {
 
         GameMain.getInstance().checkWinner();
 
+    }
+
+
+    @EventHandler
+    public void soupEat(PlayerInteractEvent e) {
+        Player p = e.getPlayer();
+
+        Damageable hp = p;
+        ItemStack bowl = new ItemStack(Material.BOWL);
+        ItemMeta bowlMeta = bowl.getItemMeta();
+        bowl.setItemMeta(bowlMeta);
+
+        if((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) &&
+        p.getItemInHand().getType() == Material.MUSHROOM_SOUP) {
+            if(hp.getHealth() != hp.getMaxHealth()) {
+                p.setHealth(hp.getHealth() + 7.00 > hp.getMaxHealth() ? hp.getMaxHealth() : (hp.getHealth() + 7.0D));
+                p.getItemInHand().setType(Material.BOWL);
+                p.getItemInHand().setItemMeta(bowlMeta);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerPickup(PlayerPickupItemEvent e) {
+        e.setCancelled(e.getItem().getItemStack().getType() != Material.MUSHROOM_SOUP);
     }
 
     @EventHandler //test
@@ -68,9 +99,9 @@ public class GameListener implements Listener {
         Gamer gamer = GameAPI.getInstance().getGamerManager().getGamer(p.getUniqueId(),Gamer.class);
         Status status = CommonPlugin.getInstance().getStatusManager().loadStatus(p.getUniqueId(), StatusType.DUEL);
 
-        status.addInteger(NodebuffCategory.NODEBUFF_WINS, 1);
-        status.addInteger(NodebuffCategory.NODEBUFF_WINSTREAK, 1);
-        status.addInteger(NodebuffCategory.NODEBUFF_KILLS, 1);
+        status.addInteger(SimulatorCategory.SIMULATOR_WINS, 1);
+        status.addInteger(SimulatorCategory.SIMULATOR_WINSTREAK, 1);
+        status.addInteger(SimulatorCategory.SIMULATOR_KILLS, 1);
 
         p.teleport(GameAPI.getInstance().getLocationManager().getLocation("spawn"));
         p.sendMessage("§aVocê venceu!");
@@ -86,9 +117,9 @@ public class GameListener implements Listener {
         Gamer gamer = GameAPI.getInstance().getGamerManager().getGamer(p.getUniqueId(),Gamer.class);
         Status status = CommonPlugin.getInstance().getStatusManager().loadStatus(p.getUniqueId(), StatusType.DUEL);
 
-        status.addInteger(NodebuffCategory.NODEBUFF_LOSSES, 1);
-        status.setInteger(NodebuffCategory.NODEBUFF_WINSTREAK, 0);
-        status.addInteger(NodebuffCategory.NODEBUFF_DEATHS, 1);
+        status.addInteger(SimulatorCategory.SIMULATOR_LOSSES, 1);
+        status.setInteger(SimulatorCategory.SIMULATOR_WINSTREAK, 0);
+        status.addInteger(SimulatorCategory.SIMULATOR_DEATHS, 1);
 
         p.teleport(GameAPI.getInstance().getLocationManager().getLocation("spawn"));
         p.sendMessage("§cVocê perdeu!");
