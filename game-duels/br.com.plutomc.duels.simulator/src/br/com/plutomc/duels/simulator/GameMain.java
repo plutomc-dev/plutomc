@@ -1,5 +1,6 @@
 package br.com.plutomc.duels.simulator;
 
+import br.com.plutomc.core.bukkit.utils.item.ItemBuilder;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.server.ServerType;
 import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
@@ -21,9 +22,12 @@ import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.nio.file.Paths;
@@ -40,6 +44,7 @@ public class GameMain extends GameAPI {
     public void onLoad() {
         super.onLoad();
         instance = this;
+        loadConfiguration();
         this.setGamerClass(Gamer.class);
         this.setCollectionName("simulator-gamer");
         this.setUnloadGamer(true);
@@ -158,8 +163,7 @@ public class GameMain extends GameAPI {
         for (Gamer g : getAlivePlayers()) {
             Player p = g.getPlayer();
 
-            p.getInventory().clear();
-           //TODO: Inventory shit
+            handleInventory(p ,false);
         }
     }
 
@@ -168,5 +172,68 @@ public class GameMain extends GameAPI {
             getServer().getPluginManager().callEvent(new GameEndEvent());
             handleServer();
         }
+    }
+
+    public void handleInventory(Player player, boolean old) {
+        player.getInventory().clear();
+        player.getInventory().setArmorContents(new ItemStack[4]);
+
+        if (old) {
+            player.getInventory().setItem(0,
+                    new ItemBuilder().name("§aEspada de Pedra").type(Material.STONE_SWORD).build());
+
+            player.getInventory().setItem(1, new ItemStack(Material.WOOD, 48));
+            player.getInventory().setItem(8, new ItemStack(Material.WOOD_STAIRS, 24));
+
+            player.getInventory().setItem(13, new ItemStack(Material.BOWL, 64));
+            player.getInventory().setItem(22, new ItemStack(Material.BOWL, 64));
+            player.getInventory().setItem(14, new ItemStack(Material.INK_SACK, 64, (short) 3));
+            player.getInventory().setItem(23, new ItemStack(Material.INK_SACK, 64, (short) 3));
+
+            player.getInventory().setItem(17, new ItemStack(Material.WOOD_AXE));
+        } else {
+            player.getInventory().setItem(0, new ItemBuilder().name("§aEspada de Diamante!")
+                    .type(Material.DIAMOND_SWORD).enchantment(Enchantment.DAMAGE_ALL).build());
+            player.getInventory().setItem(1, new ItemStack(Material.COBBLE_WALL, 64));
+            player.getInventory().setItem(2, new ItemStack(Material.LAVA_BUCKET));
+            player.getInventory().setItem(3, new ItemStack(Material.WATER_BUCKET));
+            player.getInventory().setItem(8, new ItemStack(Material.WOOD, 64));
+
+            player.getInventory().setItem(27, new ItemStack(Material.LAVA_BUCKET));
+            player.getInventory().setItem(28, new ItemStack(Material.LAVA_BUCKET));
+
+            player.getInventory().setItem(17, new ItemStack(Material.STONE_AXE));
+            player.getInventory().setItem(26, new ItemStack(Material.STONE_PICKAXE));
+
+            player.getInventory().setItem(13, new ItemStack(Material.BOWL, 64));
+            player.getInventory().setItem(14, new ItemStack(Material.INK_SACK, 64, (short) 3));
+            player.getInventory().setItem(15, new ItemStack(Material.INK_SACK, 64, (short) 3));
+            player.getInventory().setItem(16, new ItemStack(Material.INK_SACK, 64, (short) 3));
+
+            player.getInventory().setItem(22, new ItemStack(Material.BOWL, 64));
+            player.getInventory().setItem(23, new ItemStack(Material.INK_SACK, 64, (short) 3));
+            player.getInventory().setItem(24, new ItemStack(Material.INK_SACK, 64, (short) 3));
+            player.getInventory().setItem(25, new ItemStack(Material.INK_SACK, 64, (short) 3));
+
+            player.getInventory().setItem(9, new ItemStack(Material.IRON_HELMET));
+            player.getInventory().setItem(10, new ItemStack(Material.IRON_CHESTPLATE));
+            player.getInventory().setItem(11, new ItemStack(Material.IRON_LEGGINGS));
+            player.getInventory().setItem(12, new ItemStack(Material.IRON_BOOTS));
+
+            player.getInventory().setItem(18, new ItemStack(Material.IRON_HELMET));
+            player.getInventory().setItem(19, new ItemStack(Material.IRON_CHESTPLATE));
+            player.getInventory().setItem(20, new ItemStack(Material.IRON_LEGGINGS));
+            player.getInventory().setItem(21, new ItemStack(Material.IRON_BOOTS));
+
+            player.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
+            player.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
+            player.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
+            player.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
+        }
+
+        for (int x = 0; x < 32; x++)
+            player.getInventory().addItem(new ItemStack(Material.MUSHROOM_SOUP));
+
+        player.updateInventory();
     }
 }

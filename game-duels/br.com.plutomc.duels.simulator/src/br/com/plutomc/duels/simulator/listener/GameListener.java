@@ -9,6 +9,7 @@ import br.com.plutomc.core.common.member.status.types.SimulatorCategory;
 import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
 import br.com.plutomc.duels.engine.GameAPI;
 import br.com.plutomc.duels.simulator.GameMain;
+import br.com.plutomc.duels.simulator.event.GameEndEvent;
 import br.com.plutomc.duels.simulator.event.PlayerKillPlayerEvent;
 import br.com.plutomc.duels.simulator.event.PlayerLostEvent;
 import br.com.plutomc.duels.simulator.event.PlayerWinEvent;
@@ -18,17 +19,30 @@ import org.bukkit.Material;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.material.MaterialData;
 
 public class GameListener implements Listener {
+
+    public GameListener() {
+        ShapelessRecipe recipe = new ShapelessRecipe(new ItemStack(Material.MUSHROOM_SOUP));
+
+        recipe.addIngredient(new MaterialData(Material.INK_SACK, (byte) 3));
+        recipe.addIngredient(new MaterialData(Material.BOWL));
+
+        Bukkit.addRecipe(recipe);
+    }
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent e) {
@@ -50,6 +64,7 @@ public class GameListener implements Listener {
             Bukkit.getPluginManager().callEvent(new PlayerKillPlayerEvent(whoDied, killer));
             Bukkit.getPluginManager().callEvent(new PlayerLostEvent(whoDied));
             Bukkit.getPluginManager().callEvent(new PlayerWinEvent(killer));
+            Bukkit.getPluginManager().callEvent(new GameEndEvent());
 
         }
 
@@ -57,6 +72,23 @@ public class GameListener implements Listener {
 
     }
 
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+        if (!(event.getDamager() instanceof Player))
+            return;
+
+        Player p = (Player) event.getDamager();
+        ItemStack sword = p.getItemInHand();
+
+        if (sword == null)
+            return;
+
+        if (sword.getType() == Material.DIAMOND_SWORD)
+            event.setDamage(event.getDamage() + 2.5);
+
+        if (sword.getType().name().contains("SWORD"))
+            sword.setDurability((short) 0);
+    }
 
     @EventHandler
     public void soupEat(PlayerInteractEvent e) {
@@ -125,7 +157,6 @@ public class GameListener implements Listener {
         p.sendMessage("§cVocê perdeu!");
         PlayerHelper.title(p, "§c§lDERROTA", "§eVocê perdeu!");
     }
-
 
 
     public void broadcastDeath(Player died, Player killer) {

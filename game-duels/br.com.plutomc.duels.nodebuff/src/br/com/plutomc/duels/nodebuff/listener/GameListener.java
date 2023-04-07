@@ -18,11 +18,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class GameListener implements Listener {
 
@@ -79,6 +82,24 @@ public class GameListener implements Listener {
         PlayerHelper.title(p, "§a§lVITÓRIA", "§eVocê venceu!");
 
 
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+        if (!(event.getDamager() instanceof Player))
+            return;
+
+        Player p = (Player) event.getDamager();
+        ItemStack sword = p.getItemInHand();
+
+        if (sword == null)
+            return;
+
+        if (sword.getType() == Material.DIAMOND_SWORD)
+            event.setDamage(event.getDamage() + 2.5);
+
+        if (sword.getType().name().contains("SWORD"))
+            sword.setDurability((short) 0);
     }
 
     @EventHandler
