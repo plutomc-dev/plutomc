@@ -6,6 +6,7 @@ import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.member.status.Status;
 import br.com.plutomc.core.common.member.status.StatusType;
 import br.com.plutomc.core.common.member.status.types.GappleCategory;
+import br.com.plutomc.core.common.server.ServerType;
 import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
 import br.com.plutomc.duels.engine.GameAPI;
 import br.com.plutomc.duels.gapple.GameMain;
@@ -108,7 +109,12 @@ public class GameListener implements Listener {
         p.sendMessage("§aVocê venceu!");
         PlayerHelper.title(p, "§a§lVITÓRIA", "§eVocê venceu!");
 
-
+        Bukkit.getScheduler().runTaskLater(GameMain.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                GameAPI.getInstance().sendPlayerToServer(p, new ServerType[]{CommonPlugin.getInstance().getServerType().getServerLobby(), ServerType.LOBBY});
+            }
+        }, 60);
     }
 
     @EventHandler
@@ -125,6 +131,12 @@ public class GameListener implements Listener {
         p.sendMessage("§cVocê perdeu!");
         PlayerHelper.title(p, "§c§lDERROTA", "§eVocê perdeu!");
 
+        Bukkit.getScheduler().runTaskLater(GameMain.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                GameAPI.getInstance().sendPlayerToServer(p, new ServerType[]{CommonPlugin.getInstance().getServerType().getServerLobby(), ServerType.LOBBY});
+            }
+        }, 60);
     }
 
 

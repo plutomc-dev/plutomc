@@ -6,6 +6,7 @@ import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.member.status.Status;
 import br.com.plutomc.core.common.member.status.StatusType;
 import br.com.plutomc.core.common.member.status.types.ScrimCategory;
+import br.com.plutomc.core.common.server.ServerType;
 import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
 import br.com.plutomc.duels.engine.GameAPI;
 import br.com.plutomc.duels.scrim.GameMain;
@@ -112,18 +113,6 @@ public class GameListener implements Listener {
     public void onPlayerPickup(PlayerPickupItemEvent e) {
         e.setCancelled(e.getItem().getItemStack().getType() != Material.MUSHROOM_SOUP);
     }
-
-    @EventHandler //test
-    public void onPlayerAdmin(PlayerAdminEvent event) {
-        Player whoDied = event.getPlayer();
-
-        GameMain.getInstance().getServer().getPluginManager().callEvent(new PlayerLostEvent(whoDied));
-        Gamer gamer = GameAPI.getInstance().getGamerManager().getGamer(whoDied.getUniqueId(),Gamer.class);
-        GameMain.getInstance().getAlivePlayers().remove(gamer);
-
-        GameMain.getInstance().checkWinner();
-    }
-
     @EventHandler
     public void onPlayerWin(PlayerWinEvent e) {
         Player p = e.getPlayer();
@@ -138,7 +127,12 @@ public class GameListener implements Listener {
         p.sendMessage("§aVocê venceu!");
         PlayerHelper.title(p, "§a§lVITÓRIA", "§eVocê venceu!");
 
-
+        Bukkit.getScheduler().runTaskLater(GameMain.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                GameAPI.getInstance().sendPlayerToServer(p, new ServerType[]{CommonPlugin.getInstance().getServerType().getServerLobby(), ServerType.LOBBY});
+            }
+        }, 60);
     }
 
 
@@ -155,6 +149,13 @@ public class GameListener implements Listener {
         p.teleport(GameAPI.getInstance().getLocationManager().getLocation("spawn"));
         p.sendMessage("§cVocê perdeu!");
         PlayerHelper.title(p, "§c§lDERROTA", "§eVocê perdeu!");
+
+        Bukkit.getScheduler().runTaskLater(GameMain.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                GameAPI.getInstance().sendPlayerToServer(p, new ServerType[]{CommonPlugin.getInstance().getServerType().getServerLobby(), ServerType.LOBBY});
+            }
+        }, 60);
     }
 
 

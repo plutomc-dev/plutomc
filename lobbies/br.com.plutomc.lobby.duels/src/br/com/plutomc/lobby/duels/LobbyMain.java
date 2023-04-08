@@ -78,7 +78,7 @@ public class LobbyMain extends CoreMain {
                 Arrays.asList(
                         ServerType.DUELS_SCRIM
                 ),
-                "§bNoDebuff");
+                "§bScrim");
 
     }
 
