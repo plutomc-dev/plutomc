@@ -8,15 +8,18 @@
       <module fileurl="file://$PROJECT_DIR$/game-duels/br.com.plutomc.duels.engine/duels-engine.iml" filepath="$PROJECT_DIR$/game-duels/br.com.plutomc.duels.engine/duels-engine.iml" />
       <module fileurl="file://$PROJECT_DIR$/game-duels/br.com.plutomc.duels.gapple/duels-gapple.iml" filepath="$PROJECT_DIR$/game-duels/br.com.plutomc.duels.gapple/duels-gapple.iml" />
       <module fileurl="file://$PROJECT_DIR$/game-duels/br.com.plutomc.duels.nodebuff/duels-nodebuff.iml" filepath="$PROJECT_DIR$/game-duels/br.com.plutomc.duels.nodebuff/duels-nodebuff.iml" />
-      <module fileurl="file://$PROJECT_DIR$/game-duels/br.com.plutomc.duels.simulator/duels-simulator.iml" filepath="$PROJECT_DIR$/game-duels/br.com.plutomc.duels.simulator/duels-simulator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/game-duels/br.com.plutomc.duels.scrim/duels-scrim.iml" filepath="$PROJECT_DIR$/game-duels/br.com.plutomc.duels.scrim/duels-scrim.iml" />
       <module fileurl="file://$PROJECT_DIR$/game/br.com.plutomc.game.bedwars/game-bedwars.iml" filepath="$PROJECT_DIR$/game/br.com.plutomc.game.bedwars/game-bedwars.iml" />
       <module fileurl="file://$PROJECT_DIR$/game/br.com.plutomc.game.engine/game-engine.iml" filepath="$PROJECT_DIR$/game/br.com.plutomc.game.engine/game-engine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hg/br.com.plutomc.hungergames/hg.iml" filepath="$PROJECT_DIR$/hg/br.com.plutomc.hungergames/hg.iml" />
       <module fileurl="file://$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.bedwars/lobby-bw.iml" filepath="$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.bedwars/lobby-bw.iml" />
       <module fileurl="file://$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.core/lobby-core.iml" filepath="$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.core/lobby-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.duels/lobby-duels.iml" filepath="$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.duels/lobby-duels.iml" />
       <module fileurl="file://$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.login/lobby-login.iml" filepath="$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.login/lobby-login.iml" />
       <module fileurl="file://$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.main/lobby-main.iml" filepath="$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.main/lobby-main.iml" />
       <module fileurl="file://$PROJECT_DIR$/plutomc-parent.iml" filepath="$PROJECT_DIR$/plutomc-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pvp/br.com.plutomc.pvp.arena/pvp-arena.iml" filepath="$PROJECT_DIR$/pvp/br.com.plutomc.pvp.arena/pvp-arena.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pvp/br.com.plutomc.pvp.engine/pvp-engine.iml" filepath="$PROJECT_DIR$/pvp/br.com.plutomc.pvp.engine/pvp-engine.iml" />
     </modules>
   </component>
 </project>

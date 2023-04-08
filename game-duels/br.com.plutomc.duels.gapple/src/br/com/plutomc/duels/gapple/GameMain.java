@@ -48,6 +48,7 @@ public class GameMain extends GameAPI {
     public void onLoad() {
         super.onLoad();
         instance = this;
+        loadConfiguration();
         this.setGamerClass(Gamer.class);
         this.setCollectionName("gapple-gamer");
         this.setUnloadGamer(true);

@@ -49,6 +49,7 @@ public class GameMain extends GameAPI {
     public void onLoad() {
         super.onLoad();
         instance = this;
+        loadConfiguration();
         this.setGamerClass(Gamer.class);
         this.setCollectionName("nodebuff-gamer");
         this.setUnloadGamer(true);

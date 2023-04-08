@@ -191,14 +191,14 @@ public class StatisticsInventory {
                        16,
                        new ItemBuilder()
                                .type(Material.PAPER)
-                               .name("§aSimulator")
+                               .name("§aScrim")
                                .lore(
-                                       "§fKills: §7" + status.getInteger(SimulatorCategory.SIMULATOR_KILLS),
-                                       "§fDeaths: §7" + status.getInteger(SimulatorCategory.SIMULATOR_DEATHS),
+                                       "§fKills: §7" + status.getInteger(ScrimCategory.SCRIM_KILLS),
+                                       "§fDeaths: §7" + status.getInteger(ScrimCategory.SCRIM_DEATHS),
                                        "",
-                                       "§fVitórias: §7" + status.getInteger(SimulatorCategory.SIMULATOR_WINS),
-                                       "§fDerrotas: §7" + status.getInteger(SimulatorCategory.SIMULATOR_LOSSES),
-                                       "§fWinstreak: §7" + + status.getInteger(SimulatorCategory.SIMULATOR_WINSTREAK)
+                                       "§fVitórias: §7" + status.getInteger(ScrimCategory.SCRIM_WINS),
+                                       "§fDerrotas: §7" + status.getInteger(ScrimCategory.SCRIM_LOSSES),
+                                       "§fWinstreak: §7" + + status.getInteger(ScrimCategory.SCRIM_WINSTREAK)
                                )
                                .build()
                );

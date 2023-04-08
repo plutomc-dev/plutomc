@@ -23,7 +23,9 @@ public class SkinInventory {
       from("reboting", "DaddyReboting"),
       from("TheComicON", "Sky Programmer"),
       from("staack"),
-      from("lugami")
+      from("lugami"),
+      from("acampamento", "matz"),
+      from("_Wellss_", "Wells")
    );
 
    public SkinInventory(Player player) {

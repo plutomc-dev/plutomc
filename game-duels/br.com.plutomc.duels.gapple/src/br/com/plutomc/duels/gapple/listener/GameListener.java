@@ -15,6 +15,7 @@ import br.com.plutomc.duels.gapple.event.PlayerWinEvent;
 import br.com.plutomc.duels.gapple.gamer.Gamer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -54,17 +55,6 @@ public class GameListener implements Listener {
 
     }
 
-    @EventHandler //test
-    public void onPlayerAdmin(PlayerAdminEvent event) {
-        Player whoDied = event.getPlayer();
-
-        GameMain.getInstance().getServer().getPluginManager().callEvent(new PlayerLostEvent(whoDied));
-        Gamer gamer = GameAPI.getInstance().getGamerManager().getGamer(whoDied.getUniqueId(),Gamer.class);
-        GameMain.getInstance().getAlivePlayers().remove(gamer);
-
-        GameMain.getInstance().checkWinner();
-    }
-
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         if (!(event.getDamager() instanceof Player))
@@ -77,11 +67,20 @@ public class GameListener implements Listener {
             return;
 
         if (sword.getType() == Material.DIAMOND_SWORD)
-            event.setDamage(event.getDamage() + 2.5);
+            event.setDamage(event.getDamage() + 4.5);
 
         if (sword.getType().name().contains("SWORD"))
             sword.setDurability((short) 0);
+
+
+        if(event.getDamager() instanceof Player) {
+            Player damager = (Player)event.getDamager();
+            Entity entity = event.getEntity();
+
+            entity.setVelocity(damager.getLocation().getDirection().setY(0).normalize().multiply(0.33));
+        }
     }
+
 
     @EventHandler
     public void onPlayerItemConsume(final PlayerItemConsumeEvent e) {

@@ -66,17 +66,17 @@ public class LobbyMain extends CoreMain {
                 "§bNoDebuff");
 
         this.createCharacter(
-                "npc-simulator",
+                "npc-scrim",
                 "staack",
                 new ActionHandler() {
                     @Override
                     public boolean onInteract(Player player, boolean right) {
-                        LobbyMain.this.sendPlayerToServer(player, new ServerType[]{ServerType.DUELS_SIMULATOR});
+                        LobbyMain.this.sendPlayerToServer(player, new ServerType[]{ServerType.DUELS_SCRIM});
                         return false;
                     }
                 },
                 Arrays.asList(
-                        ServerType.DUELS_SIMULATOR
+                        ServerType.DUELS_SCRIM
                 ),
                 "§bNoDebuff");
 
