@@ -143,7 +143,7 @@ public class ScoreboardListener implements Listener {
             scoreboard.add(4, "");
             scoreboard.add(3, "§fWinstreak: §7" + status.getInteger(GappleCategory.GAPPLE_WINSTREAK));
             scoreboard.add(2, "");
-            scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
+            scoreboard.add(1, "§awww." + CommonPlugin.getInstance().getPluginInfo().getWebsite());
 
         }
 

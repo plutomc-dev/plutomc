@@ -70,7 +70,7 @@ public class ScoreboardListener implements Listener {
       scoreboard.add(4, "§fKit 1: §aNenhum");
       scoreboard.add(3, "§fKit 2: §aNenhum");
       scoreboard.add(2, "§a");
-      scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
+      scoreboard.add(1, "§awww." + CommonPlugin.getInstance().getPluginInfo().getWebsite());
       ScoreHelper.getInstance().setScoreboard(player, scoreboard);
    }
 

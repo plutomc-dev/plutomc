@@ -113,7 +113,7 @@ public class ScoreboardListener implements Listener {
             scoreboard.add(4, "");
             scoreboard.add(3, "Winstreak: §7" + status.getInteger(NodebuffCategory.NODEBUFF_WINSTREAK));
             scoreboard.add(2, "");
-            scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
+            scoreboard.add(1, "§awww." + CommonPlugin.getInstance().getPluginInfo().getWebsite());
         } else if(GameAPI.getInstance().getState().isGametime()) {
 
             scoreboard.add(10, "");
@@ -128,7 +128,7 @@ public class ScoreboardListener implements Listener {
             scoreboard.add(4, "");
             scoreboard.add(3, "§fWinstreak: §7" + status.getInteger(NodebuffCategory.NODEBUFF_WINSTREAK));
             scoreboard.add(2, "");
-            scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
+            scoreboard.add(1, "§awww." + CommonPlugin.getInstance().getPluginInfo().getWebsite());
         } else if(GameAPI.getInstance().getState().isEnding()) {
             scoreboard.add(10, "");
             scoreboard.add(9, "Modo: §a" + StringFormat.formatString(CommonPlugin.getInstance().getServerType().name().split("_")[1]));
@@ -142,7 +142,7 @@ public class ScoreboardListener implements Listener {
             scoreboard.add(4, "");
             scoreboard.add(3, "§fWinstreak: §7" + status.getInteger(NodebuffCategory.NODEBUFF_WINSTREAK));
             scoreboard.add(2, "");
-            scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
+            scoreboard.add(1, "§awww." + CommonPlugin.getInstance().getPluginInfo().getWebsite());
 
         }
 

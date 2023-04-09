@@ -75,7 +75,7 @@ public class ScoreboardListener implements Listener {
         scoreboard.add(4, "");
         scoreboard.add(3, "§f§%scoreboard-players%§: §b" + BukkitCommon.getInstance().getServerManager().getTotalMembers());
         scoreboard.add(2, "§a");
-        scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
+        scoreboard.add(1, "§awww." + CommonPlugin.getInstance().getPluginInfo().getWebsite());
         ScoreHelper.getInstance().setScoreboard(player, scoreboard);
     }
 

@@ -142,7 +142,7 @@ public class ScoreboardListener implements Listener {
          scoreboard.add(4, "§%scoreboard-starting%§: §a" + StringFormat.formatTime(GameAPI.getInstance().getTime(), StringFormat.TimeFormat.DOUBLE_DOT));
          scoreboard.add(3, "§%scoreboard-mode%§: §a" + StringFormat.formatString(CommonPlugin.getInstance().getServerType().name().split("_")[1]));
          scoreboard.add(2, "");
-         scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
+         scoreboard.add(1, "§awww." + CommonPlugin.getInstance().getPluginInfo().getWebsite());
       } else {
          if (GameMain.getInstance().getGeneratorUpgrade() != null
             && GameMain.getInstance().getGeneratorUpgrade().getTimer() - GameAPI.getInstance().getTime() > 0) {
