@@ -9,3 +9,4 @@ server.
 Lugami
 Staack
 SkipKH
+VkHypado
