@@ -57,6 +57,8 @@ public class ScoreboardListener implements Listener {
                 ScoreboardListener.this.updatePlayers(GameMain.getInstance().getAlivePlayers().size());
             }
         }).runTaskLater(GameAPI.getInstance(), 7L);
+
+        GameConst.TOTAL_HITS.put(event.getPlayer(), 0);
     }
 
     @EventHandler(

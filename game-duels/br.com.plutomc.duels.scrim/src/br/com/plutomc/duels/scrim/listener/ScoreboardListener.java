@@ -153,7 +153,7 @@ public class ScoreboardListener implements Listener {
     private void updateTimer() {
         if (GameAPI.getInstance().getState().isPregame()) {
             ScoreHelper.getInstance()
-                    .updateScoreboard(5, "§%scoreboard-starting%§: §a" + StringFormat.formatTime(GameAPI.getInstance().getTime(), StringFormat.TimeFormat.DOUBLE_DOT));
+                    .updateScoreboard(5, "§%scoreboard-starting%§: §a" + StringFormat.formatTime(GameAPI.getInstance().getTime(), StringFormat.TimeFormat.SHORT));
         } else if(GameAPI.getInstance().getState().isGametime()){
             ScoreHelper.getInstance()
                     .updateScoreboard(8, "Tempo: §a" + StringFormat.formatTime(GameAPI.getInstance().getTime(), StringFormat.TimeFormat.DOUBLE_DOT));

@@ -61,7 +61,7 @@ public class GameListener implements Listener {
     @EventHandler
     public void onHit(PlayerHitPlayerEvent e) {
         Player p = e.getPlayer();
-        Player hitter = e.getPlayer();
+        Player hitter = e.getHitter();
 
         if(!GameConst.TOTAL_HITS.containsKey(hitter)) {
             GameConst.TOTAL_HITS.put(hitter, 1);

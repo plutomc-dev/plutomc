@@ -17,8 +17,10 @@ public class PlayerListener implements Listener {
             priority = EventPriority.HIGHEST
     )
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getAction() == Action.PHYSICAL) {
+        if (event.getAction() == Action.PHYSICAL && GameAPI.getInstance().getState().isPregame()) {
             event.setCancelled(true);
+        } else {
+            event.setCancelled(false);
         }
     }
 
