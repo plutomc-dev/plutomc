@@ -6,6 +6,7 @@ import br.com.plutomc.core.common.command.CommandArgs;
 import br.com.plutomc.core.common.command.CommandClass;
 import br.com.plutomc.core.common.command.CommandFramework;
 import br.com.plutomc.core.common.command.CommandSender;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class FunCommand implements CommandClass {
             for(int i = 0; i < 30; i++) {
                 target.getLocation().setY(target.getLocation().getY() + 10);
                 target.sendMessage("§c§lKABOOM!§r Você foi enviado ao espaço por §c" + sender.getName());
+                target.playSound(target.getLocation(), Sound.EXPLODE, 10, 1);
             }
 
             sender.sendMessage("§aPronto!");

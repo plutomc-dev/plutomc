@@ -14,6 +14,7 @@ import br.com.plutomc.duels.gapple.event.PlayerKillPlayerEvent;
 import br.com.plutomc.duels.gapple.event.PlayerLostEvent;
 import br.com.plutomc.duels.gapple.event.PlayerWinEvent;
 import br.com.plutomc.duels.gapple.gamer.Gamer;
+import net.minecraft.server.v1_8_R3.EntityLiving;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
