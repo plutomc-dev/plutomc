@@ -47,7 +47,7 @@ public class GameMain extends GameAPI {
         instance = this;
         loadConfiguration();
         this.setGamerClass(Gamer.class);
-        this.setCollectionName("gapple-gamer");
+        this.setCollectionName("boxing-gamer");
         this.setUnloadGamer(true);
     }
 
@@ -75,6 +75,7 @@ public class GameMain extends GameAPI {
         });
 
         getAlivePlayers().clear();
+        GameConst.TOTAL_HITS.clear();
     }
 
 
