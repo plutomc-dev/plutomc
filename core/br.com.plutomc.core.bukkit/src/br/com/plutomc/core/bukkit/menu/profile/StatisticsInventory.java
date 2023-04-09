@@ -159,14 +159,14 @@ public class StatisticsInventory {
                        12,
                        new ItemBuilder()
                                .type(Material.PAPER)
-                               .name("§aSumo")
+                               .name("§aBoxing")
                                .lore(
-                                       "§fKills: §7" + status.getInteger(SumoCategory.SUMO_KILLS),
-                                       "§fDeaths: §7" + status.getInteger(SumoCategory.SUMO_DEATHS),
+                                       "§fKills: §7" + status.getInteger(BoxingCategory.BOXING_KILLS),
+                                       "§fDeaths: §7" + status.getInteger(BoxingCategory.BOXING_DEATHS),
                                        "",
-                                       "§fVitórias: §7" + status.getInteger(SumoCategory.SUMO_WINS),
-                                       "§fDerrotas: §7" + status.getInteger(SumoCategory.SUMO_LOSSES),
-                                       "§fWinstreak: §7" + + status.getInteger(SumoCategory.SUMO_WINSTREAK)
+                                       "§fVitórias: §7" + status.getInteger(BoxingCategory.BOXING_WINS),
+                                       "§fDerrotas: §7" + status.getInteger(BoxingCategory.BOXING_LOSSES),
+                                       "§fWinstreak: §7" + + status.getInteger(BoxingCategory.BOXING_WINSTREAK)
                                )
                                .build()
                );

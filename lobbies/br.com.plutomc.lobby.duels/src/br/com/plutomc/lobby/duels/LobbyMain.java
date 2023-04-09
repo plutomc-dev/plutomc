@@ -36,19 +36,19 @@ public class LobbyMain extends CoreMain {
                 "§bGapple");
 
         this.createCharacter(
-                "npc-sumo",
+                "npc-boxing",
                 "unidade",
                 new ActionHandler() {
                     @Override
                     public boolean onInteract(Player player, boolean right) {
-                        LobbyMain.this.sendPlayerToServer(player, new ServerType[]{ServerType.DUELS_SUMO});
+                        LobbyMain.this.sendPlayerToServer(player, new ServerType[]{ServerType.DUELS_BOXING});
                         return false;
                     }
                 },
                 Arrays.asList(
-                        ServerType.DUELS_SUMO
+                        ServerType.DUELS_BOXING
                 ),
-                "§bSumo");
+                "§bBoxing");
 
         this.createCharacter(
                 "npc-nodebuff",
