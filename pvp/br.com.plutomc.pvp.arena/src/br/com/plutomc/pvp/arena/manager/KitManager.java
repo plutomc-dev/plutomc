@@ -12,7 +12,7 @@ public class KitManager {
    private Kit defaultKit;
 
    public KitManager() {
-      for(Class<?> kitClass : ClassGetter.getClassesForPackage(GameMain.getInstance().getClass(), "br.com.plutomc.pvp.engine.arena.kit.register")) {
+      for(Class<?> kitClass : ClassGetter.getClassesForPackage(GameMain.getInstance().getClass(), "br.com.plutomc.pvp.arena.kit.register")) {
          if (Kit.class.isAssignableFrom(kitClass)) {
             try {
                Kit kit = (Kit)kitClass.newInstance();

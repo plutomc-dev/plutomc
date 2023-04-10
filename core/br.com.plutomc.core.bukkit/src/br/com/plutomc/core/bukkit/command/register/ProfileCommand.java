@@ -355,6 +355,50 @@ public class ProfileCommand implements CommandClass {
          }
 
          sender.sendMessage("");
+
+         String[] args = cmdArgs.getArgs();
+         if(cmdArgs.getArgs()[1].equalsIgnoreCase("rank")) {
+            Group group = CommonPlugin.getInstance().getPluginInfo().getGroupByName(args[2]);
+
+            boolean temp = args.length >= 4;
+            long expireTime = temp ? DateUtils.getTime(args[3]) : -1L;
+            member.addServerGroup(group.getGroupName(), new GroupInfo(sender, expireTime));
+            member.setTag(member.getDefaultTag());
+            member.getMemberConfiguration().setStaffChat(false);
+            sender.sendMessage(
+                    "§aVocê adicionou o cargo "
+                            + group.getGroupName()
+                            + " ao jogador "
+                            + member.getPlayerName()
+                            + " por tempo "
+                            + (temp ? DateUtils.getTime(sender.getLanguage(), expireTime) : "indeterminado")
+                            + "."
+            );
+            this.staffLog(
+                    "O jogador "
+                            + member.getPlayerName()
+                            + " recebeu cargo "
+                            + group.getRealPrefix()
+                            + " §7por "
+                            + (temp ? DateUtils.getTime(sender.getLanguage(), expireTime) : "indeterminado")
+                            + " do "
+                            + sender.getName(),
+                    true
+            );
+         } else if(args[1].equalsIgnoreCase("remove")) {
+            Group group = CommonPlugin.getInstance().getPluginInfo().getGroupByName(args[2]);
+            if (member.hasGroup(group.getGroupName())) {
+               member.removeServerGroup(group.getGroupName());
+               member.setTag(member.getDefaultTag());
+               member.getMemberConfiguration().setStaffChat(false);
+               sender.sendMessage("§aVocê removeu o cargo " + group.getGroupName() + " do jogador " + member.getPlayerName() + ".");
+               this.staffLog(
+                       "O jogador " + member.getPlayerName() + " teve o seu cargo " + group.getRealPrefix() + " §7removido pelo " + sender.getName(), true
+               );
+            } else {
+               sender.sendMessage("§cO player " + member.getPlayerName() + " não tem o grupo " + group.getGroupName() + ".");
+            }
+         }
       }
    }
 

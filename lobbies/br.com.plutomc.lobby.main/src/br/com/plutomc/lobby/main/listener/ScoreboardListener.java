@@ -1,5 +1,7 @@
 package br.com.plutomc.lobby.main.listener;
 
+import br.com.plutomc.core.bukkit.event.UpdateEvent;
+import br.com.plutomc.lobby.core.lobby.scoreboard.types.StringAnimation;
 import br.com.plutomc.lobby.main.LobbyMain;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.bukkit.BukkitCommon;
@@ -10,6 +12,7 @@ import br.com.plutomc.core.bukkit.utils.scoreboard.ScoreHelper;
 import br.com.plutomc.core.bukkit.utils.scoreboard.Scoreboard;
 import br.com.plutomc.core.common.member.Member;
 import br.com.plutomc.core.common.permission.Tag;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -17,7 +20,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import java.util.Arrays;
+
 public class ScoreboardListener implements Listener {
+
+
+   private StringAnimation animation;
+   private String text = "";
    @EventHandler(
       priority = EventPriority.HIGHEST
    )
@@ -25,6 +34,11 @@ public class ScoreboardListener implements Listener {
       this.handleScoreboard(event.getPlayer());
       this.updateScoreboard(event.getPlayer());
       this.updatePlayers();
+   }
+
+   @EventHandler
+   public void onUpdate(UpdateEvent event) {
+
    }
 
    @EventHandler(
