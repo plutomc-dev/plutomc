@@ -19,25 +19,15 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/highmc/lobby-1/spigot.jar!/" />
+          <root url="jar://$USER_HOME$/highmc/lobby-login/spigot.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/highmc/lobby-1/spigot.jar!/" />
+          <root url="jar://$USER_HOME$/highmc/lobby-login/spigot.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="core-bukkit" />
     <orderEntry type="module" module-name="core-common" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.22/lombok-1.18.22.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module" module-name="hg-engine" />
   </component>
 </module>

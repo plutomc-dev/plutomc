@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="pvp-arena:jar">
+    <output-path>$USER_HOME$/highmc/arena/plugins</output-path>
+    <root id="archive" name="pvp-arena.jar">
+      <element id="module-output" name="pvp-arena" />
+      <element id="module-output" name="pvp-engine" />
+      <element id="module-output" name="core-bukkit" />
+      <element id="module-output" name="core-common" />
+    </root>
+  </artifact>
+</component>
