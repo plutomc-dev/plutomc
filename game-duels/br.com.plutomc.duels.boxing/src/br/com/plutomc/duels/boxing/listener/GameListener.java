@@ -17,6 +17,7 @@ import br.com.plutomc.duels.boxing.event.PlayerKillPlayerEvent;
 import br.com.plutomc.duels.boxing.event.PlayerLostEvent;
 import br.com.plutomc.duels.boxing.gamer.Gamer;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -69,7 +70,7 @@ public class GameListener implements Listener {
             GameConst.TOTAL_HITS.put(hitter, GameConst.TOTAL_HITS.get(hitter) + 1);
         }
 
-        if(GameConst.TOTAL_HITS.get(hitter) >= 100) {
+        if(GameConst.TOTAL_HITS.get(hitter) == 100) {
             Gamer gamer = GameAPI.getInstance().getGamerManager().getGamer(p.getUniqueId(),Gamer.class);
             gamer.setAlive(false);
             GameMain.getInstance().getAlivePlayers().remove(gamer);
@@ -85,6 +86,9 @@ public class GameListener implements Listener {
 
 
             GameMain.getInstance().checkWinner();
+            for(Player p1 : Bukkit.getOnlinePlayers()) {
+                p1.setGameMode(GameMode.ADVENTURE);
+            }
         }
     }
 
@@ -111,6 +115,8 @@ public class GameListener implements Listener {
             Entity entity = event.getEntity();
 
             entity.setVelocity(damager.getLocation().getDirection().setY(0).normalize().multiply(0.33));
+            entity.setVelocity(damager.getLocation().getDirection().setX(0).normalize().multiply(0.33));
+
         }
 
         Bukkit.getPluginManager().callEvent(new PlayerHitPlayerEvent((Player) event.getEntity(), (Player) event.getDamager()));
@@ -143,12 +149,8 @@ public class GameListener implements Listener {
         p.sendMessage("§aVocê venceu!");
         PlayerHelper.title(p, "§a§lVITÓRIA", "§eVocê venceu!");
 
-        Bukkit.getScheduler().runTaskLater(GameMain.getInstance(), new Runnable() {
-            @Override
-            public void run() {
-                GameAPI.getInstance().sendPlayerToServer(p, new ServerType[]{CommonPlugin.getInstance().getServerType().getServerLobby(), ServerType.LOBBY});
-            }
-        }, 60);
+        GameAPI.getInstance().sendPlayerToServer(p, new ServerType[]{CommonPlugin.getInstance().getServerType().getServerLobby(), ServerType.LOBBY});
+
     }
 
     @EventHandler
@@ -165,12 +167,7 @@ public class GameListener implements Listener {
         p.sendMessage("§cVocê perdeu!");
         PlayerHelper.title(p, "§c§lDERROTA", "§eVocê perdeu!");
 
-        Bukkit.getScheduler().runTaskLater(GameMain.getInstance(), new Runnable() {
-            @Override
-            public void run() {
-                GameAPI.getInstance().sendPlayerToServer(p, new ServerType[]{CommonPlugin.getInstance().getServerType().getServerLobby(), ServerType.LOBBY});
-            }
-        }, 60);
+        GameAPI.getInstance().sendPlayerToServer(p, new ServerType[]{CommonPlugin.getInstance().getServerType().getServerLobby(), ServerType.LOBBY});
     }
 
 

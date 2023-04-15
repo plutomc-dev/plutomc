@@ -16,7 +16,7 @@ public class GameScheduler implements Scheduler, Listener {
         GameAPI.getInstance().setTime(0);
         Bukkit.getOnlinePlayers().forEach(ScoreboardAPI::leaveCurrentTeamForOnlinePlayers);
         Player player1 = GameMain.getInstance().getAlivePlayers().get(0).getPlayer();
-        Player player2 = GameMain.getInstance().getAlivePlayers().get(0).getPlayer();
+        Player player2 = GameMain.getInstance().getAlivePlayers().get(1).getPlayer();
         ScoreboardAPI.joinTeam(
                 ScoreboardAPI.createTeamIfNotExistsToPlayer(
                         player1, "red", "§c", ""

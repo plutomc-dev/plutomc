@@ -8,6 +8,7 @@ import br.com.plutomc.core.bukkit.utils.scoreboard.Scoreboard;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.member.status.Status;
 import br.com.plutomc.core.common.member.status.StatusType;
+import br.com.plutomc.core.common.member.status.types.BoxingCategory;
 import br.com.plutomc.core.common.member.status.types.GappleCategory;
 import br.com.plutomc.core.common.utils.string.StringFormat;
 import br.com.plutomc.duels.boxing.GameConst;
@@ -114,7 +115,7 @@ public class ScoreboardListener implements Listener {
             scoreboard.add(6, "");
             scoreboard.add(5, "§%scoreboard-starting%§: §a" + StringFormat.formatTime(GameAPI.getInstance().getTime(), StringFormat.TimeFormat.DOUBLE_DOT));
             scoreboard.add(4, "");
-            scoreboard.add(3, "Winstreak: §7" + status.getInteger(GappleCategory.GAPPLE_WINSTREAK));
+            scoreboard.add(3, "Winstreak: §7" + status.getInteger(BoxingCategory.BOXING_WINSTREAK));
             scoreboard.add(2, "");
             scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
         } else if(GameAPI.getInstance().getState().isGametime()) {
@@ -129,7 +130,7 @@ public class ScoreboardListener implements Listener {
             scoreboard.add(6,"§c" + player1.getName() + ": §7" + GameConst.TOTAL_HITS.get(player1));
             scoreboard.add(5,"§9" + player2.getName() + ": §7" + GameConst.TOTAL_HITS.get(player2));
             scoreboard.add(4, "");
-            scoreboard.add(3, "§fWinstreak: §7" + status.getInteger(GappleCategory.GAPPLE_WINSTREAK));
+            scoreboard.add(3, "§fWinstreak: §7" + status.getInteger(BoxingCategory.BOXING_WINSTREAK));
             scoreboard.add(2, "");
             scoreboard.add(1, "§a" + CommonPlugin.getInstance().getPluginInfo().getWebsite());
         } else if(GameAPI.getInstance().getState().isEnding()) {
@@ -143,7 +144,7 @@ public class ScoreboardListener implements Listener {
             scoreboard.add(6,"§c" + player1.getName() + ": §7" + GameConst.TOTAL_HITS.get(player1));
             scoreboard.add(5,"§9" + player2.getName() + ": §7" + GameConst.TOTAL_HITS.get(player2));
             scoreboard.add(4, "");
-            scoreboard.add(3, "§fWinstreak: §7" + status.getInteger(GappleCategory.GAPPLE_WINSTREAK));
+            scoreboard.add(3, "§fWinstreak: §7" + status.getInteger(BoxingCategory.BOXING_WINSTREAK));
             scoreboard.add(2, "");
             scoreboard.add(1, "§awww." + CommonPlugin.getInstance().getPluginInfo().getWebsite());
 

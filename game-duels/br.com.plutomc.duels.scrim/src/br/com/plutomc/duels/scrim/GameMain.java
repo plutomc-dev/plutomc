@@ -194,16 +194,7 @@ public class GameMain extends GameAPI {
         } else {
             player.getInventory().setItem(0, new ItemBuilder().name("§aEspada de Diamante!")
                     .type(Material.DIAMOND_SWORD).enchantment(Enchantment.DAMAGE_ALL).build());
-            player.getInventory().setItem(1, new ItemStack(Material.COBBLE_WALL, 64));
-            player.getInventory().setItem(2, new ItemStack(Material.LAVA_BUCKET));
-            player.getInventory().setItem(3, new ItemStack(Material.WATER_BUCKET));
             player.getInventory().setItem(8, new ItemStack(Material.WOOD, 64));
-
-            player.getInventory().setItem(27, new ItemStack(Material.LAVA_BUCKET));
-            player.getInventory().setItem(28, new ItemStack(Material.LAVA_BUCKET));
-
-            player.getInventory().setItem(17, new ItemStack(Material.STONE_AXE));
-            player.getInventory().setItem(26, new ItemStack(Material.STONE_PICKAXE));
 
             player.getInventory().setItem(13, new ItemStack(Material.BOWL, 64));
             player.getInventory().setItem(14, new ItemStack(Material.INK_SACK, 64, (short) 3));

@@ -12,7 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/game-duels/br.com.plutomc.duels.scrim/duels-scrim.iml" filepath="$PROJECT_DIR$/game-duels/br.com.plutomc.duels.scrim/duels-scrim.iml" />
       <module fileurl="file://$PROJECT_DIR$/game/br.com.plutomc.game.bedwars/game-bedwars.iml" filepath="$PROJECT_DIR$/game/br.com.plutomc.game.bedwars/game-bedwars.iml" />
       <module fileurl="file://$PROJECT_DIR$/game/br.com.plutomc.game.engine/game-engine.iml" filepath="$PROJECT_DIR$/game/br.com.plutomc.game.engine/game-engine.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hg/br.com.plutomc.hungergames/hg.iml" filepath="$PROJECT_DIR$/hg/br.com.plutomc.hungergames/hg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/game/br.com.plutomc.game.skywars/game-skywars.iml" filepath="$PROJECT_DIR$/game/br.com.plutomc.game.skywars/game-skywars.iml" />
       <module fileurl="file://$PROJECT_DIR$/hg/br.com.plutomc.hungergames.engine/hg-engine.iml" filepath="$PROJECT_DIR$/hg/br.com.plutomc.hungergames.engine/hg-engine.iml" />
       <module fileurl="file://$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.bedwars/lobby-bw.iml" filepath="$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.bedwars/lobby-bw.iml" />
       <module fileurl="file://$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.core/lobby-core.iml" filepath="$PROJECT_DIR$/lobbies/br.com.plutomc.lobby.core/lobby-core.iml" />

@@ -16,6 +16,7 @@ import br.com.plutomc.duels.nodebuff.event.PlayerLostEvent;
 import br.com.plutomc.duels.nodebuff.event.PlayerWinEvent;
 import br.com.plutomc.duels.nodebuff.gamer.Gamer;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -56,6 +57,9 @@ public class GameListener implements Listener {
 
         GameMain.getInstance().checkWinner();
 
+        for(Player p : Bukkit.getOnlinePlayers()) {
+            p.setGameMode(GameMode.ADVENTURE);
+        }
     }
 
     @EventHandler
@@ -104,6 +108,8 @@ public class GameListener implements Listener {
             Entity entity = event.getEntity();
 
             entity.setVelocity(damager.getLocation().getDirection().setY(0).normalize().multiply(0.33));
+            entity.setVelocity(damager.getLocation().getDirection().setX(0).normalize().multiply(0.33));
+
         }
     }
 

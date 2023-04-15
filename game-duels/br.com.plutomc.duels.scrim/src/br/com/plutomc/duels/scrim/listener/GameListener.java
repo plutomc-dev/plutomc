@@ -16,6 +16,7 @@ import br.com.plutomc.duels.scrim.event.PlayerLostEvent;
 import br.com.plutomc.duels.scrim.event.PlayerWinEvent;
 import br.com.plutomc.duels.scrim.gamer.Gamer;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
@@ -67,9 +68,11 @@ public class GameListener implements Listener {
             Bukkit.getPluginManager().callEvent(new GameEndEvent());
 
         }
-
         GameMain.getInstance().checkWinner();
 
+        for(Player p : Bukkit.getOnlinePlayers()) {
+            p.setGameMode(GameMode.ADVENTURE);
+        }
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
