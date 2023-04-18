@@ -111,7 +111,7 @@ public abstract class Party {
    }
 
    public void sendMessage(String message) {
-      this.forEach(member -> member.sendMessage("§dParty> §f" + message));
+      this.forEach(member -> member.sendMessage("§d[PARTY] §f" + message));
    }
 
    public void sendMessage(BaseComponent baseComponent) {
@@ -123,7 +123,7 @@ public abstract class Party {
    }
 
    public void chat(CommandSender sender, String message) {
-      this.forEach(member -> member.sendMessage("§dParty> §7" + sender.getName() + ": §f" + message));
+      this.forEach(member -> member.sendMessage("§d[PARTY] §7" + sender.getName() + ": §f" + message));
    }
 
    public void onPartyEvent(PartyEvent partyEvent) {
