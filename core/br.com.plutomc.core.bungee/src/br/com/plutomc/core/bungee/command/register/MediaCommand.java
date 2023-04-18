@@ -18,11 +18,11 @@ public class MediaCommand implements CommandClass {
       Member sender = cmdArgs.getSenderAsMember();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §e» §fUse §a/" + cmdArgs.getLabel() + " <youtube>§f para alterar seu link do youtube.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <youtube>§a para alterar seu link do youtube.");
       } else {
          String youtubeLink = args[0];
          sender.setYoutubeUrl(youtubeLink);
-         sender.sendMessage(" §a» §fVocê alterou seu link do youtube para §b" + youtubeLink + "§f.");
+         sender.sendMessage("§aVocê alterou seu link do youtube para §b" + youtubeLink + "§a.");
       }
    }
 
@@ -33,7 +33,7 @@ public class MediaCommand implements CommandClass {
       Member sender = cmdArgs.getSenderAsMember();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §e» §fUse §a/" + cmdArgs.getLabel() + " <twitch>§f para alterar seu link da twitch.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <twitch>§a para alterar seu link da twitch.");
       } else {
          String twitchUrl = args[0];
          if (!twitchUrl.toLowerCase().contains("twitch.tv")) {
@@ -41,7 +41,7 @@ public class MediaCommand implements CommandClass {
          }
 
          sender.setTwitchUrl(twitchUrl.toLowerCase());
-         sender.sendMessage(" §a» §fVocê alterou seu link da twitch para §d" + twitchUrl.toLowerCase() + "§f.");
+         sender.sendMessage("§aVocê alterou seu link da twitch para §d" + twitchUrl.toLowerCase() + "§a.");
       }
    }
 

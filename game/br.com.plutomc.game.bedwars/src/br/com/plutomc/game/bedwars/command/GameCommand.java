@@ -34,7 +34,7 @@ public class GameCommand implements CommandClass {
          if (!GameAPI.getInstance().getState().isGametime()) {
             sender.sendMessage("§cO jogo ainda não começou.");
          } else if (args.length == 0) {
-            sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <message>§f para mandar uma mensagem no servidor.");
+            sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <message>§a para mandar uma mensagem no servidor.");
          } else {
             Island island = GameMain.getInstance().getIslandManager().getIsland(sender.getUniqueId());
             if (island == null) {

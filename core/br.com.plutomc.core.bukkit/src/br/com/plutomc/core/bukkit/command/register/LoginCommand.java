@@ -25,7 +25,7 @@ public class LoginCommand implements CommandClass {
       } else if (sender.getLoginConfiguration().getAccountType() != LoginConfiguration.AccountType.PREMIUM && !sender.getLoginConfiguration().isCaptcha()) {
          sender.sendMessage("§cComplete o captcha para se logar.");
       } else if (args.length <= 1) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <sua senha> <repita sua senha>§f para se registrar.");
+         sender.sendMessage("§a§aUse §a/" + cmdArgs.getLabel() + " <sua senha> <repita sua senha>§a para se registrar.");
          sender.sendMessage("§cNão utilize coloque os símbolos < e > na sua senha.");
       } else {
          if (args[0].equals(args[1])) {
@@ -66,7 +66,7 @@ public class LoginCommand implements CommandClass {
       } else if (sender.getLoginConfiguration().isLogged()) {
          sender.sendMessage("§cVocê já está logado.");
       } else if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <sua senha>§f para se logar.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <sua senha>§a para se logar.");
       } else {
          if (sender.getLoginConfiguration().isPassword(args[0])) {
             sender.sendMessage("§%command.login.success%§");

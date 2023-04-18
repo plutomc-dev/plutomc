@@ -47,7 +47,7 @@ public class PunishCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player>§f para desbanir o jogador.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para desbanir o jogador.");
       } else {
          this.pardon(sender, args, PunishType.BAN);
       }
@@ -61,7 +61,7 @@ public class PunishCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player>§f para desmutar o jogador.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para desmutar o jogador.");
       } else {
          this.pardon(sender, args, PunishType.MUTE);
       }
@@ -110,7 +110,7 @@ public class PunishCommand implements CommandClass {
       String[] args = cmdArgs.getArgs();
       boolean temp = cmdArgs.getLabel().toLowerCase().contains("temp");
       if (args.length <= (temp ? 1 : 0)) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player> " + (temp ? "<tempo> " : "") + " <motivo>§f para punir alguém.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player> " + (temp ? "<tempo> " : "") + " <motivo>§a para punir alguém.");
       } else {
          this.punish(
             sender,

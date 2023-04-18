@@ -76,7 +76,7 @@ public class ModeradorCommand implements CommandClass {
             BungeeMain.getInstance().getPlayersRecord(),
             ServerType.BUNGEECORD
          );
-         MessageBuilder messageBuilder = new MessageBuilder("    §fServidores: §7");
+         MessageBuilder messageBuilder = new MessageBuilder("    §aServidores: §7");
 
          for(int i = 0; i < Math.max(servers.length, 24); ++i) {
             ProxiedServer server = servers[i];
@@ -85,15 +85,15 @@ public class ModeradorCommand implements CommandClass {
                   .setHoverEvent(
                      "§a"
                         + server.getServerId()
-                        + "\n\n  §fPlayers: §7"
+                        + "\n\n  §aPlayers: §7"
                         + server.getOnlinePlayers()
-                        + " jogadores\n  §fMáximo de players: §7"
+                        + " jogadores\n  §aMáximo de players: §7"
                         + server.getMaxPlayers()
-                        + " jogadores\n  §fRecord de players: §7"
+                        + " jogadores\n  §aRecord de players: §7"
                         + server.getPlayersRecord()
-                        + " jogadores\n  §fTipo de servidor: §7"
+                        + " jogadores\n  §aTipo de servidor: §7"
                         + server.getServerType().getName()
-                        + "\n  §fLigado há: §7"
+                        + "\n  §aLigado há: §7"
                         + StringFormat.formatTime((int)((System.currentTimeMillis() - server.getStartTime()) / 1000L), StringFormat.TimeFormat.NORMAL)
                         + "\n\n§eClique para saber mais."
                   )
@@ -112,13 +112,13 @@ public class ModeradorCommand implements CommandClass {
                   .setClickEvent(Action.SUGGEST_COMMAND, "/connect " + proxiedServer.getServerId())
                   .create()
             );
-            MessageBuilder messageBuilder = new MessageBuilder("    §f" + proxiedServer.getServerInfo().getPlayers().size() + " players: §7");
+            MessageBuilder messageBuilder = new MessageBuilder("    §a" + proxiedServer.getServerInfo().getPlayers().size() + " players: §7");
             int max = proxiedServer.getServerInfo().getPlayers().size() * 2;
             int i = max - 1;
 
             for(ProxiedPlayer player : proxiedServer.getServerInfo().getPlayers()) {
                if (i < max - 1) {
-                  messageBuilder.extra(new TextComponent("§f, "));
+                  messageBuilder.extra(new TextComponent("§a, "));
                   --i;
                }
 
@@ -152,7 +152,7 @@ public class ModeradorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " remove <index> §fpara remover.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " remove <index> §apara remover.");
       } else {
          OptionalInt integer = StringFormat.parseInt(args[0]);
          if (integer.isPresent()) {
@@ -180,10 +180,10 @@ public class ModeradorCommand implements CommandClass {
          BungeeMain.getInstance().addMessage(message.replace('&', '§'));
          sender.sendMessage("§a" + message.replace('&', '§') + " §aadicionada com sucesso.");
       } else {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <message>§f ");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <message>§a ");
 
          for(int i = 1; i <= BungeeMain.getInstance().getMessages().size(); ++i) {
-            sender.sendMessage("  §a" + i + "° §f" + (String)BungeeMain.getInstance().getMessages().get(i - 1));
+            sender.sendMessage("  §a" + i + "° §a" + (String)BungeeMain.getInstance().getMessages().get(i - 1));
          }
       }
    }
@@ -207,9 +207,9 @@ public class ModeradorCommand implements CommandClass {
       }
 
       sender.sendMessage("  §aEstatísticas dos jogadores:");
-      sender.sendMessage("    §fOriginais: §7" + premiumCount + " jogadores.");
-      sender.sendMessage("    §fPiratas: §7" + pirateCount + " jogadores.");
-      sender.sendMessage("    §fTotal online: §7" + onlineCount + " jogadores.");
+      sender.sendMessage("    §aOriginais: §7" + premiumCount + " jogadores.");
+      sender.sendMessage("    §aPiratas: §7" + pirateCount + " jogadores.");
+      sender.sendMessage("    §aTotal online: §7" + onlineCount + " jogadores.");
    }
 
    @CommandFramework.Command(
@@ -255,21 +255,21 @@ public class ModeradorCommand implements CommandClass {
       ping /= Math.max(array.length, 1);
       time /= (long)Math.max(array.length, 1);
       sender.sendMessage("  §aEquipe online:");
-      sender.sendMessage("    §fTempo médio: §7" + StringFormat.formatTime((int)(time / 1000L), StringFormat.TimeFormat.NORMAL));
-      sender.sendMessage("    §fPing médio: §7" + ping + "ms");
-      sender.sendMessage("    §fEquipe: §7" + array.length + " online");
-      MessageBuilder messageBuilder = new MessageBuilder("    §fPlayers: §7");
+      sender.sendMessage("    §aTempo médio: §7" + StringFormat.formatTime((int)(time / 1000L), StringFormat.TimeFormat.NORMAL));
+      sender.sendMessage("    §aPing médio: §7" + ping + "ms");
+      sender.sendMessage("    §aEquipe: §7" + array.length + " online");
+      MessageBuilder messageBuilder = new MessageBuilder("    §aPlayers: §7");
 
       for(int i = 0; i < array.length; ++i) {
          BungeeMember member = array[i];
          messageBuilder.extra(
             new MessageBuilder("§7" + member.getDefaultTag().getRealPrefix() + member.getPlayerName() + (i == array.length - 1 ? "." : ", "))
                .setHoverEvent(
-                  "§fTempo online: §7"
+                  "§aTempo online: §7"
                      + StringFormat.formatTime((int)(member.getSessionTime() / 1000L), StringFormat.TimeFormat.NORMAL)
-                     + "\n§fPing: §7"
+                     + "\n§aPing: §7"
                      + member.getProxiedPlayer().getPing()
-                     + "ms\n§fServidor: §7"
+                     + "ms\n§aServidor: §7"
                      + member.getActualServerId()
                      + ""
                )
@@ -290,7 +290,7 @@ public class ModeradorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <message>§f para enviar uma mensagem no servidor.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <message>§a para enviar uma mensagem no servidor.");
       } else {
          String message = Joiner.on(' ').join(args).replace('&', '§');
          ProxyServer.getInstance().broadcast("");
@@ -408,7 +408,7 @@ public class ModeradorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player>§f para saber aonde um jogador está.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para saber aonde um jogador está.");
       } else {
          String playerName = args[0];
          ProxiedPlayer target = ProxyServer.getInstance().getPlayer(playerName);
@@ -434,7 +434,7 @@ public class ModeradorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player>§f para ir até um jogador.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para ir até um jogador.");
       } else {
          String playerName = args[0];
          ProxiedPlayer target = ProxyServer.getInstance().getPlayer(playerName);
@@ -460,13 +460,13 @@ public class ModeradorCommand implements CommandClass {
          long allocatedMemory = Runtime.getRuntime().totalMemory() / 1048576L;
          sender.sendMessage(" ");
          sender.sendMessage("  §aBungeeCord Usage Info:");
-         sender.sendMessage("    §fMemória usada: §7" + usedMemory + "MB (" + usedMemory * 100L / allocatedMemory + "%)");
+         sender.sendMessage("    §aMemória usada: §7" + usedMemory + "MB (" + usedMemory * 100L / allocatedMemory + "%)");
          sender.sendMessage(
-            "    §fMemória livre: §7" + (allocatedMemory - usedMemory) + "MB (" + (allocatedMemory - usedMemory) * 100L / allocatedMemory + "%)"
+            "    §aMemória livre: §7" + (allocatedMemory - usedMemory) + "MB (" + (allocatedMemory - usedMemory) * 100L / allocatedMemory + "%)"
          );
-         sender.sendMessage("    §fMemória máxima: §7" + allocatedMemory + "MB");
-         sender.sendMessage("    §fCPU: §7" + CommonConst.DECIMAL_FORMAT.format(CommonConst.getCpuUse()) + "%");
-         sender.sendMessage("    §fPing médio: §7" + BungeeMain.getInstance().getAveragePing(ProxyServer.getInstance().getPlayers()) + "ms.");
+         sender.sendMessage("    §aMemória máxima: §7" + allocatedMemory + "MB");
+         sender.sendMessage("    §aCPU: §7" + CommonConst.DECIMAL_FORMAT.format(CommonConst.getCpuUse()) + "%");
+         sender.sendMessage("    §aPing médio: §7" + BungeeMain.getInstance().getAveragePing(ProxyServer.getInstance().getPlayers()) + "ms.");
       }
    }
 
@@ -478,7 +478,7 @@ public class ModeradorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length <= 1) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player:current:all> <serverId:serverType>§f para enviar um jogador para uma sala.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player:current:all> <serverId:serverType>§a para enviar um jogador para uma sala.");
       } else {
          List<ProxiedPlayer> playerList = new ArrayList();
          if (args[0].equalsIgnoreCase("all")) {
@@ -575,8 +575,8 @@ public class ModeradorCommand implements CommandClass {
    }
 
    private void handleInfo(CommandSender sender, Collection<ProxiedPlayer> players, int onlineTime, int playersRecord, ServerType serverType) {
-      sender.sendMessage("    §fPlayers: §7" + players.size() + " jogadores");
-      sender.sendMessage("    §fRecord de players: §7" + playersRecord);
+      sender.sendMessage("    §aPlayers: §7" + players.size() + " jogadores");
+      sender.sendMessage("    §aRecord de players: §7" + playersRecord);
       int ping = 0;
       Map<ProtocolVersion, Integer> map = new HashMap<>();
 
@@ -588,20 +588,20 @@ public class ModeradorCommand implements CommandClass {
       }
 
       ping /= Math.max(players.size(), 1);
-      sender.sendMessage("    §fPing médio: §7" + ping + "ms");
+      sender.sendMessage("    §aPing médio: §7" + ping + "ms");
       if (!players.isEmpty()) {
-         sender.sendMessage("    §fVersão: §7");
+         sender.sendMessage("    §aVersão: §7");
 
          for(Entry<ProtocolVersion, Integer> entry : map.entrySet()) {
-            sender.sendMessage("      §f- " + entry.getKey().name().replace("MINECRAFT_", "").replace("_", ".") + ": §7" + entry.getValue() + " jogadores");
+            sender.sendMessage("      §a- " + entry.getKey().name().replace("MINECRAFT_", "").replace("_", ".") + ": §7" + entry.getValue() + " jogadores");
          }
       }
 
       if (serverType == ServerType.BUNGEECORD) {
-         sender.sendMessage("    §fTipo de servidor: §7" + serverType.getName());
+         sender.sendMessage("    §aTipo de servidor: §7" + serverType.getName());
       }
 
-      sender.sendMessage("    §fLigado há: §7" + StringFormat.formatTime(onlineTime, StringFormat.TimeFormat.NORMAL));
+      sender.sendMessage("    §aLigado há: §7" + StringFormat.formatTime(onlineTime, StringFormat.TimeFormat.NORMAL));
    }
 
    @CommandFramework.Completer(

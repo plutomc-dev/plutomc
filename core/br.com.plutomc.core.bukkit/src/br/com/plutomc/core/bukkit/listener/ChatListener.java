@@ -179,7 +179,7 @@ public class ChatListener implements Listener {
             )
             .create()
       );
-      messageBuilder.extra(" §7» §f");
+      messageBuilder.extra("§7: §f");
       String[] split = event.getMessage().split(" ");
       String currentColor = "§f";
 

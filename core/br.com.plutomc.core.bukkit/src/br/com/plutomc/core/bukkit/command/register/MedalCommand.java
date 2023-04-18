@@ -37,7 +37,7 @@ public class MedalCommand implements CommandClass {
          switch(var4) {
             case "deletar":
                if (args.length == 1) {
-                  sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " create <medalName>§f para deletar uma medalha");
+                  sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " deletar <medalName>§a para deletar uma medalha");
                   return;
                }
 
@@ -82,7 +82,7 @@ public class MedalCommand implements CommandClass {
                break;
             case "create":
                if (args.length == 1) {
-                  sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " create <medalName>§f para criar uma medalha.");
+                  sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " create <medalName>§a para criar uma medalha.");
                   return;
                }
 
@@ -188,7 +188,7 @@ public class MedalCommand implements CommandClass {
                switch(var14) {
                   case "add":
                      if (args.length == 2) {
-                        sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player> add <medal>§f para adicionar uma medalha a um jogador.");
+                        sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player> add <medal>§a para adicionar uma medalha a um jogador.");
                         return;
                      }
 
@@ -208,7 +208,7 @@ public class MedalCommand implements CommandClass {
                      break;
                   case "remove":
                      if (args.length == 2) {
-                        sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player> remove <medal>§f para remover uma medalha de um jogador.");
+                        sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player> remove <medal>§a para remover uma medalha de um jogador.");
                         return;
                      }
 
@@ -227,8 +227,8 @@ public class MedalCommand implements CommandClass {
                      }
                      break;
                   default:
-                     sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player> remove <medal>§f para adicionar uma medalha a um jogador.");
-                     sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player> add <medal>§f para remover uma medalha de um jogador.");
+                     sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player> remove <medal>§a para adicionar uma medalha a um jogador.");
+                     sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player> add <medal>§a para remover uma medalha de um jogador.");
                }
          }
       }
@@ -321,12 +321,12 @@ public class MedalCommand implements CommandClass {
    }
 
    private void handleMedalUsage(CommandSender sender, String label) {
-      sender.sendMessage(" §a» §fUse §a/" + label + " create <medalName>§f para criar uma medalha.");
-      sender.sendMessage(" §a» §fUse §a/" + label + " create <medalName>§f para deletar uma medalha.");
-      sender.sendMessage(" §a» §fUse §a/" + label + " list§f para listar as medalhas.");
-      sender.sendMessage(" §a» §fUse §a/" + label + " <player>§f para listar as medalhas de um jogador.");
+      sender.sendMessage("§aUse §a/" + label + " create <medalName>§a para criar uma medalha.");
+      sender.sendMessage("§aUse §a/" + label + " deletar <medalName>§a para deletar uma medalha.");
+      sender.sendMessage("§aUse §a/" + label + " list§a para listar as medalhas.");
+      sender.sendMessage("§aUse §a/" + label + " <player>§a para listar as medalhas de um jogador.");
       sender.sendMessage("");
-      sender.sendMessage(" §a» §fUse §a/" + label + " <player> add <medal>§f para adicionar uma medalha a um jogador.");
-      sender.sendMessage(" §a» §fUse §a/" + label + " <player> remove <medal>§f para adicionar uma medalha a um jogador.");
+      sender.sendMessage("§aUse §a/" + label + " <player> add <medal>§a para adicionar uma medalha a um jogador.");
+      sender.sendMessage("§aUse §a/" + label + " <player> remove <medal>§a para adicionar uma medalha a um jogador.");
    }
 }

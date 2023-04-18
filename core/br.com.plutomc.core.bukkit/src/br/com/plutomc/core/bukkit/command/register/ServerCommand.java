@@ -81,7 +81,7 @@ public class ServerCommand implements CommandClass {
                }
 
                CommonPlugin.getInstance().setServerType(serverType);
-               sender.sendMessage("§aO tipo do servidor foi alterado para §f" + serverType.name() + "§a.");
+               sender.sendMessage("§aO tipo do servidor foi alterado para §a" + serverType.name() + "§a.");
                break;
             case "serverid":
                if (args.length == 1) {
@@ -91,7 +91,7 @@ public class ServerCommand implements CommandClass {
 
                String serverId = args[1];
                CommonPlugin.getInstance().setServerId(serverId);
-               sender.sendMessage("§aO ID do servidor foi alterado para §f" + serverId + "§a.");
+               sender.sendMessage("§aO ID do servidor foi alterado para §a" + serverId + "§a.");
                break;
             case "start":
                CommonPlugin.getInstance().getServerData().startServer(Bukkit.getMaxPlayers());
@@ -117,7 +117,7 @@ public class ServerCommand implements CommandClass {
                break;
             case "debug":
                for(Entry<String, ProxiedServer> entry : BukkitCommon.getInstance().getServerManager().getActiveServers().entrySet()) {
-                  sender.sendMessage("  §f" + (String)entry.getKey() + "§7: " + CommonConst.GSON.toJson(entry.getValue()));
+                  sender.sendMessage("  §a" + (String)entry.getKey() + "§7: " + CommonConst.GSON.toJson(entry.getValue()));
                }
                break;
             default:
@@ -148,7 +148,7 @@ public class ServerCommand implements CommandClass {
          sender.sendMessage("  §aConfig list:");
 
          for(String config : CommonPlugin.getInstance().getConfigurationManager().getConfigs()) {
-            sender.sendMessage("    §f- §7" + config);
+            sender.sendMessage("    §a- §7" + config);
          }
       } else {
          String configName = args[0];
@@ -487,32 +487,32 @@ public class ServerCommand implements CommandClass {
       if (cmdArgs.getArgs().length != 0) {
          if (cmdArgs.getArgs()[0].equalsIgnoreCase("gc")) {
             Runtime.getRuntime().gc();
-            sender.sendMessage(" §a» §fVocê passou o GarbargeCollector no servidor.");
+            sender.sendMessage("§aVocê passou o GarbargeCollector no servidor.");
          } else {
             World world = Bukkit.getWorld(cmdArgs.getArgs()[0]);
             if (world == null) {
-               sender.sendMessage(" §c» §fO mundo " + cmdArgs.getArgs()[0] + " não existe.");
+               sender.sendMessage("§cO mundo " + cmdArgs.getArgs()[0] + " não existe.");
             } else {
                sender.sendMessage(" §aMundo " + world.getName());
-               sender.sendMessage("    §fEntidades: §7" + world.getEntities().size());
-               sender.sendMessage("    §fLoaded chunks: §7" + world.getLoadedChunks().length);
+               sender.sendMessage("    §aEntidades: §7" + world.getEntities().size());
+               sender.sendMessage("    §aLoaded chunks: §7" + world.getLoadedChunks().length);
             }
          }
       } else {
          long usedMemory = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 2L / 1048576L;
          long allocatedMemory = Runtime.getRuntime().totalMemory() / 1048576L;
          sender.sendMessage(" §aServidor " + CommonPlugin.getInstance().getServerId() + ":");
-         sender.sendMessage("    §fPlayers: §7" + Bukkit.getOnlinePlayers().size() + " jogadores");
-         sender.sendMessage("    §fMáximo de players: §7" + Bukkit.getMaxPlayers() + " jogadores");
-         sender.sendMessage("    §fMemória: §7" + usedMemory + "/" + allocatedMemory + " MB");
+         sender.sendMessage("    §aPlayers: §7" + Bukkit.getOnlinePlayers().size() + " jogadores");
+         sender.sendMessage("    §aMáximo de players: §7" + Bukkit.getMaxPlayers() + " jogadores");
+         sender.sendMessage("    §aMemória: §7" + usedMemory + "/" + allocatedMemory + " MB");
          sender.sendMessage(
-            "    §fLigado há: §7"
+            "    §aLigado há: §7"
                + DateUtils.formatDifference(sender.getLanguage(), (System.currentTimeMillis() - ManagementFactory.getRuntimeMXBean().getStartTime()) / 1000L)
          );
-         sender.sendMessage("    §fTPS: ");
-         sender.sendMessage("      §f1m: §7" + this.format(MinecraftServer.getServer().recentTps[0]));
-         sender.sendMessage("      §f5m: §7" + this.format(MinecraftServer.getServer().recentTps[1]));
-         sender.sendMessage("      §f15m: §7" + this.format(MinecraftServer.getServer().recentTps[2]));
+         sender.sendMessage("    §aTPS: ");
+         sender.sendMessage("      §a1m: §7" + this.format(MinecraftServer.getServer().recentTps[0]));
+         sender.sendMessage("      §a5m: §7" + this.format(MinecraftServer.getServer().recentTps[1]));
+         sender.sendMessage("      §a15m: §7" + this.format(MinecraftServer.getServer().recentTps[2]));
          int ping = 0;
          Map<ProtocolVersion, Integer> map = new HashMap<>();
 
@@ -524,12 +524,12 @@ public class ServerCommand implements CommandClass {
          }
 
          ping /= Math.max(Bukkit.getOnlinePlayers().size(), 1);
-         sender.sendMessage("    §fPing médio: §7" + ping + "ms");
+         sender.sendMessage("    §aPing médio: §7" + ping + "ms");
          if (!Bukkit.getOnlinePlayers().isEmpty()) {
-            sender.sendMessage("    §fVersão: §7");
+            sender.sendMessage("    §aVersão: §7");
 
             for(Entry<ProtocolVersion, Integer> entry : map.entrySet()) {
-               sender.sendMessage("      §f- " + entry.getKey().name().replace("MINECRAFT_", "").replace("_", ".") + ": §7" + entry.getValue() + " jogadores");
+               sender.sendMessage("      §a- " + entry.getKey().name().replace("MINECRAFT_", "").replace("_", ".") + ": §7" + entry.getValue() + " jogadores");
             }
          }
       }
@@ -543,11 +543,11 @@ public class ServerCommand implements CommandClass {
       long usedMemory = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 2L / 1048576L;
       long allocatedMemory = Runtime.getRuntime().totalMemory() / 1048576L;
       cmdArgs.getSender().sendMessage("  §aMemory Info:");
-      cmdArgs.getSender().sendMessage("    §fMemória usada: §7" + usedMemory + "MB (" + usedMemory * 100L / allocatedMemory + "%)");
+      cmdArgs.getSender().sendMessage("    §aMemória usada: §7" + usedMemory + "MB (" + usedMemory * 100L / allocatedMemory + "%)");
       cmdArgs.getSender()
-         .sendMessage("    §fMemória livre: §7" + (allocatedMemory - usedMemory) + "MB (" + (allocatedMemory - usedMemory) * 100L / allocatedMemory + "%)");
-      cmdArgs.getSender().sendMessage("    §fMemória máxima: §7" + allocatedMemory + "MB");
-      cmdArgs.getSender().sendMessage("    §fCPU: §7" + CommonConst.DECIMAL_FORMAT.format(CommonConst.getCpuUse()) + "%");
+         .sendMessage("    §aMemória livre: §7" + (allocatedMemory - usedMemory) + "MB (" + (allocatedMemory - usedMemory) * 100L / allocatedMemory + "%)");
+      cmdArgs.getSender().sendMessage("    §aMemória máxima: §7" + allocatedMemory + "MB");
+      cmdArgs.getSender().sendMessage("    §aCPU: §7" + CommonConst.DECIMAL_FORMAT.format(CommonConst.getCpuUse()) + "%");
    }
 
    private String format(double tps) {

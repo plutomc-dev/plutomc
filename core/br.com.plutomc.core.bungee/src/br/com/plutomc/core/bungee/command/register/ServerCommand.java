@@ -56,7 +56,7 @@ public class ServerCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length <= 1) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player> <reason>§f para reportar um jogador.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player> <reason>§a para reportar um jogador.");
       } else {
          Member target = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[0]);
          if (target == null) {
@@ -188,10 +188,10 @@ public class ServerCommand implements CommandClass {
       String[] args = cmdArgs.getArgs();
       CommandSender sender = cmdArgs.getSender();
       if (args.length == 0) {
-         sender.sendMessage(" §e» §fUse /" + cmdArgs.getLabel() + " <on:off> <time> para ativar ou desativar a whitelist global.");
-         sender.sendMessage(" §e» §fUse /" + cmdArgs.getLabel() + " add <player> para adicionar alguem a whitelist.");
-         sender.sendMessage(" §e» §fUse /" + cmdArgs.getLabel() + " remove <player> para remover alguem da whitelist.");
-         sender.sendMessage(" §e» §fUse /" + cmdArgs.getLabel() + " group <beta:staff:group> para definir qual grupo irá entrar no servidor.");
+         sender.sendMessage("§aUse /" + cmdArgs.getLabel() + " <on:off> <time> para ativar ou desativar a whitelist global.");
+         sender.sendMessage("§aUse /" + cmdArgs.getLabel() + " add <player> para adicionar alguem a whitelist.");
+         sender.sendMessage("§aUse /" + cmdArgs.getLabel() + " remove <player> para remover alguem da whitelist.");
+         sender.sendMessage("§aUse /" + cmdArgs.getLabel() + " group <beta:staff:group> para definir qual grupo irá entrar no servidor.");
       } else {
          String var4 = args[0].toLowerCase();
          switch(var4) {
@@ -202,7 +202,7 @@ public class ServerCommand implements CommandClass {
                }
 
                BungeeMain.getInstance().setWhitelistEnabled(true, time);
-               sender.sendMessage(" §a» §fVocê §aativou§f a whitelist!");
+               sender.sendMessage("§aVocê §aativou§a a whitelist!");
                CommonPlugin.getInstance()
                   .getMemberManager()
                   .getMembers(BungeeMember.class)
@@ -212,44 +212,44 @@ public class ServerCommand implements CommandClass {
                break;
             case "off":
                BungeeMain.getInstance().setWhitelistEnabled(false, 0L);
-               sender.sendMessage(" §a» §fVocê §cdesativou§f a whitelist!");
+               sender.sendMessage("§aVocê §cdesativou§a a whitelist!");
                break;
             case "add":
                if (args.length == 1) {
-                  sender.sendMessage(" §e» §fUse /" + cmdArgs.getLabel() + " add <player> para adicionar alguem a whitelist.");
+                  sender.sendMessage("§aUse /" + cmdArgs.getLabel() + " add <player> para adicionar alguem a whitelist.");
                } else {
                   Member member = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[1]);
                   if (member == null) {
                      member = CommonPlugin.getInstance().getMemberData().loadMember(args[1], true);
                      if (member == null) {
-                        sender.sendMessage(" §4» §fO jogador " + args[1] + " não existe!");
+                        sender.sendMessage("§cO jogador " + args[1] + " não existe!");
                         break;
                      }
                   }
 
                   BungeeMain.getInstance().addMemberToWhiteList(member.getPlayerName());
-                  sender.sendMessage(" §a» §fO jogador §a" + member.getPlayerName() + "§f foi adicionado a whitelist!");
+                  sender.sendMessage("§aO jogador §a" + member.getPlayerName() + "§a foi adicionado a whitelist!");
                }
                break;
             case "remove":
                if (args.length == 1) {
-                  sender.sendMessage(" §e» §fUse /" + cmdArgs.getLabel() + " remove <player> para remover alguem da whitelist.");
+                  sender.sendMessage("§aUse /" + cmdArgs.getLabel() + " remove <player> para remover alguem da whitelist.");
                } else {
                   Member member = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[1]);
                   if (member == null) {
                      member = CommonPlugin.getInstance().getMemberData().loadMember(args[1], true);
                      if (member == null) {
-                        sender.sendMessage(" §4» §fO jogador " + args[1] + " não existe!");
+                        sender.sendMessage("§cO jogador " + args[1] + " não existe!");
                         break;
                      }
                   }
 
                   BungeeMain.getInstance().removeMemberFromWhiteList(member.getPlayerName());
-                  sender.sendMessage(" §a» §fO jogador §a" + member.getPlayerName() + "§f foi removido da whitelist!");
+                  sender.sendMessage("§aO jogador §a" + member.getPlayerName() + "§a foi removido da whitelist!");
                }
                break;
             case "list":
-               sender.sendMessage(" §a» §fLista de jogadores na whitelist: §a" + Joiner.on(", ").join(BungeeMain.getInstance().getWhiteList()));
+               sender.sendMessage("§aLista de jogadores na whitelist: §a" + Joiner.on(", ").join(BungeeMain.getInstance().getWhiteList()));
          }
       }
    }

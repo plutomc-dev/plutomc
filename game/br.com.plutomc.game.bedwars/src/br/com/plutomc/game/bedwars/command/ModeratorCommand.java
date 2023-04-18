@@ -54,7 +54,7 @@ public class ModeratorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/setprotection <double>§f para mudar a proteção.");
+         sender.sendMessage("§aUse §a/setprotection <double>§a para mudar a proteção.");
       } else {
          OptionalDouble optionalDouble = StringFormat.parseDouble(args[0]);
          if (!optionalDouble.isPresent()) {

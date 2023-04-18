@@ -32,7 +32,7 @@ public class ModeradorCommand implements CommandClass {
       BukkitMember sender = cmdArgs.getSenderAsMember(BukkitMember.class);
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player>§f para ver as punições de um jogador.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para ver as punições de um jogador.");
       } else {
          Member target = CommonPlugin.getInstance().getMemberManager().getMemberByName(cmdArgs.getArgs()[0]);
          if (target == null) {
@@ -77,7 +77,7 @@ public class ModeradorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <on:off>§f para desativar ou ativar o chat.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <on:off>§a para desativar ou ativar o chat.");
       } else {
          BukkitCommon.ChatState chatState = null;
          String var5 = args[0].toLowerCase();
@@ -95,7 +95,7 @@ public class ModeradorCommand implements CommandClass {
                try {
                   chatState = BukkitCommon.ChatState.valueOf(cmdArgs.getArgs()[0].toUpperCase());
                } catch (Exception var8) {
-                  sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <on:off>§f para desativar ou ativar o chat.");
+                  sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <on:off>§a para desativar ou ativar o chat.");
                }
          }
 
@@ -115,7 +115,7 @@ public class ModeradorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player>§f para abrir o inventário do player.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para abrir o inventário do player.");
       } else {
          Player player = Bukkit.getPlayer(args[0]);
          if (player == null) {
@@ -135,7 +135,7 @@ public class ModeradorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <message>§f para enviar uma mensagem no servidor.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <message>§a para enviar uma mensagem no servidor.");
       } else {
          String message = Joiner.on(' ').join(args).replace('&', '§');
          Bukkit.broadcastMessage("");

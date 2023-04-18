@@ -52,7 +52,7 @@ public class ProfileCommand implements CommandClass {
       Member sender = cmdArgs.getSenderAsMember();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player>§f para bloquear um jogador.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para bloquear um jogador.");
       } else {
          Member target = CommonPlugin.getInstance().getMemberManager().getMemberByName(cmdArgs.getArgs()[0]);
          if (target == null) {
@@ -80,7 +80,7 @@ public class ProfileCommand implements CommandClass {
       Member sender = cmdArgs.getSenderAsMember();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player>§f para desbloquear um jogador.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para desbloquear um jogador.");
       } else {
          Member target = CommonPlugin.getInstance().getMemberManager().getMemberByName(cmdArgs.getArgs()[0]);
          if (target == null) {
@@ -116,7 +116,7 @@ public class ProfileCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length <= 1) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player> <message>§f para enviar uma mensagem para um jogador.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player> <message>§a para enviar uma mensagem para um jogador.");
       } else {
          String var4 = args[0].toLowerCase();
          switch(var4) {
@@ -136,9 +136,9 @@ public class ProfileCommand implements CommandClass {
                      member.sendMessage(
                         new MessageBuilder(punish.getMuteMessage(member.getLanguage()))
                            .setHoverEvent(
-                              "§fPunido em: §7"
+                              "§aPunido em: §7"
                                  + CommonConst.DATE_FORMAT.format(punish.getCreatedAt())
-                                 + "\n§fExpire em: §7"
+                                 + "\n§aExpire em: §7"
                                  + (punish.isPermanent() ? "§cnunca" : DateUtils.formatDifference(member.getLanguage(), punish.getExpireAt() / 1000L))
                            )
                            .create()
@@ -178,7 +178,7 @@ public class ProfileCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <message>§f para enviar uma mensagem para um jogador.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <message>§a para enviar uma mensagem para um jogador.");
       } else if (!sender.hasReply()) {
          sender.sendMessage("§cVocê não possui mensagem para responder.");
       } else {
@@ -189,9 +189,9 @@ public class ProfileCommand implements CommandClass {
                member.sendMessage(
                   new MessageBuilder(punish.getMuteMessage(member.getLanguage()))
                      .setHoverEvent(
-                        "§fPunido em: §7"
+                        "§aPunido em: §7"
                            + CommonConst.DATE_FORMAT.format(punish.getCreatedAt())
-                           + "\n§fExpire em: §7"
+                           + "\n§aExpire em: §7"
                            + (punish.isPermanent() ? "§cnunca" : DateUtils.formatDifference(member.getLanguage(), punish.getExpireAt() / 1000L))
                      )
                      .create()
@@ -240,7 +240,7 @@ public class ProfileCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       Member member = cmdArgs.isPlayer() ? cmdArgs.getSenderAsMember() : null;
       if (!cmdArgs.isPlayer() && cmdArgs.getArgs().length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player>§f para ver o perfil de alguém.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para ver o perfil de alguém.");
       } else {
          if (cmdArgs.getArgs().length >= 1) {
             if (!sender.hasPermission("command.admin")) {
@@ -262,9 +262,9 @@ public class ProfileCommand implements CommandClass {
          GroupInfo groupInfo = member.getServerGroup(actualGroup.getGroupName());
          sender.sendMessage(" ");
          sender.sendMessage("§a  " + (sender.getUniqueId() == member.getUniqueId() ? "Sua conta" : "Conta do " + member.getPlayerName()));
-         sender.sendMessage("    §fPrimeiro login: §7" + CommonPlugin.getInstance().formatTime(member.getFirstLogin()));
+         sender.sendMessage("    §aPrimeiro login: §7" + CommonPlugin.getInstance().formatTime(member.getFirstLogin()));
          sender.sendMessage(
-            "    §fUltimo login: §7"
+            "    §aUltimo login: §7"
                + CommonPlugin.getInstance().formatTime(member.getLastLogin())
                + (
                   member.isOnline()
@@ -272,19 +272,19 @@ public class ProfileCommand implements CommandClass {
                      : " (há " + DateUtils.formatDifference(sender.getLanguage(), (System.currentTimeMillis() - member.getLastLogin()) / 1000L) + ")"
                )
          );
-         sender.sendMessage("    §fTempo total de jogo: §7" + DateUtils.formatDifference(sender.getLanguage(), member.getOnlineTime() / 1000L));
-         sender.sendMessage("    §fTipo de conta: §7" + StringFormat.formatString(member.getLoginConfiguration().getAccountType().name()));
+         sender.sendMessage("    §aTempo total de jogo: §7" + DateUtils.formatDifference(sender.getLanguage(), member.getOnlineTime() / 1000L));
+         sender.sendMessage("    §aTipo de conta: §7" + StringFormat.formatString(member.getLoginConfiguration().getAccountType().name()));
          sender.sendMessage(" ");
          sender.sendMessage(
-            new MessageBuilder("    §fGrupo principal: §7" + StringFormat.formatString(actualGroup.getGroupName()))
+            new MessageBuilder("    §aGrupo principal: §7" + StringFormat.formatString(actualGroup.getGroupName()))
                .setHoverEvent(
                   "§aGrupo principal "
                      + StringFormat.formatString(actualGroup.getGroupName())
-                     + "\n\n  §fAutor: §7"
+                     + "\n\n  §aAutor: §7"
                      + groupInfo.getAuthorName()
-                     + "\n  §fData: §7"
+                     + "\n  §aData: §7"
                      + CommonConst.DATE_FORMAT.format(groupInfo.getGivenDate())
-                     + "\n  §fExpire em: §7"
+                     + "\n  §aExpire em: §7"
                      + (groupInfo.isPermanent() ? "Nunca" : DateUtils.getTime(sender.getLanguage(), groupInfo.getExpireTime()))
                      + "\n\n§eClique para ver informações do grupo."
                )
@@ -298,22 +298,22 @@ public class ProfileCommand implements CommandClass {
             .map(groupName -> CommonPlugin.getInstance().getPluginInfo().getGroupByName(groupName))
             .collect(Collectors.toList());
          if (!list.isEmpty()) {
-            MessageBuilder messageBuilder = new MessageBuilder("    §fGrupos adicionais: §7");
+            MessageBuilder messageBuilder = new MessageBuilder("    §aGrupos adicionais: §7");
             Set<Entry<String, GroupInfo>> entrySet = new HashSet<>(member.getGroups().entrySet());
             entrySet.removeIf(entryx -> entryx.getKey().equalsIgnoreCase(actualGroup.getGroupName()));
             int i = 1;
 
             for(Entry<String, GroupInfo> entry : entrySet) {
                messageBuilder.extra(
-                  new MessageBuilder("§7" + StringFormat.formatString(entry.getKey()) + (i == entrySet.size() ? "§f." : "§f, §7"))
+                  new MessageBuilder("§7" + StringFormat.formatString(entry.getKey()) + (i == entrySet.size() ? "§a." : "§a, §7"))
                      .setHoverEvent(
                         "§aGrupo "
                            + StringFormat.formatString(entry.getKey())
-                           + "\n\n  §fAutor: §7"
+                           + "\n\n  §aAutor: §7"
                            + entry.getValue().getAuthorName()
-                           + "\n  §fData: §7"
+                           + "\n  §aData: §7"
                            + CommonConst.DATE_FORMAT.format(entry.getValue().getGivenDate())
-                           + "\n  §fExpire em: §7"
+                           + "\n  §aExpire em: §7"
                            + (entry.getValue().isPermanent() ? "Nunca" : DateUtils.getTime(sender.getLanguage(), entry.getValue().getExpireTime()))
                            + "\n\n§eClique para ver informações do grupo."
                      )
@@ -328,12 +328,12 @@ public class ProfileCommand implements CommandClass {
 
          if (sender.isStaff() || sender.getUniqueId() == member.getUniqueId()) {
             if (!member.getPermissions().isEmpty()) {
-               sender.sendMessage("    §fPermissões: §7" + Joiner.on(", ").join(member.getPermissions()));
+               sender.sendMessage("    §aPermissões: §7" + Joiner.on(", ").join(member.getPermissions()));
             }
 
             if (member.getLastIpAddress() != null && sender.getServerGroup().getId() >= member.getServerGroup().getId()) {
                sender.sendMessage("");
-               sender.sendMessage("    §fEndereço ip: §7" + member.getLastIpAddress());
+               sender.sendMessage("    §aEndereço ip: §7" + member.getLastIpAddress());
             }
          }
 
@@ -343,12 +343,12 @@ public class ProfileCommand implements CommandClass {
             }
 
             sender.sendMessage(
-               new MessageBuilder("    §fServidor atual: §7" + member.getActualServerId())
+               new MessageBuilder("    §aServidor atual: §7" + member.getActualServerId())
                   .setClickEvent(Action.SUGGEST_COMMAND, "/connect " + member.getActualServerId())
                   .setHoverEvent("§aClique para ir ao servidor.")
                   .create()
             );
-            sender.sendMessage("    §fTempo da sessão atual: §7" + DateUtils.formatDifference(sender.getLanguage(), member.getSessionTime() / 1000L));
+            sender.sendMessage("    §aTempo da sessão atual: §7" + DateUtils.formatDifference(sender.getLanguage(), member.getSessionTime() / 1000L));
             sender.sendMessage("    §aO jogador está online no momento.");
          } else {
             sender.sendMessage("    §cO jogador está offline no momento.");
@@ -427,7 +427,7 @@ public class ProfileCommand implements CommandClass {
 
             for(Tag t : tags) {
                if (i < max - 1) {
-                  message.addExtra(new TextComponent("§f, "));
+                  message.addExtra(new TextComponent("§a, "));
                   --i;
                }
 
@@ -436,7 +436,7 @@ public class ProfileCommand implements CommandClass {
                      .setHoverEvent(
                         new HoverEvent(
                            net.md_5.bungee.api.chat.HoverEvent.Action.SHOW_TEXT,
-                           new TextComponent[]{new TextComponent("§fExemplo: " + t.getRealPrefix() + player.getPlayerName() + "\n\n§aClique para selecionar!")}
+                           new TextComponent[]{new TextComponent("§aExemplo: " + t.getRealPrefix() + player.getPlayerName() + "\n\n§aClique para selecionar!")}
                         )
                      )
                      .setClickEvent(new ClickEvent(Action.RUN_COMMAND, "/tag " + t.getTagName()))
@@ -450,7 +450,7 @@ public class ProfileCommand implements CommandClass {
       } else if (!args[0].equalsIgnoreCase("default") && !args[0].equalsIgnoreCase("normal")) {
          Tag tag = CommonPlugin.getInstance().getPluginInfo().getTagByName(args[0]);
          if (tag == null) {
-            player.sendMessage(" §4» §fA tag " + args[0] + " não existe!");
+            player.sendMessage("§cA tag " + args[0] + " não existe!");
          } else {
             if (player.hasTag(tag)) {
                if (!player.getTag().equals(tag)) {
@@ -464,7 +464,7 @@ public class ProfileCommand implements CommandClass {
          }
       } else {
          if (player.setTag(player.getDefaultTag())) {
-            player.sendMessage(" §a» §fVocê alterou sua tag para " + player.getDefaultTag().getStrippedColor() + "§f.");
+            player.sendMessage("§aVocê alterou sua tag para " + player.getDefaultTag().getStrippedColor() + "§a.");
          }
       }
    }
@@ -504,7 +504,7 @@ public class ProfileCommand implements CommandClass {
       BukkitMember sender = cmdArgs.getSenderAsMember(BukkitMember.class);
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage(" §a» §fUse §a/" + cmdArgs.getLabel() + " <player>§f para alterar sua skin.");
+         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para alterar sua skin.");
       } else if (sender.hasCooldown("fake.command") && !sender.hasPermission("command.admin")) {
          sender.sendMessage("§cVocê precisa esperar " + sender.getCooldownFormatted("fake.command") + " para usar eses comando novamente.");
       } else {
