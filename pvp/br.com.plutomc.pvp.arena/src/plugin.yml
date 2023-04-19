@@ -1,5 +1,5 @@
 name: PvP
-version: 1.0
+version: 1.0.1-35bdbf5
 author: uni
 main: br.com.plutomc.pvp.arena.GameMain
 softdepend: [ProtocolLib]
