@@ -11,12 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerPortalEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.*;
 
 public class PlayerListener implements Listener {
    @EventHandler(
@@ -39,7 +34,7 @@ public class PlayerListener implements Listener {
    }
 
    @EventHandler
-   public void onPlayerVelocity(Player event) {
+   public void onPlayerVelocity(PlayerVelocityEvent event) {
       StormCore.getInstance().ignore(event.getPlayer(), 0.5);
    }
 

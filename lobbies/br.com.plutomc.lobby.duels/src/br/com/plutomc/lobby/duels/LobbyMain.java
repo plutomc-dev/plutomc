@@ -78,7 +78,8 @@ public class LobbyMain extends CoreMain {
                 Arrays.asList(
                         ServerType.DUELS_SCRIM
                 ),
-                "§bScrim");
+                "§bScrim 1v1");
+
 
     }
 

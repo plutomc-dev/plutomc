@@ -30,8 +30,8 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
 public class ServerListener implements Listener {
-   private static final String MOTD_HEADER = StringFormat.centerString("§b§l§oPLUTO§f§l§oMC §b» §a[1.7 - 1.19]", 127);
-   private static final String MOTD_FOOTER = StringFormat.centerString("§6§lNOVIDADES: §evenha conferir!", 127);
+   private static final String MOTD_HEADER = StringFormat.centerString("§b§lPLUTO §7» §aloja.plutomc.com.br", 127);
+   private static final String MOTD_FOOTER = StringFormat.centerString("§6§lVENHA JOGAR §B§LBEDWARS", 127);
    private static final String MAINTENANCE_FOOTER = StringFormat.centerString("§cO servidor está em manutenção.", 127);
    private static final String SERVER_NOT_FOUND = StringFormat.centerString("§cServidor inserido não existe.");
    private Set<UUID> playerUpdateSet = new HashSet<>();

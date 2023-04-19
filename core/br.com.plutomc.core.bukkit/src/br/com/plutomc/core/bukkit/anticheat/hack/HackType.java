@@ -8,7 +8,8 @@ public enum HackType {
    AUTOCLICK(20),
    MACRO(20),
    REACH(100),
-   GLIDE(15, true);
+   GLIDE(15, true),
+   VELOCITY(100);
 
    private int maxAlerts;
    private boolean permanent;
