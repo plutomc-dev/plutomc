@@ -107,9 +107,7 @@ public class GameListener implements Listener {
             Player damager = (Player)event.getDamager();
             Entity entity = event.getEntity();
 
-            entity.setVelocity(damager.getLocation().getDirection().setY(0).normalize().multiply(0.33));
-            entity.setVelocity(damager.getLocation().getDirection().setX(0).normalize().multiply(0.33));
-
+            
         }
     }
 

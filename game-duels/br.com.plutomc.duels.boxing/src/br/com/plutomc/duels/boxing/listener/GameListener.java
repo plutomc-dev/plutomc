@@ -5,17 +5,16 @@ import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.member.status.Status;
 import br.com.plutomc.core.common.member.status.StatusType;
 import br.com.plutomc.core.common.member.status.types.BoxingCategory;
-import br.com.plutomc.core.common.member.status.types.GappleCategory;
 import br.com.plutomc.core.common.server.ServerType;
 import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
 import br.com.plutomc.duels.boxing.GameConst;
 import br.com.plutomc.duels.boxing.GameMain;
 import br.com.plutomc.duels.boxing.event.PlayerHitPlayerEvent;
-import br.com.plutomc.duels.boxing.event.PlayerWinEvent;
-import br.com.plutomc.duels.engine.GameAPI;
 import br.com.plutomc.duels.boxing.event.PlayerKillPlayerEvent;
 import br.com.plutomc.duels.boxing.event.PlayerLostEvent;
+import br.com.plutomc.duels.boxing.event.PlayerWinEvent;
 import br.com.plutomc.duels.boxing.gamer.Gamer;
+import br.com.plutomc.duels.engine.GameAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -114,8 +113,6 @@ public class GameListener implements Listener {
             Player damager = (Player)event.getDamager();
             Entity entity = event.getEntity();
 
-            entity.setVelocity(damager.getLocation().getDirection().setY(0).normalize().multiply(0.33));
-            entity.setVelocity(damager.getLocation().getDirection().setX(0).normalize().multiply(0.33));
 
         }
 

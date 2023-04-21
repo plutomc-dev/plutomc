@@ -3,18 +3,23 @@ package br.com.plutomc.duels.engine;
 import br.com.plutomc.core.bukkit.BukkitCommon;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
-import br.com.plutomc.duels.engine.scheduler.Scheduler;
 import br.com.plutomc.duels.engine.backend.GamerData;
 import br.com.plutomc.duels.engine.backend.impl.GamerDataImpl;
 import br.com.plutomc.duels.engine.event.GameStateChangeEvent;
 import br.com.plutomc.duels.engine.gamer.Gamer;
+import br.com.plutomc.duels.engine.listener.GameplayListener;
 import br.com.plutomc.duels.engine.listener.GamerListener;
 import br.com.plutomc.duels.engine.listener.SchedulerListener;
 import br.com.plutomc.duels.engine.manager.GamerManager;
 import br.com.plutomc.duels.engine.manager.SchedulerManager;
+import br.com.plutomc.duels.engine.scheduler.Scheduler;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.util.Vector;
+
+import java.util.HashMap;
 
 public abstract class GameAPI extends BukkitCommon {
    private static GameAPI instance;
@@ -26,6 +31,14 @@ public abstract class GameAPI extends BukkitCommon {
    private boolean timer;
    private boolean consoleControl = true;
    private GamerData gamerData;
+
+   public static double knockbackHorizontal = 0.35D;
+   public static double knockbackVertical = 0.35D;
+   public static double knockbackVerticalLimit = 0.4D;
+   public static double knockbackExtraHorizontal = 0.425D;
+   public static double knockbackExtraVertical = 0.085D;
+   public static HashMap<Player, Vector> playerKnockbackHashMap = new HashMap<>();
+
 
    @Override
    public void onLoad() {
@@ -41,6 +54,10 @@ public abstract class GameAPI extends BukkitCommon {
       this.gamerManager = new GamerManager();
       this.schedulerManager = new SchedulerManager();
       this.gamerData = new GamerDataImpl();
+
+      Bukkit.getScheduler().runTaskTimer(this, playerKnockbackHashMap::clear, 1, 1);
+
+      Bukkit.getPluginManager().registerEvents(new GameplayListener(), this);
       Bukkit.getPluginManager().registerEvents(new GamerListener(), this);
       Bukkit.getPluginManager().registerEvents(new SchedulerListener(), this);
    }
