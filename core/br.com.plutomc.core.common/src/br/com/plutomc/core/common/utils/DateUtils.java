@@ -1,12 +1,13 @@
 package br.com.plutomc.core.common.utils;
 
+import br.com.plutomc.core.common.language.Language;
+
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import br.com.plutomc.core.common.language.Language;
 
 public class DateUtils {
    public static String getTime(Language language, long expire) {
@@ -17,6 +18,15 @@ public class DateUtils {
 
       return string.trim();
    }
+
+   public static String getTime(long expire) {
+      String string = DateUtils.formatDifference(Language.PORTUGUESE, (expire - System.currentTimeMillis()) / 1000L);
+      if (string == null || string.isEmpty()) {
+         string = "0 segundo";
+      }
+      return string.trim();
+   }
+
 
    public static String formatTime(long time, DecimalFormat decimalFormat) {
       double seconds = (double)(time - System.currentTimeMillis()) / 1000.0;

@@ -46,7 +46,7 @@ public class ModeratorCommand implements CommandClass {
 		try {
 			time = DateUtils.getTime(args[0]);
 		} catch (Exception e) {
-			sender.sendMessage(" §4» §fSintaxe de tempo inválido.");
+			sender.sendMessage("§cSintaxe de tempo inválido.");
 			return;
 		}
 

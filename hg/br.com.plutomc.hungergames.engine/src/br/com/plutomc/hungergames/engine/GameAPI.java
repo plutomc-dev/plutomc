@@ -75,7 +75,7 @@ public abstract class GameAPI extends BukkitCommon {
 		teamManager = new TeamManager();
 
 		Bukkit.getPluginManager().registerEvents(new ScheduleListener(), this);
-		BukkitCommandFramework.INSTANCE.loadCommands("br.com.wisemc.gameapi.command");
+		BukkitCommandFramework.INSTANCE.loadCommands("br.com.plutomc.hungergames.engine.command");
 
 		CommonPlugin.getInstance().debug("GameAPI started successfully!");
 	}
