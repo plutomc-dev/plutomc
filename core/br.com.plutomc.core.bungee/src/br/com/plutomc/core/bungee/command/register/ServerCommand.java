@@ -56,7 +56,7 @@ public class ServerCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length <= 1) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player> <reason>§a para reportar um jogador.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <player> <reason>§e para reportar um jogador.");
       } else {
          Member target = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[0]);
          if (target == null) {
@@ -188,10 +188,10 @@ public class ServerCommand implements CommandClass {
       String[] args = cmdArgs.getArgs();
       CommandSender sender = cmdArgs.getSender();
       if (args.length == 0) {
-         sender.sendMessage("§aUse /" + cmdArgs.getLabel() + " <on:off> <time> para ativar ou desativar a whitelist global.");
-         sender.sendMessage("§aUse /" + cmdArgs.getLabel() + " add <player> para adicionar alguem a whitelist.");
-         sender.sendMessage("§aUse /" + cmdArgs.getLabel() + " remove <player> para remover alguem da whitelist.");
-         sender.sendMessage("§aUse /" + cmdArgs.getLabel() + " group <beta:staff:group> para definir qual grupo irá entrar no servidor.");
+         sender.sendMessage("§eUse /" + cmdArgs.getLabel() + " <on:off> <time> para ativar ou desativar a whitelist global.");
+         sender.sendMessage("§eUse /" + cmdArgs.getLabel() + " add <player> para adicionar alguem a whitelist.");
+         sender.sendMessage("§eUse /" + cmdArgs.getLabel() + " remove <player> para remover alguem da whitelist.");
+         sender.sendMessage("§eUse /" + cmdArgs.getLabel() + " group <beta:staff:group> para definir qual grupo irá entrar no servidor.");
       } else {
          String var4 = args[0].toLowerCase();
          switch(var4) {
@@ -216,7 +216,7 @@ public class ServerCommand implements CommandClass {
                break;
             case "add":
                if (args.length == 1) {
-                  sender.sendMessage("§aUse /" + cmdArgs.getLabel() + " add <player> para adicionar alguem a whitelist.");
+                  sender.sendMessage("§eUse /" + cmdArgs.getLabel() + " add <player> para adicionar alguem a whitelist.");
                } else {
                   Member member = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[1]);
                   if (member == null) {
@@ -233,7 +233,7 @@ public class ServerCommand implements CommandClass {
                break;
             case "remove":
                if (args.length == 1) {
-                  sender.sendMessage("§aUse /" + cmdArgs.getLabel() + " remove <player> para remover alguem da whitelist.");
+                  sender.sendMessage("§eUse /" + cmdArgs.getLabel() + " remove <player> para remover alguem da whitelist.");
                } else {
                   Member member = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[1]);
                   if (member == null) {

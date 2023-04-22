@@ -409,7 +409,7 @@ public class ServerCommand implements CommandClass {
       String[] args = cmdArgs.getArgs();
       BukkitMember member = (BukkitMember)cmdArgs.getSender();
       if (args.length == 0) {
-         member.sendMessage("§aUse /" + cmdArgs.getLabel() + " <locationName> para salvar a localização.");
+         member.sendMessage("§eUse /" + cmdArgs.getLabel() + " <locationName> para salvar a localização.");
       } else {
          String string = Joiner.on(' ').join(Arrays.copyOfRange(args, 0, args.length)).toLowerCase();
          member.sendMessage("§aLocalização " + args[0] + " com sucesso!");

@@ -2,16 +2,9 @@ package br.com.plutomc.core.bukkit.command.register;
 
 import br.com.plutomc.core.bukkit.BukkitCommon;
 import br.com.plutomc.core.bukkit.manager.ChatManager;
-import com.google.common.base.Joiner;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.OptionalInt;
-import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.bukkit.member.BukkitMember;
 import br.com.plutomc.core.bukkit.menu.group.MemberGroupListInventory;
+import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.command.CommandArgs;
 import br.com.plutomc.core.common.command.CommandClass;
 import br.com.plutomc.core.common.command.CommandFramework;
@@ -24,9 +17,13 @@ import br.com.plutomc.core.common.utils.DateUtils;
 import br.com.plutomc.core.common.utils.string.MessageBuilder;
 import br.com.plutomc.core.common.utils.string.StringFormat;
 import br.com.plutomc.core.common.utils.supertype.OptionalBoolean;
+import com.google.common.base.Joiner;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.lang.reflect.Field;
+import java.util.*;
 
 public class GroupCommand implements CommandClass {
    @CommandFramework.Command(
@@ -37,18 +34,18 @@ public class GroupCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§eUse §a/group info§e para ver as informações do seu grupo.");
-         sender.sendMessage("§eUse §a/group info <group>§e para ver as informações do grupo.");
-         sender.sendMessage("§eUse §a/group playerlist <group>§e para ver as informações do grupo.");
-         sender.sendMessage("§eUse §a/group list§e para listar os grupos.");
+         sender.sendMessage("§eUse §b/group info§e para ver as informações do seu grupo.");
+         sender.sendMessage("§eUse §b/group info <group>§e para ver as informações do grupo.");
+         sender.sendMessage("§eUse §b/group playerlist <group>§e para ver as informações do grupo.");
+         sender.sendMessage("§eUse §b/group list§e para listar os grupos.");
          sender.sendMessage("");
-         sender.sendMessage("§eUse §a/group <player> add <group>§e para adicionar um grupo a alguém.");
-         sender.sendMessage("§eUse §a/group <player> remove <group>§e para remover um grupo de alguém.");
-         sender.sendMessage("§eUse §a/group <player> set <group>§e para setar um grupo a alguém.");
+         sender.sendMessage("§eUse §b/group <player> add <group>§e para adicionar um grupo a alguém.");
+         sender.sendMessage("§eUse §b/group <player> remove <group>§e para remover um grupo de alguém.");
+         sender.sendMessage("§eUse §b/group <player> set <group>§e para setar um grupo a alguém.");
          sender.sendMessage("");
-         sender.sendMessage("§eUse §a/group create <groupName>§e para criar um grupo.");
-         sender.sendMessage("§eUse §a/group manager <groupName>§e para gerenciar um grupo.");
-         sender.sendMessage("§eUse §a/group delete <groupName>§e para deletar um grupo.");
+         sender.sendMessage("§eUse §b/group create <groupName>§e para criar um grupo.");
+         sender.sendMessage("§eUse §b/group manager <groupName>§e para gerenciar um grupo.");
+         sender.sendMessage("§eUse §b/group delete <groupName>§e para deletar um grupo.");
       } else {
          String var4 = args[0].toLowerCase();
          switch(var4) {
@@ -136,13 +133,13 @@ public class GroupCommand implements CommandClass {
                if (args.length <= 2) {
                   group = cmdArgs.getSenderAsMember().getServerGroup();
                   sender.sendMessage(
-                     "§eUse §a/"
+                     "§eUse §b/"
                         + cmdArgs.getLabel()
                         + " "
                         + Joiner.on(' ').join(args)
                         + " <add:remove> <permission>§e para adicionar ou remove uma permissão do grupo."
                   );
-                  sender.sendMessage("§eUse §a/" + cmdArgs.getLabel() + " " + Joiner.on(' ').join(args) + " list§e para listar as permissões do grupo.");
+                  sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " " + Joiner.on(' ').join(args) + " list§e para listar as permissões do grupo.");
                   return;
                }
 
@@ -155,7 +152,7 @@ public class GroupCommand implements CommandClass {
                if (args.length <= 3) {
                   if (!args[2].equalsIgnoreCase("list")) {
                      group = cmdArgs.getSenderAsMember().getServerGroup();
-                     sender.sendMessage("§eUse §a/" + cmdArgs.getLabel() + " " + Joiner.on(' ').join(args) + " <permission>§e para adicionar ou remove r");
+                     sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " " + Joiner.on(' ').join(args) + " <permission>§e para adicionar ou remove r");
                      return;
                   }
 
@@ -196,7 +193,7 @@ public class GroupCommand implements CommandClass {
                }
 
                if (args.length == 1) {
-                  sender.sendMessage("§eUse §a/group create <group>§e para criar um grupo.");
+                  sender.sendMessage("§eUse §b/group create <group>§e para criar um grupo.");
                } else {
                   String groupName = args[1];
                   ChatManager.Callback confirm = (cancel, answers) -> {
@@ -266,7 +263,7 @@ public class GroupCommand implements CommandClass {
                break;
             case "createtag":
                if (args.length == 1) {
-                  sender.sendMessage("§eUse §a/group createtag <group>§e para criar um grupo.");
+                  sender.sendMessage("§eUse §b/group createtag <group>§e para criar um grupo.");
                } else {
                   String tagName = args[1];
                   ChatManager.Callback confirm = (cancel, answers) -> {
@@ -384,9 +381,9 @@ public class GroupCommand implements CommandClass {
                }
 
                if (args.length == 2) {
-                  sender.sendMessage("§eUse §a/group " + member.getPlayerName() + " add <group>§e para adicionar um grupo a alguém.");
-                  sender.sendMessage("§eUse §a/group " + member.getPlayerName() + " remove <group>§e para remover um grupo de alguém.");
-                  sender.sendMessage("§eUse §a/group " + member.getPlayerName() + " set <group>§e para setar um grupo a alguém.");
+                  sender.sendMessage("§eUse §b/group " + member.getPlayerName() + " add <group>§e para adicionar um grupo a alguém.");
+                  sender.sendMessage("§eUse §b/group " + member.getPlayerName() + " remove <group>§e para remover um grupo de alguém.");
+                  sender.sendMessage("§eUse §b/group " + member.getPlayerName() + " set <group>§e para setar um grupo a alguém.");
                   return;
                }
 
@@ -442,9 +439,9 @@ public class GroupCommand implements CommandClass {
                      );
                      break;
                   default:
-                     sender.sendMessage("§eUse §a/group <player> add <group>§e para adicionar um grupo a alguém.");
-                     sender.sendMessage("§eUse §a/group <player> remove <group>§e para remover um grupo de alguém.");
-                     sender.sendMessage("§eUse §a/group <player> set <group>§e para setar um grupo a alguém.");
+                     sender.sendMessage("§eUse §b/group <player> add <group>§e para adicionar um grupo a alguém.");
+                     sender.sendMessage("§eUse §b/group <player> remove <group>§e para remover um grupo de alguém.");
+                     sender.sendMessage("§eUse §b/group <player> set <group>§e para setar um grupo a alguém.");
                }
          }
       }

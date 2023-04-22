@@ -46,7 +46,7 @@ public class ServerCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <radius>§a para alterar o raio de proteção do spawn.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <radius>§e para alterar o raio de proteção do spawn.");
       } else {
          Double integer = null;
 

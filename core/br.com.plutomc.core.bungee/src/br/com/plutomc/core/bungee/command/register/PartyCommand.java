@@ -32,7 +32,7 @@ public class PartyCommand implements CommandClass {
       Member sender = (Member)cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <mensagem>§a para mandar uma mensagem na party.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <mensagem>§e para mandar uma mensagem na party.");
       } else if (sender.getParty() == null) {
          sender.sendMessage("§cVocê não está em uma party.");
       } else {
@@ -48,15 +48,15 @@ public class PartyCommand implements CommandClass {
       Member sender = (Member)cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <disband/acabar>§a para acabar com sua party.");
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " convidar <player>§a para convidar algum jogador para sua party.");
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " expulsar <player>§a para expulsar alguém da sua party.");
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " abrir <máximo de players>§a para abrir sua party para uma quantidade de pessoas.");
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " fechar§a para fechar sua party.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <disband/acabar>§e para acabar com sua party.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " convidar <player>§e para convidar algum jogador para sua party.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " expulsar <player>§e para expulsar alguém da sua party.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " abrir <máximo de players>§e para abrir sua party para uma quantidade de pessoas.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " fechar§e para fechar sua party.");
          sender.sendMessage("");
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " aceitar <player>§a para aceitar um convite de party.");
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " entrar <player>§a para entrar numa party pública.");
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " sair§a para sair de uma party.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " aceitar <player>§e para aceitar um convite de party.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " entrar <player>§e para entrar numa party pública.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " sair§e para sair de uma party.");
       } else {
          String var4 = args[0].toLowerCase();
          switch(var4) {
@@ -98,7 +98,7 @@ public class PartyCommand implements CommandClass {
                break;
             case "entrar":
                if (args.length < 2) {
-                  sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " entrar <player>§a para entrar numa party pública.");
+                  sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " entrar <player>§e para entrar numa party pública.");
                   return;
                }
 
@@ -159,7 +159,7 @@ public class PartyCommand implements CommandClass {
                }
 
                if (args.length == 2) {
-                  sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " expulsar <player>§a para expulsar alguém da sua party.");
+                  sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " expulsar <player>§e para expulsar alguém da sua party.");
                   return;
                }
 
@@ -228,7 +228,7 @@ public class PartyCommand implements CommandClass {
                PartyManager.InviteInfo inviteInfo;
                if (args.length >= 2) {
                   if (CommonPlugin.getInstance().getPartyManager().getPartyInvitesMap().get(sender.getUniqueId()).size() > 1) {
-                     sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " aceitar <player>§a para aceitar um convite de party.");
+                     sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " aceitar <player>§e para aceitar um convite de party.");
                      return;
                   }
 
@@ -278,7 +278,7 @@ public class PartyCommand implements CommandClass {
             default:
                boolean inviteArg = args[0].equalsIgnoreCase("convidar") || args[0].equalsIgnoreCase("invite");
                if (inviteArg && args.length <= 1) {
-                  sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " convidar <player>§a para convidar algum jogador para sua party.");
+                  sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " convidar <player>§e para convidar algum jogador para sua party.");
                   return;
                }
 
@@ -330,7 +330,7 @@ public class PartyCommand implements CommandClass {
                           .setHoverEvent("§aClique aqui para aceitar o convite.")
                           .setClickEvent("/party aceitar " + sender.getPlayerName())
                           .create(),
-                       new MessageBuilder("§a para aceitar o convite da party.").create());
+                       new MessageBuilder("§e para aceitar o convite da party.").create());
          }
       }
    }

@@ -74,7 +74,7 @@ public class BuildCommand implements CommandClass {
          Player player = ((BukkitMember)cmdArgs.getSender()).getPlayer();
          String[] args = cmdArgs.getArgs();
          if (args.length == 0) {
-            player.sendMessage(" §aUse §a/set <material:id>§a para setar um bloco.");
+            player.sendMessage(" §eUse §b/set <material:id>§e para setar um bloco.");
          } else {
             Material blockMaterial = null;
             byte blockId = 0;

@@ -152,7 +152,7 @@ public class ModeradorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " remove <index> §apara remover.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " remove <index> §apara remover.");
       } else {
          OptionalInt integer = StringFormat.parseInt(args[0]);
          if (integer.isPresent()) {
@@ -180,7 +180,7 @@ public class ModeradorCommand implements CommandClass {
          BungeeMain.getInstance().addMessage(message.replace('&', '§'));
          sender.sendMessage("§a" + message.replace('&', '§') + " §aadicionada com sucesso.");
       } else {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <message>§a ");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <message>§e ");
 
          for(int i = 1; i <= BungeeMain.getInstance().getMessages().size(); ++i) {
             sender.sendMessage("  §a" + i + "° §a" + (String)BungeeMain.getInstance().getMessages().get(i - 1));
@@ -290,7 +290,7 @@ public class ModeradorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <message>§a para enviar uma mensagem no servidor.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <message>§e para enviar uma mensagem no servidor.");
       } else {
          String message = Joiner.on(' ').join(args).replace('&', '§');
          ProxyServer.getInstance().broadcast("");
@@ -408,7 +408,7 @@ public class ModeradorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para saber aonde um jogador está.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <player>§e para saber aonde um jogador está.");
       } else {
          String playerName = args[0];
          ProxiedPlayer target = ProxyServer.getInstance().getPlayer(playerName);
@@ -434,7 +434,7 @@ public class ModeradorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para ir até um jogador.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <player>§e para ir até um jogador.");
       } else {
          String playerName = args[0];
          ProxiedPlayer target = ProxyServer.getInstance().getPlayer(playerName);
@@ -478,7 +478,7 @@ public class ModeradorCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length <= 1) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player:current:all> <serverId:serverType>§a para enviar um jogador para uma sala.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <player:current:all> <serverId:serverType>§e para enviar um jogador para uma sala.");
       } else {
          List<ProxiedPlayer> playerList = new ArrayList();
          if (args[0].equalsIgnoreCase("all")) {

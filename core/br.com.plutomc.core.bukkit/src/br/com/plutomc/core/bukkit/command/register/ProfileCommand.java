@@ -52,7 +52,7 @@ public class ProfileCommand implements CommandClass {
       Member sender = cmdArgs.getSenderAsMember();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para bloquear um jogador.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <player>§e para bloquear um jogador.");
       } else {
          Member target = CommonPlugin.getInstance().getMemberManager().getMemberByName(cmdArgs.getArgs()[0]);
          if (target == null) {
@@ -80,7 +80,7 @@ public class ProfileCommand implements CommandClass {
       Member sender = cmdArgs.getSenderAsMember();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para desbloquear um jogador.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <player>§e para desbloquear um jogador.");
       } else {
          Member target = CommonPlugin.getInstance().getMemberManager().getMemberByName(cmdArgs.getArgs()[0]);
          if (target == null) {
@@ -116,7 +116,7 @@ public class ProfileCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length <= 1) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player> <message>§a para enviar uma mensagem para um jogador.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <player> <message>§e para enviar uma mensagem para um jogador.");
       } else {
          String var4 = args[0].toLowerCase();
          switch(var4) {
@@ -178,7 +178,7 @@ public class ProfileCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <message>§a para enviar uma mensagem para um jogador.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <message>§e para enviar uma mensagem para um jogador.");
       } else if (!sender.hasReply()) {
          sender.sendMessage("§cVocê não possui mensagem para responder.");
       } else {
@@ -240,7 +240,7 @@ public class ProfileCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       Member member = cmdArgs.isPlayer() ? cmdArgs.getSenderAsMember() : null;
       if (!cmdArgs.isPlayer() && cmdArgs.getArgs().length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para ver o perfil de alguém.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <player>§e para ver o perfil de alguém.");
       } else {
          if (cmdArgs.getArgs().length >= 1) {
             if (!sender.hasPermission("command.admin")) {
@@ -504,7 +504,7 @@ public class ProfileCommand implements CommandClass {
       BukkitMember sender = cmdArgs.getSenderAsMember(BukkitMember.class);
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <player>§a para alterar sua skin.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <player>§e para alterar sua skin.");
       } else if (sender.hasCooldown("fake.command") && !sender.hasPermission("command.admin")) {
          sender.sendMessage("§cVocê precisa esperar " + sender.getCooldownFormatted("fake.command") + " para usar eses comando novamente.");
       } else {

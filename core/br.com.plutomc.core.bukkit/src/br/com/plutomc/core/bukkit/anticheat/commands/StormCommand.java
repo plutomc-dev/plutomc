@@ -29,7 +29,7 @@ public class StormCommand implements CommandClass {
          switch(var4) {
             case "forcefield":
                if (args.length == 1) {
-                  sender.sendMessage("§eUse §a/" + cmdArgs.getLabel() + " forcefield <player> §epara testar o forcefield.");
+                  sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " forcefield <player> §apara testar o forcefield.");
                   return;
                }
 
@@ -75,7 +75,7 @@ public class StormCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §e/" + cmdArgs.getLabel() + " <player>§a para remover o autoban de um player.");
+         sender.sendMessage("§eUse §e/" + cmdArgs.getLabel() + " <player>§e para remover o autoban de um player.");
       } else {
          BukkitMember member = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[0], BukkitMember.class);
          if (member == null) {
@@ -95,7 +95,7 @@ public class StormCommand implements CommandClass {
       CommandSender sender = cmdArgs.getSender();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §e/" + cmdArgs.getLabel() + " <player>§a para remover o autoban de um player.");
+         sender.sendMessage("§eUse §e/" + cmdArgs.getLabel() + " <player>§e para remover o autoban de um player.");
       } else {
          BukkitMember member = CommonPlugin.getInstance().getMemberManager().getMemberByName(args[0], BukkitMember.class);
          if (member == null) {
@@ -111,8 +111,8 @@ public class StormCommand implements CommandClass {
    }
 
    private void handleUsage(CommandSender sender, String label) {
-      sender.sendMessage("§eUse §a/" + label + " forcefield <player> @optional:invisible<true:false> §epara testar o forcefield.");
-      sender.sendMessage("§eUse §a/" + label + " autosoup <player> §epara testar o auto-soup.");
-      sender.sendMessage("§eUse §a/" + label + " autoclick <player> §epara testar o autoclick.");
+      sender.sendMessage("§eUse §b/" + label + " forcefield <player> @optional:invisible<true:false> §epara testar o forcefield.");
+      sender.sendMessage("§eUse §b/" + label + " autosoup <player> §epara testar o auto-soup.");
+      sender.sendMessage("§eUse §b/" + label + " autoclick <player> §epara testar o autoclick.");
    }
 }

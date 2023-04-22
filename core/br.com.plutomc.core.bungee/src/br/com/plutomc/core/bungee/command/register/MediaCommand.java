@@ -18,7 +18,7 @@ public class MediaCommand implements CommandClass {
       Member sender = cmdArgs.getSenderAsMember();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <youtube>§a para alterar seu link do youtube.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <youtube>§e para alterar seu link do youtube.");
       } else {
          String youtubeLink = args[0];
          sender.setYoutubeUrl(youtubeLink);
@@ -33,7 +33,7 @@ public class MediaCommand implements CommandClass {
       Member sender = cmdArgs.getSenderAsMember();
       String[] args = cmdArgs.getArgs();
       if (args.length == 0) {
-         sender.sendMessage("§aUse §a/" + cmdArgs.getLabel() + " <twitch>§a para alterar seu link da twitch.");
+         sender.sendMessage("§eUse §b/" + cmdArgs.getLabel() + " <twitch>§e para alterar seu link da twitch.");
       } else {
          String twitchUrl = args[0];
          if (!twitchUrl.toLowerCase().contains("twitch.tv")) {
