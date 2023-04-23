@@ -1,6 +1,5 @@
 package br.com.plutomc.hungergames.main.ability.types;
 
-import br.com.plutomc.hungergames.main.ability.AbilityImpl;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -9,6 +8,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 
 import br.com.plutomc.core.bukkit.utils.item.ItemBuilder;
+import br.com.plutomc.hungergames.main.ability.AbilityImpl;
 
 public class LumberjackAbility extends AbilityImpl {
 

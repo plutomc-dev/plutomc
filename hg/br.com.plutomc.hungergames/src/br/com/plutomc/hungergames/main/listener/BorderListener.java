@@ -1,5 +1,6 @@
 package br.com.plutomc.hungergames.main.listener;
 
+import br.com.plutomc.hungergames.main.HardcoreMain;
 import br.com.plutomc.hungergames.main.event.GameStageChangeEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -20,10 +21,9 @@ public class BorderListener implements Listener {
 	public BorderListener() {
 		World world = Bukkit.getWorlds().stream().findFirst().orElse(null);
 
-		world.getWorldBorder().setSize(1000);
+		world.getWorldBorder().setSize(HardcoreMain.getInstance().getBorderMax());
 		world.getWorldBorder().setCenter(0, 0);
 	}
-
 	@EventHandler
 	public void onUpdate(UpdateEvent event) {
 		if (event.getType() == UpdateType.SECOND)

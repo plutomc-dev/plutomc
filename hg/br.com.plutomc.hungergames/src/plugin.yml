@@ -1,0 +1,6 @@
+name: HungerGames
+main: br.com.plutomc.hungergames.main.HardcoreMain
+version: 1.0.0-SNAPSHOT
+description: HG Bukkit Plugin based on core-common, core-bukkit and game-engine
+author: Hover Solutions
+website: www.plutomc.com.br

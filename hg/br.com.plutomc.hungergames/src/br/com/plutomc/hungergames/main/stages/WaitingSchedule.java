@@ -2,6 +2,8 @@ package br.com.plutomc.hungergames.main.stages;
 
 import br.com.plutomc.core.bukkit.member.BukkitMember;
 import br.com.plutomc.core.bukkit.utils.item.ActionItemStack;
+import br.com.plutomc.core.bukkit.utils.item.ActionItemStack.ActionType;
+import br.com.plutomc.core.bukkit.utils.item.ActionItemStack.Interact;
 import br.com.plutomc.core.bukkit.utils.item.ItemBuilder;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
@@ -10,6 +12,7 @@ import br.com.plutomc.hungergames.engine.GameAPI;
 import br.com.plutomc.hungergames.engine.game.Ability;
 import br.com.plutomc.hungergames.engine.game.Schedule;
 import br.com.plutomc.hungergames.engine.gamer.Gamer;
+import br.com.plutomc.hungergames.main.HardcoreMain;
 import br.com.plutomc.hungergames.main.event.GameChangeTypeEvent;
 import br.com.plutomc.hungergames.main.inventory.DiaryInventory;
 import br.com.plutomc.hungergames.main.inventory.SelectorInventory;
@@ -36,34 +39,33 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class WaitingSchedule implements Schedule {
 
 	private static final ActionItemStack SELECTOR = new ActionItemStack(
-			new ItemBuilder().name("§aSelecionar kit").type(Material.CHEST).build(), new ActionItemStack.Interact() {
+			new ItemBuilder().name("§aSelecionar kit").type(Material.CHEST).build(), new Interact() {
 
 				@Override
 				public boolean onInteract(Player player, Entity entity, Block block, ItemStack item,
-						ActionItemStack.ActionType action) {
+						ActionType action) {
 					new SelectorInventory(player, 1, 1);
 					return false;
 				}
 			});
 
 	private static final ActionItemStack SELECTOR_SECOND = new ActionItemStack(
-			new ItemBuilder().name("§aSelecionar kit 2").type(Material.CHEST).build(), new ActionItemStack.Interact() {
+			new ItemBuilder().name("§aSelecionar kit 2").type(Material.CHEST).build(), new Interact() {
 
 				@Override
 				public boolean onInteract(Player player, Entity entity, Block block, ItemStack item,
-						ActionItemStack.ActionType action) {
+						ActionType action) {
 					new SelectorInventory(player, 2, 1);
 					return false;
 				}
 			});
-
 	
 	private static final ActionItemStack DIARY_KIT = new ActionItemStack(
-			new ItemBuilder().name("§aKit diário").type(Material.STORAGE_MINECART).build(), new ActionItemStack.Interact() {
+			new ItemBuilder().name("§aKit diário").type(Material.STORAGE_MINECART).build(), new Interact() {
 
 				@Override
 				public boolean onInteract(Player player, Entity entity, Block block, ItemStack item,
-						ActionItemStack.ActionType action) {
+						ActionType action) {
 					new DiaryInventory(player);
 					return false;
 				}
@@ -100,14 +102,13 @@ public class WaitingSchedule implements Schedule {
 		Gamer gamer = GameAPI.getInstance().getGamerManager().getGamer(player.getUniqueId());
 
 		loadInventoryForPlayer(player);
-		updateMinimumPlayers(5);
+		updateMinimumPlayers(HardcoreMain.getInstance().getMinimunPlayers());
 
 		player.teleport(GameAPI.getInstance().getLocationManager().getLocation("spawn"));
 		gamer.setPlaying(true);
 		
 		GameHelper.loadDefaulKit(player);
 	}
-
 	@EventHandler
 	public void onGameChangeType(GameChangeTypeEvent event) {
 		new BukkitRunnable() {
@@ -255,7 +256,7 @@ public class WaitingSchedule implements Schedule {
 
 		player.getInventory().addItem(SELECTOR.getItemStack());
 		
-		if (GameAPI.getInstance().getMaxAbilities() > 1)
+		if (HardcoreMain.getInstance().getMaxAbilities() > 1)
 			player.getInventory().addItem(SELECTOR_SECOND.getItemStack());
 		
 		player.getInventory().setItem(4, DIARY_KIT.getItemStack());

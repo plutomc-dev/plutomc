@@ -63,7 +63,7 @@ public class AbilityListener implements Listener {
 		Gamer gamer = event.getGamer();
 
 		if (GameHelper.isPriviligiedTime()) {
-			if (gamer.hasAbility(event.getAbilityId()) || !CommonPlugin.getInstance().getMemberManager().getMember(gamer.getUniqueId()).hasGroup("vip")) {
+			if (gamer.hasAbility(event.getAbilityId()) || !CommonPlugin.getInstance().getMemberManager().getMember(event.getGamer().getUniqueId()).hasGroup("vip")) {
 				event.getPlayer().sendMessage("§cO jogo já iniciou!");
 				event.setCancelled(true);
 				return;

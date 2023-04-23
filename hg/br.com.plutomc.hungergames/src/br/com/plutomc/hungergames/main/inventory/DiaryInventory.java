@@ -43,18 +43,6 @@ public class DiaryInventory {
 					});
 		}
 
-		/*menuInventory.setItem(35, new ItemBuilder().name("§aNova rotação").type(Material.GOLD_INGOT).lore(
-				"\n§7Caso você queira uma nova rotação de 3 kits diários pelo custo de §6500 coins§7.\n\n§aClique para selecionar.")
-				.build(), (p, inv, type, stack, slot) -> {
-					if (member.getCoins() > 500) {
-						gamer.randomDiary();
-						member.removeCoins(500);
-						new DiaryInventory(player);
-					} else {
-						p.closeInventory();
-						p.sendMessage("§cVocê não possui coins o suficiente para isso.");
-					}
-				}); */
 
 		if (gamer.getDiaryExpire() > System.currentTimeMillis()) {
 			player.sendMessage("§cVocê precisa esperar mais " + DateUtils.getTime(gamer.getDiaryExpire())

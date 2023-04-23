@@ -57,7 +57,7 @@ public class ModeratorCommand implements CommandClass {
 		sender.sendMessage(abilityList.size() == 1
 				? enabled ? "§aO kit " + abilities + " foi ativado!" : "§cO kit " + abilities + " foi desativado!"
 				: enabled ? "§aOs kits " + abilities + " foram ativados!"
-						: "§cOs kits " + abilities + " foram desativados!");
+				: "§cOs kits " + abilities + " foram desativados!");
 
 		for (Ability ability : abilityList) {
 			ability.setAbilityEnabled(enabled);
@@ -73,7 +73,7 @@ public class ModeratorCommand implements CommandClass {
 				}
 		}
 	}
-	
+
 	@Command(name = "forcekit", aliases = { "fkit" }, permission = "command.hg.forcekit")
 	public void forcekitCommand(CommandArgs cmdArgs) {
 		CommandSender sender = cmdArgs.getSender();
@@ -112,24 +112,24 @@ public class ModeratorCommand implements CommandClass {
 		try {
 			aId = Integer.valueOf(args[2]);
 
-			if (GameAPI.getInstance().getMaxAbilities() < aId)
-				aId = Math.min(GameAPI.getInstance().getMaxAbilities(), aId);
+			if (HardcoreMain.getInstance().getMaxAbilities() < aId)
+				aId = Math.min(HardcoreMain.getInstance().getMaxAbilities(), aId);
 		} catch (Exception ex) {
 			// foda-se
 		}
-		
+
 		final Integer abilityId = aId;
 
 		playerList.forEach(player -> GameHelper.selectAbility(
 				GameAPI.getInstance().getGamerManager().getGamer(player.getUniqueId()), ability, abilityId));
 		sender.sendMessage("§aVocê forçou o kit " + ability.getName() + " (" + abilityId + ") para "
 				+ (args[1].equalsIgnoreCase("all") ? "todos"
-						: Joiner.on(", ").join(playerList.stream().map(Player::getName).toArray(Player[]::new))));
+				: Joiner.on(", ").join(playerList.stream().map(Player::getName).toArray(Player[]::new))));
 		staffLog(
 				"O " + sender.getName() + " forçou o kit " + ability.getName() + " (" + abilityId + ") para "
 						+ (args[1].equalsIgnoreCase("all") ? "todos"
-								: Joiner.on(", ")
-										.join(playerList.stream().map(Player::getName).toArray(Player[]::new))));
+						: Joiner.on(", ")
+						.join(playerList.stream().map(Player::getName).toArray(Player[]::new))));
 	}
 
 	@Command(name = "simplekit", aliases = { "skit" }, permission = "command.hg.simplekit")
@@ -146,40 +146,40 @@ public class ModeratorCommand implements CommandClass {
 		}
 
 		switch (args[0].toLowerCase()) {
-		case "criar": {
-			if (args.length == 1) {
-				handleHelp(sender, cmdArgs.getLabel());
-			} else {
-				String kitName = args[1];
+			case "criar": {
+				if (args.length == 1) {
+					handleHelp(sender, cmdArgs.getLabel());
+				} else {
+					String kitName = args[1];
 
-				if (HardcoreMain.getInstance().getSimplekitManager().containsKey(kitName)) {
-					sender.sendMessage("§cO kit §c\"" + kitName + "\"§c já existe!");
-					break;
+					if (HardcoreMain.getInstance().getSimplekitManager().containsKey(kitName)) {
+						sender.sendMessage("§cO kit §c\"" + kitName + "\"§c já existe!");
+						break;
+					}
+
+					sender.sendMessage("§aVocê criou o kit §a\"" + kitName + "\"§a!");
+					HardcoreMain.getInstance().getSimplekitManager().loadSimplekit(kitName, new SimplekitManager.SimpleKit(kitName, sender));
+					staffLog("O " + sender.getName() + " criou o kit " + kitName + "");
 				}
-
-				sender.sendMessage("§aVocê criou o kit §a\"" + kitName + "\"§a!");
-				HardcoreMain.getInstance().getSimplekitManager().loadSimplekit(kitName, new SimplekitManager.SimpleKit(kitName, sender));
-				staffLog("O " + sender.getName() + " criou o kit " + kitName + "");
+				break;
 			}
-			break;
-		}
-		case "editar": {
-			if (args.length == 1) {
-				handleHelp(sender, cmdArgs.getLabel());
-			} else {
-				SimplekitManager.SimpleKit simpleKit = HardcoreMain.getInstance().getSimplekitManager().getSimplekit(args[1]);
+			case "editar": {
+				if (args.length == 1) {
+					handleHelp(sender, cmdArgs.getLabel());
+				} else {
+					SimplekitManager.SimpleKit simpleKit = HardcoreMain.getInstance().getSimplekitManager().getSimplekit(args[1]);
 
-				if (simpleKit == null) {
-					sender.sendMessage("§cO kit §c\"" + args[1] + "\"§c não existe!");
-					break;
+					if (simpleKit == null) {
+						sender.sendMessage("§cO kit §c\"" + args[1] + "\"§c não existe!");
+						break;
+					}
+
+					sender.sendMessage("§aVocê editou o kit §a\"" + simpleKit.getKitName() + "\"§a!");
+					simpleKit.updateKit(sender);
+					staffLog("O " + sender.getName() + " editou o kit " + simpleKit.getKitName() + "");
 				}
-
-				sender.sendMessage("§aVocê editou o kit §a\"" + simpleKit.getKitName() + "\"§a!");
-				simpleKit.updateKit(sender);
-				staffLog("O " + sender.getName() + " editou o kit " + simpleKit.getKitName() + "");
+				break;
 			}
-			break;
-		}
 //		case "default": {
 //			if (args.length == 1) {
 //				handleHelp(sender, cmdArgs.getLabel());
@@ -206,72 +206,72 @@ public class ModeratorCommand implements CommandClass {
 //			}
 //			break;
 //		}
-		case "list": {
-			sender.sendMessage("§aOs kits disponíveis são: "
-					+ (HardcoreMain.getInstance().getSimplekitManager().getStoreMap().values().isEmpty()
-							? "§cNenhum disponível"
-							: "§a" + Joiner.on(", ").join(HardcoreMain.getInstance().getSimplekitManager().getStoreMap()
-									.values().stream().map(SimplekitManager.SimpleKit::getKitName).collect(Collectors.toList()))));
-			break;
-		}
-		case "aplicar": {
-			if (args.length <= 2) {
-				handleHelp(sender, cmdArgs.getLabel());
-			} else {
-				SimplekitManager.SimpleKit simpleKit = HardcoreMain.getInstance().getSimplekitManager().getSimplekit(args[1]);
-
-				if (simpleKit == null) {
-					sender.sendMessage("§cO kit §c\"" + args[1] + "\"§c não existe!");
-					break;
-				}
-
-				if (args[2].equalsIgnoreCase("all")) {
-					Bukkit.getOnlinePlayers().forEach(player -> simpleKit.apply(player));
-					sender.sendMessage("§aKit " + simpleKit.getKitName() + " aplicado para todos os jogadores!");
-					staffLog("O " + sender.getName() + " aplicou o kit " + simpleKit.getKitName()
-							+ " em todos os jogadores");
+			case "list": {
+				sender.sendMessage("§aOs kits disponíveis são: "
+						+ (HardcoreMain.getInstance().getSimplekitManager().getStoreMap().values().isEmpty()
+						? "§cNenhum disponível"
+						: "§a" + Joiner.on(", ").join(HardcoreMain.getInstance().getSimplekitManager().getStoreMap()
+						.values().stream().map(SimplekitManager.SimpleKit::getKitName).collect(Collectors.toList()))));
+				break;
+			}
+			case "aplicar": {
+				if (args.length <= 2) {
+					handleHelp(sender, cmdArgs.getLabel());
 				} else {
-					Player player = Bukkit.getPlayer(args[2]);
+					SimplekitManager.SimpleKit simpleKit = HardcoreMain.getInstance().getSimplekitManager().getSimplekit(args[1]);
 
-					if (player == null) {
-
-						Integer v = null;
-
-						try {
-							v = Integer.valueOf(args[2]);
-						} catch (NumberFormatException ex) {
-							handleHelp(sender, cmdArgs.getLabel());
-							return;
-						}
-
-						if (v >= 1000) {
-							v = 1000;
-						}
-
-						final int value = v;
-
-						Bukkit.getOnlinePlayers().stream()
-								.filter(target -> target.getLocation().distance(sender.getLocation()) <= value)
-								.forEach(target -> simpleKit.apply(target));
-
-						sender.sendMessage("§aKit " + simpleKit.getKitName()
-								+ " aplicado para o todos os jogadores em um raio de  " + v + "!");
-						staffLog("O " + sender.getName() + " aplicou o kit " + simpleKit.getKitName()
-								+ " em todos em um raio de " + v);
+					if (simpleKit == null) {
+						sender.sendMessage("§cO kit §c\"" + args[1] + "\"§c não existe!");
 						break;
 					}
 
-					simpleKit.apply(player);
-					sender.sendMessage(
-							"§aKit " + simpleKit.getKitName() + " aplicado para o jogador " + player.getName() + "!");
-					staffLog("O " + sender.getName() + " aplicou o kit " + simpleKit.getKitName() + " em "
-							+ simpleKit.getKitName() + "");
+					if (args[2].equalsIgnoreCase("all")) {
+						Bukkit.getOnlinePlayers().forEach(player -> simpleKit.apply(player));
+						sender.sendMessage("§aKit " + simpleKit.getKitName() + " aplicado para todos os jogadores!");
+						staffLog("O " + sender.getName() + " aplicou o kit " + simpleKit.getKitName()
+								+ " em todos os jogadores");
+					} else {
+						Player player = Bukkit.getPlayer(args[2]);
+
+						if (player == null) {
+
+							Integer v = null;
+
+							try {
+								v = Integer.valueOf(args[2]);
+							} catch (NumberFormatException ex) {
+								handleHelp(sender, cmdArgs.getLabel());
+								return;
+							}
+
+							if (v >= 1000) {
+								v = 1000;
+							}
+
+							final int value = v;
+
+							Bukkit.getOnlinePlayers().stream()
+									.filter(target -> target.getLocation().distance(sender.getLocation()) <= value)
+									.forEach(target -> simpleKit.apply(target));
+
+							sender.sendMessage("§aKit " + simpleKit.getKitName()
+									+ " aplicado para o todos os jogadores em um raio de  " + v + "!");
+							staffLog("O " + sender.getName() + " aplicou o kit " + simpleKit.getKitName()
+									+ " em todos em um raio de " + v);
+							break;
+						}
+
+						simpleKit.apply(player);
+						sender.sendMessage(
+								"§aKit " + simpleKit.getKitName() + " aplicado para o jogador " + player.getName() + "!");
+						staffLog("O " + sender.getName() + " aplicou o kit " + simpleKit.getKitName() + " em "
+								+ simpleKit.getKitName() + "");
+					}
 				}
+				break;
 			}
-			break;
-		}
-		default:
-			handleHelp(sender, cmdArgs.getLabel());
+			default:
+				handleHelp(sender, cmdArgs.getLabel());
 		}
 	}
 

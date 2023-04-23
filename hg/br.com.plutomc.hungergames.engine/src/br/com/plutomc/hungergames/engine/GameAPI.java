@@ -1,11 +1,9 @@
 package br.com.plutomc.hungergames.engine;
 
 import br.com.plutomc.core.bukkit.BukkitCommon;
-import br.com.plutomc.core.bukkit.command.BukkitCommandFramework;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
 import br.com.plutomc.core.common.utils.ClassGetter;
-import br.com.plutomc.core.common.utils.configuration.impl.JsonConfiguration;
 import br.com.plutomc.hungergames.engine.backend.GamerData;
 import br.com.plutomc.hungergames.engine.game.Ability;
 import br.com.plutomc.hungergames.engine.gamer.Gamer;
@@ -19,7 +17,6 @@ import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 
-import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,9 +31,7 @@ public abstract class GameAPI extends BukkitCommon {
 	private ScheduleManager scheduleManager;
 	private TeamManager teamManager;
 
-	private JsonConfiguration configuration;
-	private int maxAbilities;
-	private int maxMembers;
+
 
 	@Setter
 	private GamerData<? extends Gamer> gamerData;
@@ -61,7 +56,6 @@ public abstract class GameAPI extends BukkitCommon {
 	@Override
 	public void onLoad() {
 		super.onLoad();
-		loadConfiguration();
 	}
 
 	@Override
@@ -75,7 +69,6 @@ public abstract class GameAPI extends BukkitCommon {
 		teamManager = new TeamManager();
 
 		Bukkit.getPluginManager().registerEvents(new ScheduleListener(), this);
-		BukkitCommandFramework.INSTANCE.loadCommands("br.com.plutomc.hungergames.engine.command");
 
 		CommonPlugin.getInstance().debug("GameAPI started successfully!");
 	}
@@ -126,50 +119,7 @@ public abstract class GameAPI extends BukkitCommon {
 		return CommonPlugin.getInstance().getMinigameState();
 	}
 
-	public int getMaxAbilities() {
-		return maxAbilities;
-	}
 
-	private void loadConfiguration() {
-		this.configuration = CommonPlugin.getInstance()
-				.getConfigurationManager()
-				.loadConfig("hg.json", Paths.get(this.getDataFolder().toURI()).getParent().getParent().toFile(), true, JsonConfiguration.class);
-
-		try {
-			this.configuration.loadConfig();
-		} catch (Exception var2) {
-			var2.printStackTrace();
-			this.getPlugin().getPluginPlatform().shutdown("Cannot load the configuration hg.json.");
-			return;
-		}
-
-		this.setMap(this.configuration.get("mapName", "Unknown"));
-		this.maxAbilities = this.configuration.get("maxAbilities", 1);
-		this.maxMembers = this.configuration.get("maxMembers", 1);
-		this.debug("The configuration hg.json has been loaded!");
-	}
-
-	public void setMaxAbilities(int maxAbilities) {
-		this.maxAbilities = maxAbilities;
-		this.configuration.set("maxAbilities", maxAbilities);
-
-		try {
-			this.configuration.saveConfig();
-		} catch (Exception var4) {
-			var4.printStackTrace();
-		}
-	}
-
-	public void setMaxMembers(int maxMembers) {
-		this.maxMembers = maxMembers;
-		this.configuration.set("maxMembers", maxMembers);
-
-		try {
-			this.configuration.saveConfig();
-		} catch (Exception var4) {
-			var4.printStackTrace();
-		}
-	}
 
 	public abstract void startGame();
 

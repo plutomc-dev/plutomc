@@ -1,5 +1,6 @@
 package br.com.plutomc.hungergames.main.stages;
 
+import br.com.plutomc.hungergames.main.HardcoreMain;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
@@ -43,7 +44,7 @@ public class InvencibilitySchedule implements Schedule {
 
 		if (time == 0) {
 			GameAPI.getInstance().setState(MinigameState.GAMETIME,
-					210);
+					HardcoreMain.getInstance().getStartTime());
 			Bukkit.broadcastMessage("§cA invencibilidade acabou!");
 			Bukkit.getOnlinePlayers()
 					.forEach(player -> player.playSound(player.getLocation(), Sound.ANVIL_USE, 100, 100));

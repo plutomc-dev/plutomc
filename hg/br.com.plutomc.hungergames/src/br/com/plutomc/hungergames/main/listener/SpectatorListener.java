@@ -36,29 +36,29 @@ public class SpectatorListener implements Listener {
 	private static final ActionItemStack GAMER_LIST = new ActionItemStack(
 			new ItemBuilder().name("§aJogadores").type(Material.COMPASS).build(), new ActionItemStack.Interact() {
 
-				@Override
-				public boolean onInteract(Player player, Entity entity, Block block, ItemStack item,
-						ActionType action) {
+		@Override
+		public boolean onInteract(Player player, Entity entity, Block block, ItemStack item,
+								  ActionType action) {
 
-					if (CommonPlugin.getInstance().getMemberManager().getMember(player.getUniqueId()).hasGroup("vip"))
-						new SpectatorInventory(player, 1);
-					else
-						player.sendMessage(
-								"§cAdquira VIP em nossa loja para poder usar isto! §b" + "www.plutomc.com.br");
-					return false;
-				}
-			});
+			if (CommonPlugin.getInstance().getMemberManager().getMember(player.getUniqueId()).hasGroup("vip"))
+				new SpectatorInventory(player, 1);
+			else
+				player.sendMessage(
+						"§cAdquira VIP em nossa loja para poder usar isto! §b" + "www.plutomc.com.br");
+			return false;
+		}
+	});
 
 	private static final ActionItemStack PLAY_AGAIN = new ActionItemStack(
 			new ItemBuilder().name("§aJogar novamente").type(Material.PAPER).build(), new ActionItemStack.Interact() {
 
-				@Override
-				public boolean onInteract(Player player, Entity entity, Block block, ItemStack item,
-						ActionType action) {
-					GameAPI.getInstance().sendPlayerToServer(player, ServerType.HG);
-					return false;
-				}
-			});
+		@Override
+		public boolean onInteract(Player player, Entity entity, Block block, ItemStack item,
+								  ActionType action) {
+			GameAPI.getInstance().sendPlayerToServer(player, ServerType.HG);
+			return false;
+		}
+	});
 
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onPlayerChat(AsyncPlayerChatEvent event) {

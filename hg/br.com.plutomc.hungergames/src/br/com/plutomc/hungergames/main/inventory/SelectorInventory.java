@@ -7,6 +7,7 @@ import br.com.plutomc.core.common.utils.string.StringFormat;
 import br.com.plutomc.hungergames.engine.GameAPI;
 import br.com.plutomc.hungergames.engine.game.Ability;
 import br.com.plutomc.hungergames.engine.gamer.Gamer;
+import br.com.plutomc.hungergames.main.HardcoreMain;
 import br.com.plutomc.hungergames.main.manager.GameHelper;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,7 +45,7 @@ public class SelectorInventory {
 								return;
 							}
 
-							if (abilityId <= GameAPI.getInstance().getMaxAbilities())
+							if (abilityId <= HardcoreMain.getInstance().getMaxAbilities())
 								GameHelper.selectAbility(gamer, ability, abilityId);
 							p.closeInventory();
 						}));

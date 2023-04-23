@@ -1,9 +1,10 @@
 package br.com.plutomc.hungergames.main.event.player;
 
+import org.bukkit.entity.Player;
+
 import br.com.plutomc.core.bukkit.event.PlayerEvent;
 import br.com.plutomc.hungergames.engine.gamer.Gamer;
 import lombok.Getter;
-import org.bukkit.entity.Player;
 
 /**
  * This event will be called when a player is eliminated (death/quit)

@@ -64,7 +64,7 @@ public class BlinkAbility extends AbilityImpl {
 			block.getRelative(BlockFace.DOWN).setType(Material.LEAVES);
 		}
 
-		new ActionBar(player.getUniqueId(), "§aUsos restantes: " + (3 - used));
+		new ActionBar(player.getUniqueId(), "§aUsos restantes: " + (3 - used)).send();
 
 		player.teleport(new Location(player.getWorld(), block.getX(), block.getY(), block.getZ(),
 				player.getLocation().getYaw(), player.getLocation().getPitch()));

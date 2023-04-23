@@ -46,13 +46,13 @@ public class StatusListener implements Listener {
 	/*public int getRewardPerKill(Member member, Gamer gamer, Member killer, Gamer killerGamer) {
 		double xpPerMinute = ((GameAPI.getInstance().getTime() - 120) / 120) * 0.65;
 		double xpDifferenceMultiplier = member.getLeagueInfo(LeagueType.HG).getTotalXp() / killer.getLeagueInfo(LeagueType.HG).getTotalXp();
-		
+
 		if (xpDifferenceMultiplier > 3)
 			xpDifferenceMultiplier = 3;
-		
+
 		if (xpDifferenceMultiplier < 1)
 			xpDifferenceMultiplier = 1;
-		
+
 		int kills = killerGamer.getKills() / 2;
 		int xp = (int) (xpPerMinute + (xpDifferenceMultiplier * 2.1) + kills);
 		return xp;
@@ -61,7 +61,7 @@ public class StatusListener implements Listener {
 	/*public int getLostPerDeath(Member member, Gamer gamer) {
 		int kills = gamer.getKills();
 		int xp = (int) (12 - (kills * 1.1));
-		
+
 		return Math.max(xp, 3);
 	} */
 }

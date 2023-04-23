@@ -8,6 +8,7 @@ import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.utils.string.StringFormat;
 import br.com.plutomc.hungergames.engine.GameAPI;
 import br.com.plutomc.hungergames.engine.gamer.Gamer;
+import br.com.plutomc.hungergames.main.HardcoreMain;
 import br.com.plutomc.hungergames.main.event.GameChangeTypeEvent;
 import br.com.plutomc.hungergames.main.event.player.PlayerSelectedKitEvent;
 import org.bukkit.Bukkit;
@@ -109,7 +110,7 @@ public class ScoreboardListener implements Listener {
 	}
 
 	private void handleScoreboard(Player player) {
-		Scoreboard scoreboard = new Scoreboard(player, "§b§lHG-" + SERVER_ID);
+		Scoreboard scoreboard = new Scoreboard(player, HardcoreMain.getInstance().getGameType() + "-" + SERVER_ID);
 
 		scoreboard.add(9, "");
 

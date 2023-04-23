@@ -10,6 +10,7 @@ import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
 import br.com.plutomc.hungergames.engine.GameAPI;
 import br.com.plutomc.hungergames.engine.game.Ability;
 import br.com.plutomc.hungergames.engine.gamer.Gamer;
+import br.com.plutomc.hungergames.main.HardcoreMain;
 import br.com.plutomc.hungergames.main.event.player.PlayerDeathDropItemEvent;
 import br.com.plutomc.hungergames.main.event.player.PlayerEliminateEvent;
 import br.com.plutomc.hungergames.main.manager.GameHelper;
@@ -88,7 +89,7 @@ public class GameListener implements Listener {
 			GameAPI.getInstance().getVanishManager().setPlayerInAdmin(gamer.getPlayer());
 		} else
 			gamer.setSpectator(true);
-		
+
 		gamer.setPlaying(false);
 	}
 
@@ -130,7 +131,7 @@ public class GameListener implements Listener {
 			killer.sendMessage("§aVocê matou " + player.getName() + ".");
 			killer.playSound(killer.getLocation(), Sound.NOTE_PIANO, 100, 100);
 			killerGamer.addKill();
-			
+
 			for (Ability abilities : gamer.getAbilities())
 				event.getDrops().removeAll(abilities.getAbilityItems());
 
@@ -148,7 +149,7 @@ public class GameListener implements Listener {
 			}
 		}.runTaskLater(GameAPI.getInstance(), 10);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		if (event.hasItem() && event.getItem().getType() == Material.COMPASS) {
@@ -220,30 +221,30 @@ public class GameListener implements Listener {
 	public void onPlayerPortal(PlayerPortalEvent event) {
 		event.setCancelled(true);
 	}
-	
+
 	@EventHandler
 	public void onFoodLevelChange(FoodLevelChangeEvent event) {
-		event.setCancelled(false);
+		event.setCancelled(!HardcoreMain.getInstance().isFoodLevel());
 	}
-	
+
 	@EventHandler
 	public void onEntityRegainHealth(EntityRegainHealthEvent event) {
-		event.setCancelled(true);
+		event.setCancelled(!HardcoreMain.getInstance().isRegainHealth());
 	}
-	
+
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPlayerDropItem(PlayerDropItemEvent event) {
-		event.setCancelled(false);
+		event.setCancelled(!HardcoreMain.getInstance().isDropItem());
 	}
-	
+
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onItemSpawn(ItemSpawnEvent event) {
-		event.setCancelled(false);
+		event.setCancelled(!HardcoreMain.getInstance().isSpawnItem());
 	}
-	
+
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPlayerPickup(PlayerPickupItemEvent event) {
-		event.setCancelled(false);
+		event.setCancelled(!HardcoreMain.getInstance().isPickItem());
 	}
 
 	public String convertItemName(String name) {
@@ -275,7 +276,7 @@ public class GameListener implements Listener {
 
 		return itemName;
 	}
-	
+
 	private void respawn(Player player, Gamer gamer) {
 		player.spigot().respawn();
 		player.setNoDamageTicks(100);

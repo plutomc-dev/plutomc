@@ -29,5 +29,14 @@
     </orderEntry>
     <orderEntry type="module" module-name="core-bukkit" />
     <orderEntry type="module" module-name="core-common" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/libs/lombok.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

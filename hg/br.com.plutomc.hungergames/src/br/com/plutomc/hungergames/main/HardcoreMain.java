@@ -4,6 +4,7 @@ import br.com.plutomc.core.bukkit.command.BukkitCommandFramework;
 import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.server.ServerType;
 import br.com.plutomc.core.common.server.loadbalancer.server.MinigameState;
+import br.com.plutomc.core.common.utils.configuration.impl.JsonConfiguration;
 import br.com.plutomc.core.common.utils.string.StringFormat;
 import br.com.plutomc.hungergames.engine.GameAPI;
 import br.com.plutomc.hungergames.main.event.GameStartEvent;
@@ -18,6 +19,7 @@ import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 
 import java.lang.management.ManagementFactory;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,11 +34,24 @@ public class HardcoreMain extends GameAPI {
 	@Getter
 	private static HardcoreMain instance;
 
+	private JsonConfiguration configuration;
+	private int maxAbilities;
+	private int maxMembers;
+	private String gameType;
+	private boolean finalBattle;
+	private long invincibilityStartTime;
+	private boolean mostKillWin;
+	private int feastTime;
+	private int startTime;
+	private int minimunPlayers;
+	private int borderMax;
+	private boolean foodLevel, regainHealth, dropItem, spawnItem, pickItem;
+
 	@Override
 	public void onLoad() {
 		instance = this;
 		super.onLoad();
-
+		loadConfiguration();
 		GameHelper.deleteWorld("world");
 	}
 
@@ -94,6 +109,7 @@ public class HardcoreMain extends GameAPI {
 		Bukkit.getPluginManager().registerEvents(new GamerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ScoreboardListener(), this);
 		Bukkit.getPluginManager().registerEvents(new SpectatorListener(), this);
+		Bukkit.getPluginManager().registerEvents(new SoupListener(), this);
 
 		BukkitCommandFramework.INSTANCE.loadCommands("br.com.plutomc");
 		loadAbilities("br.com.plutomc.hungergames.main.ability.types");
@@ -111,7 +127,6 @@ public class HardcoreMain extends GameAPI {
 		setMap(getMaxAbilities() == 1 ? "SINGLEKIT" : getMaxAbilities() == 2 ? "DOUBLEKIT" : "MULTIKIT");
 		setState(MinigameState.WAITING, 300);
 		Bukkit.setWhitelist(CommonPlugin.getInstance().getServerType() != ServerType.HG);
-
 	}
 
 	@SuppressWarnings("deprecation")
@@ -137,7 +152,8 @@ public class HardcoreMain extends GameAPI {
 
 	@Override
 	public void startGame() {
-		setState(MinigameState.INVINCIBILITY, 120);
+		setState(MinigameState.INVINCIBILITY,
+				(int) getInvincibilityStartTime());
 		Bukkit.getPluginManager().registerEvents(new AbilityListener(), GameAPI.getInstance());
 		Bukkit.getPluginManager().registerEvents(new BlockListener(), GameAPI.getInstance());
 		Bukkit.getPluginManager().registerEvents(new CombatListener(), GameAPI.getInstance());
@@ -151,6 +167,69 @@ public class HardcoreMain extends GameAPI {
 				.forEach(gamer -> GameHelper.loadItems(gamer.getPlayer(), true));
 
 		getScheduleManager().startSchedule(new InvencibilitySchedule());
+	}
+
+	public int getMaxAbilities() {
+		return maxAbilities;
+	}
+
+	public String getGameType() {
+		return gameType;
+	}
+
+	private void loadConfiguration() {
+		this.configuration = CommonPlugin.getInstance()
+				.getConfigurationManager()
+				.loadConfig("hg.json", Paths.get(this.getDataFolder().toURI()).getParent().getParent().toFile(), true, JsonConfiguration.class);
+
+		try {
+			this.configuration.loadConfig();
+		} catch (Exception var2) {
+			var2.printStackTrace();
+			this.getPlugin().getPluginPlatform().shutdown("Cannot load the configuration hg.json.");
+			return;
+		}
+
+		this.maxAbilities = this.configuration.get("maxAbilities", 1);
+		this.maxMembers = this.configuration.get("maxMembers", 1);
+		this.gameType = this.configuration.get("gameType", "§b§lSINGLEKIT");
+		this.invincibilityStartTime = this.configuration.get("invencibility.start-time", 120);
+		this.finalBattle = this.configuration.get("final-battle", true);
+		this.mostKillWin = this.configuration.get("most-kill-win", true);
+		this.feastTime = this.configuration.get("feast-time", 720);
+		this.startTime = this.configuration.get("start-time", 120);
+		this.minimunPlayers = this.configuration.get("minimun-players", 5);
+		this.pickItem = this.configuration.get("pick-item", true);
+		this.dropItem = this.configuration.get("drop-item", true);
+		this.spawnItem = this.configuration.get("spawn-item", true);
+		this.regainHealth = this.configuration.get("regain-health", true);
+		this.foodLevel = this.configuration.get("food-level", true);
+		this.borderMax = this.configuration.get("border-max", 1000);
+		this.debug("The configuration hg.json has been loaded!");
+
+	}
+
+	public void setMaxAbilities(int maxAbilities) {
+		this.maxAbilities = maxAbilities;
+		this.configuration.set("maxAbilities", maxAbilities);
+
+		try {
+			this.configuration.saveConfig();
+		} catch (Exception var4) {
+			var4.printStackTrace();
+		}
+	}
+
+
+	public void setMaxMembers(int maxMembers) {
+		this.maxMembers = maxMembers;
+		this.configuration.set("maxMembers", maxMembers);
+
+		try {
+			this.configuration.saveConfig();
+		} catch (Exception var4) {
+			var4.printStackTrace();
+		}
 	}
 
 }

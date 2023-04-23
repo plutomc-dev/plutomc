@@ -1,4 +1,3 @@
-
 package br.com.plutomc.hungergames.main.listener;
 
 import br.com.plutomc.core.common.CommonPlugin;

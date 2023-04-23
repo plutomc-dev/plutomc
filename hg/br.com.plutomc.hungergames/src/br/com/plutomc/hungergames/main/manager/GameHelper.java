@@ -145,7 +145,7 @@ public class GameHelper {
 	public static void loadDefaulKit(Player player) {
 		Gamer gamer = GameAPI.getInstance().getGamerManager().getGamer(player.getUniqueId());
 
-		for (int x = 1; x <= GameAPI.getInstance().getMaxAbilities(); x++) {
+		for (int x = 1; x <= HardcoreMain.getInstance().getMaxAbilities(); x++) {
 			Ability ability = GameAPI.getInstance().getAbilityManager()
 					.getAbility("none");
 
@@ -158,13 +158,13 @@ public class GameHelper {
 	}
 
 	public static boolean hasAbility(Gamer gamer, Ability ability, int abilityId) {
-		boolean isFree = (GameAPI.getInstance().getMaxAbilities() > 1 && abilityId == 1);
+		boolean isFree = (HardcoreMain.getInstance().getMaxAbilities() > 1 && abilityId == 1);
 		return isFree || hasAbility(gamer, ability);
 	}
 
 	public static boolean hasAbility(Gamer gamer, Ability ability) {
 		return gamer.getPlayer().hasPermission("kit." + ability.getName())
-				|| gamer.getPlayer().hasPermission("tag.pluto")
+				|| CommonPlugin.getInstance().getMemberManager().getMember(gamer.getUniqueId()).hasGroup("pluto")
 				|| HardcoreMain.FREE_ABILITIES.contains(ability.getName());
 	}
 

@@ -4,6 +4,8 @@ import br.com.plutomc.core.common.CommonPlugin;
 import br.com.plutomc.core.common.utils.string.StringFormat;
 import br.com.plutomc.hungergames.engine.GameAPI;
 import br.com.plutomc.hungergames.engine.game.Schedule;
+import br.com.plutomc.hungergames.engine.gamer.Gamer;
+import br.com.plutomc.hungergames.main.HardcoreMain;
 import br.com.plutomc.hungergames.main.event.player.PlayerEliminateEvent;
 import br.com.plutomc.hungergames.main.manager.GameHelper;
 import br.com.plutomc.hungergames.main.structure.arena.ArenaType;
@@ -16,6 +18,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.metadata.FixedMetadataValue;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameSchedule implements Schedule {
 
@@ -90,18 +95,18 @@ public class GameSchedule implements Schedule {
 			Bukkit.broadcastMessage("§cO bonus feast spawnou em algum lugar do mapa!");
 		}
 
-
+		if (HardcoreMain.getInstance().isFinalBattle()) {
 			if (time == 60 * 40) {
 				Bukkit.broadcastMessage("§cA arena final vai spawnar em 5 minutos!");
+			}
 
-
-			if (time ==  60 * 40 + (60 * 5)) {
+			if (time == 60 * 40 + (60 * 5)) {
 				Bukkit.broadcastMessage("§cA arena final foi gerada!");
 
 				Location location = new Location(Bukkit.getWorlds().stream().findFirst().orElse(null), 0, 1, 0);
 
 				ArenaType.CIRCLE.place(location, Material.BEDROCK, 0,
-						 30,
+						30,
 						120, false, false);
 
 				Location teleportLocation = location.clone().add(0, 5, 0);
@@ -114,12 +119,12 @@ public class GameSchedule implements Schedule {
 			}
 		}
 
-		/*if (GameAPI.getInstance().getVarManager().getVar("hg.most-kill-win", true)) {
-			if (time == GameAPI.getInstance().getVarManager().getVar("hg.most-kill-win-time", 60 * 55)) {
+		if (HardcoreMain.getInstance().isMostKillWin()) {
+			if (time == 60 * 55) {
 				Bukkit.broadcastMessage("§cEm 5 minutos o jogador com a maior quantidade de kills irá vencer!");
 			}
 
-			if (time == GameAPI.getInstance().getVarManager().getVar("hg.most-kill-win-time", 60 * 55) + (60 * 5)) {
+			if (time == 60 * 55 + (60 * 5)) {
 				Bukkit.broadcastMessage("§cO jogador com maior quantidade de kills irá ganhar!");
 
 				List<Gamer> gamerList = GameAPI.getInstance().getGamerManager().getGamers().stream()
@@ -137,13 +142,12 @@ public class GameSchedule implements Schedule {
 						break;
 				}
 			}
-		} */
+		}
 
 		GameAPI.getInstance().setTime(time + 1);
 	}
 
 	private int getDefaultFeastTime() {
-		return 720 ;
+		return HardcoreMain.getInstance().getFeastTime();
 	}
-
 }
