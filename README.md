@@ -1,21 +1,7 @@
 # Pluto MC
 
-Developed by Hover Solutions, this minecraft server aims to be one of the best.
-We are willing to recreate all of mush's systems, and make an incredible 
-server.
+Old minecraft server project. No longer maintened, thus made public. Do not bother me about it, I know the code sucks. I do not claim nor bear any responsability about what is made with this code.
 
-# Todo: 
+# Original Developers:
 
-Hunger Games
-
-SkyWars
-
-More minigames related to soup pvp.
-
-# Developers:
-
-Lugami
-Staack
-SkipKH
-VkHypado
-
+Skip, VkHypado, Lugami and Felipe.
